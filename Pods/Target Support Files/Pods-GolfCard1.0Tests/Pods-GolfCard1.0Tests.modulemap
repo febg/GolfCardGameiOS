@@ -1,0 +1,6 @@
+framework module Pods_GolfCard1_0Tests {
+  umbrella header "Pods-GolfCard1.0Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.7.2)
+  - Starscream (3.0.5)
+  - SwiftLint (0.25.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - Starscream (~> 3.0.2)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - Starscream
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+
+PODFILE CHECKSUM: d89131350039da6a8a3c1971160d88a334fac348
+
+COCOAPODS: 1.5.0

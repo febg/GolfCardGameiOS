@@ -1,0 +1,1158 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF880B98D14B3CB28ABDAD533C8A611 /* Timeline.swift */; };
+		141468BC327B06D89BC73FF11D4E5E4C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C8AD92F9B6B0CCF7892872B16857E4FC /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29E8BBFCE4C51B905948F144B1E6D14F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37F49CE88008338309E2646DFDA5B12 /* TaskDelegate.swift */; };
+		3E4C87D60C56B16AE4BAE2DF0EEA3F15 /* Pods-GolfCard1.0Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B583875A937B0B092CABE130EC3D8C2 /* Pods-GolfCard1.0Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726F9839A1EA11F8DB97E2B767921BB2 /* Request.swift */; };
+		54477726D160D87F807C3DB301CC963B /* Pods-GolfCard1.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FB46DBDF54F896DEEF5F79879901C8F0 /* Pods-GolfCard1.0-dummy.m */; };
+		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F6759917FE263CD95232688C9CD73 /* DispatchQueue+Alamofire.swift */; };
+		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2F1830B6A828CC192D48B7169F5012 /* ServerTrustPolicy.swift */; };
+		6DAF38C45B540E5054BC10112D29DA4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		74CD901C8C8B621A2E39E424D6DB8CE8 /* Pods-GolfCard1.0UITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BFF04B7CDB8637DF3630793658E2D8B7 /* Pods-GolfCard1.0UITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB06816C74B669D2F950CFE3976CB5DD /* SessionDelegate.swift */; };
+		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3868C46C511D737EED2A0573CFE90 /* Result.swift */; };
+		81471B614FEAED24E77944B0159F95B9 /* Pods-GolfCard1.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5AC530F586C83889E817CFBA3F583E /* Pods-GolfCard1.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		946C69AB2EF687F6A77CE582DC71954D /* Pods-GolfCard1.0Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AB3F091210A243FFA3243D13687BFB /* Pods-GolfCard1.0Tests-dummy.m */; };
+		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772AD7030963F3BEEDE3EBECB95E154E /* AFError.swift */; };
+		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2134012A8F73F281968DC10936D62FC /* NetworkReachabilityManager.swift */; };
+		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0319C265CD87F77A674031E8E2DA084 /* Alamofire-dummy.m */; };
+		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B737B3C86D1CC53260C7C7CC0866D47 /* SessionManager.swift */; };
+		B4456311E4B4282D358AAC3E8F7272B6 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D4CEEBB1874582C3371003EAD2C4DA /* WebSocket.swift */; };
+		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9363B03D77905B3A6570E70DC55ECCA2 /* MultipartFormData.swift */; };
+		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AF02FB0D48E83127B282FCE4EBAFF2 /* Validation.swift */; };
+		BD28D97F5937B271F88F6012DEAB27AB /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 510632E547EC08FA5C3E08EE9653B294 /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B237B230AF4115D4C4623E6BD7C95052 /* ParameterEncoding.swift */; };
+		C7DADAEAB74CB055CCB6EC72F9A1E827 /* Pods-GolfCard1.0UITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 831768BFDEAC2FC5403FF93DBB514493 /* Pods-GolfCard1.0UITests-dummy.m */; };
+		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCDF6CE05FDCE1797F713957098BD43 /* Response.swift */; };
+		DEA9061CDDC9B6835C6A2D35E3D48FBD /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414761EF0CB469B3C7F04451EA99778 /* Compression.swift */; };
+		EA1F67ABBE473F2DA8CEAAECF0B371F9 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790CB40C54914B2D07CBA1700A551DD5 /* SSLSecurity.swift */; };
+		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744311378E9E952112363BB2FB9151C7 /* Notifications.swift */; };
+		F36EB388A89AF4EE497A0A018517320E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		F69F3AB4C43A4CD2451C397FB45CE5A1 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5AE53422CE259BF8F1E7415129238B /* Starscream-dummy.m */; };
+		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74391FA6E44D137FD00D9B42B34ADE0 /* ResponseSerialization.swift */; };
+		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED8D6D2EA8B7781FA2E88552B090402 /* Alamofire.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0401965AF52BCBF5901FE2B195ED2721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D357AF709F0A0D3A156538CA8D1D4D2;
+			remoteInfo = Starscream;
+		};
+		2FA2AEE31D9C517494D1F95C98E51280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE8400D10B37AA12A404C312E52017A1;
+			remoteInfo = "Pods-GolfCard1.0";
+		};
+		7C207A497AB7B4B38F5A7A4A9F46301C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E9EC28B8B46C3631E6B242B50F4442;
+			remoteInfo = Alamofire;
+		};
+		FBC24CEC7326596E2EEDC5789534FAFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE8400D10B37AA12A404C312E52017A1;
+			remoteInfo = "Pods-GolfCard1.0";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09C0EB78ABB827F99A730BE1CCE0721D /* Pods-GolfCard1.0UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GolfCard1.0UITests.release.xcconfig"; sourceTree = "<group>"; };
+		0A5AC530F586C83889E817CFBA3F583E /* Pods-GolfCard1.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GolfCard1.0-umbrella.h"; sourceTree = "<group>"; };
+		0ACB458BD825169A4C462E81CD372046 /* Pods-GolfCard1.0-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GolfCard1.0-resources.sh"; sourceTree = "<group>"; };
+		0EB87EE10795AD2465FD8AF985939EBE /* Pods-GolfCard1.0-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GolfCard1.0-acknowledgements.markdown"; sourceTree = "<group>"; };
+		190A1A67A8705EA786847B3383A96D89 /* Pods-GolfCard1.0Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GolfCard1.0Tests.modulemap"; sourceTree = "<group>"; };
+		2414761EF0CB469B3C7F04451EA99778 /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Compression.swift; sourceTree = "<group>"; };
+		28696F5BD2466395FBB1C388EDDD073D /* Pods-GolfCard1.0UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GolfCard1.0UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2A71287662E07B765E64C1BBF7AEFBC0 /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
+		2BF880B98D14B3CB28ABDAD533C8A611 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		382C4DA65E447C8350684BF791E960A8 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39B375E710571341EC68F8DEA7AB0D96 /* Pods-GolfCard1.0Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GolfCard1.0Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4542D5299CA5CF37E2E8A83D9435DD09 /* Pods-GolfCard1.0Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GolfCard1.0Tests-resources.sh"; sourceTree = "<group>"; };
+		4A282D057EBA8010E1C4366BD080ACD0 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		4ED8D6D2EA8B7781FA2E88552B090402 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		4F5AE53422CE259BF8F1E7415129238B /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
+		50575A5B4044665D463E6C875ACB51FB /* Pods-GolfCard1.0UITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GolfCard1.0UITests-frameworks.sh"; sourceTree = "<group>"; };
+		50680E665B1A20F5B2EDB5B32E67B960 /* Pods_GolfCard1_0UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GolfCard1_0UITests.framework; path = "Pods-GolfCard1.0UITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		510632E547EC08FA5C3E08EE9653B294 /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
+		55AE9427771C6B6B2A8A07425BDB0776 /* Pods-GolfCard1.0Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GolfCard1.0Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		5861B38605F32EBCF59A13AACD3ECB45 /* Pods-GolfCard1.0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GolfCard1.0Tests.release.xcconfig"; sourceTree = "<group>"; };
+		58A6ABE3EDA2CD140E0D047A34DC7E34 /* Pods_GolfCard1_0Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GolfCard1_0Tests.framework; path = "Pods-GolfCard1.0Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FC7DB482AD067FC5459591D482543E5 /* Starscream.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.xcconfig; sourceTree = "<group>"; };
+		634F6759917FE263CD95232688C9CD73 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		63AB3F091210A243FFA3243D13687BFB /* Pods-GolfCard1.0Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GolfCard1.0Tests-dummy.m"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		688B740719BE1EEBD4E1D65A71478A95 /* Pods-GolfCard1.0UITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GolfCard1.0UITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		726F9839A1EA11F8DB97E2B767921BB2 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		744311378E9E952112363BB2FB9151C7 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		772AD7030963F3BEEDE3EBECB95E154E /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		790CB40C54914B2D07CBA1700A551DD5 /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/SSLSecurity.swift; sourceTree = "<group>"; };
+		7A67A4C447B877CFD96485AC0651FDA5 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF55C7E8D5E8172EF56DE9F90D677A4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DCDF6CE05FDCE1797F713957098BD43 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		831768BFDEAC2FC5403FF93DBB514493 /* Pods-GolfCard1.0UITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GolfCard1.0UITests-dummy.m"; sourceTree = "<group>"; };
+		85E660888B47343C6B8424071EAFF3AF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B583875A937B0B092CABE130EC3D8C2 /* Pods-GolfCard1.0Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GolfCard1.0Tests-umbrella.h"; sourceTree = "<group>"; };
+		8E2F1830B6A828CC192D48B7169F5012 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		90DD5660729BF715237720BAFE1FCCC1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9363B03D77905B3A6570E70DC55ECCA2 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9AEB592F49B811351D70A186624B9B5B /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		9B737B3C86D1CC53260C7C7CC0866D47 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		9CD959DC70523AA163A18902B72C91E6 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		9E2A56137EAD0984660525B39E0F0D77 /* Pods-GolfCard1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GolfCard1.0.release.xcconfig"; sourceTree = "<group>"; };
+		A2134012A8F73F281968DC10936D62FC /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		A6D4CEEBB1874582C3371003EAD2C4DA /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/WebSocket.swift; sourceTree = "<group>"; };
+		B0636A0BC2DEE494CE6AB1EEC88D1574 /* Pods-GolfCard1.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GolfCard1.0.modulemap"; sourceTree = "<group>"; };
+		B0AF02FB0D48E83127B282FCE4EBAFF2 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		B0E7EFD766849C46BD0183235E9BC25F /* Pods-GolfCard1.0UITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GolfCard1.0UITests.modulemap"; sourceTree = "<group>"; };
+		B18203CCE2D1EF0BC2677F4509CED190 /* Pods-GolfCard1.0-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GolfCard1.0-acknowledgements.plist"; sourceTree = "<group>"; };
+		B237B230AF4115D4C4623E6BD7C95052 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		B37F49CE88008338309E2646DFDA5B12 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		BE47A900B8680C562FC525EBF5D5EDCB /* Pods-GolfCard1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GolfCard1.0.debug.xcconfig"; sourceTree = "<group>"; };
+		BFF04B7CDB8637DF3630793658E2D8B7 /* Pods-GolfCard1.0UITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GolfCard1.0UITests-umbrella.h"; sourceTree = "<group>"; };
+		C74391FA6E44D137FD00D9B42B34ADE0 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		C8AD92F9B6B0CCF7892872B16857E4FC /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		CB06816C74B669D2F950CFE3976CB5DD /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		D389D8E88FDC103355C93AE5F0217245 /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
+		D5D3868C46C511D737EED2A0573CFE90 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		D79ED7A08C07D6432925C422EE480D03 /* Pods_GolfCard1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_GolfCard1_0.framework; path = "Pods-GolfCard1.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB9CCFB3CF948ABFE10026BE8D996F2D /* Pods-GolfCard1.0UITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GolfCard1.0UITests-resources.sh"; sourceTree = "<group>"; };
+		DD710682BB5639ED56C426DB257354AD /* Pods-GolfCard1.0Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GolfCard1.0Tests-frameworks.sh"; sourceTree = "<group>"; };
+		E4AFB721460275222C018CB7B98F9A0F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E58093F227C0D76EFA96C04C3A9A253E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E707D4EB65A39A400014F55EC1446420 /* Pods-GolfCard1.0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GolfCard1.0Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F0319C265CD87F77A674031E8E2DA084 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		F250D6ECC64741D89038F2C578F83A00 /* Pods-GolfCard1.0UITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GolfCard1.0UITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F3EDFC2528C38C9E47F96F1826930703 /* Pods-GolfCard1.0-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GolfCard1.0-frameworks.sh"; sourceTree = "<group>"; };
+		FB46DBDF54F896DEEF5F79879901C8F0 /* Pods-GolfCard1.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GolfCard1.0-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03A88D84FA818FD561405AED1F6350B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F36EB388A89AF4EE497A0A018517320E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		491F4E330372A3DD396DAC75B6396A64 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29E8BBFCE4C51B905948F144B1E6D14F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		99195E4207764744AEC07ECCBCD550EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC86F0C9F8F9A25ABBC71734A97D9BC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DAF38C45B540E5054BC10112D29DA4B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FF1C624C12E158B8E64EA6DA476F7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				141468BC327B06D89BC73FF11D4E5E4C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		067958A6FD5214991D15F7E1702E8838 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6C6ADAF6050D42A8BF813F0BE591DCF2 /* Alamofire */,
+				D5821A18298366AB5D47C827AC4157A2 /* Starscream */,
+				ACC066970F93BCF8DD963489C863E838 /* SwiftLint */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		0A75B1561BCF097933217D6570D340B5 /* Pods-GolfCard1.0Tests */ = {
+			isa = PBXGroup;
+			children = (
+				85E660888B47343C6B8424071EAFF3AF /* Info.plist */,
+				190A1A67A8705EA786847B3383A96D89 /* Pods-GolfCard1.0Tests.modulemap */,
+				39B375E710571341EC68F8DEA7AB0D96 /* Pods-GolfCard1.0Tests-acknowledgements.markdown */,
+				55AE9427771C6B6B2A8A07425BDB0776 /* Pods-GolfCard1.0Tests-acknowledgements.plist */,
+				63AB3F091210A243FFA3243D13687BFB /* Pods-GolfCard1.0Tests-dummy.m */,
+				DD710682BB5639ED56C426DB257354AD /* Pods-GolfCard1.0Tests-frameworks.sh */,
+				4542D5299CA5CF37E2E8A83D9435DD09 /* Pods-GolfCard1.0Tests-resources.sh */,
+				8B583875A937B0B092CABE130EC3D8C2 /* Pods-GolfCard1.0Tests-umbrella.h */,
+				E707D4EB65A39A400014F55EC1446420 /* Pods-GolfCard1.0Tests.debug.xcconfig */,
+				5861B38605F32EBCF59A13AACD3ECB45 /* Pods-GolfCard1.0Tests.release.xcconfig */,
+			);
+			name = "Pods-GolfCard1.0Tests";
+			path = "Target Support Files/Pods-GolfCard1.0Tests";
+			sourceTree = "<group>";
+		};
+		13D3920B1F3464C5D018E438C6795CD5 /* Pods-GolfCard1.0UITests */ = {
+			isa = PBXGroup;
+			children = (
+				E4AFB721460275222C018CB7B98F9A0F /* Info.plist */,
+				B0E7EFD766849C46BD0183235E9BC25F /* Pods-GolfCard1.0UITests.modulemap */,
+				F250D6ECC64741D89038F2C578F83A00 /* Pods-GolfCard1.0UITests-acknowledgements.markdown */,
+				688B740719BE1EEBD4E1D65A71478A95 /* Pods-GolfCard1.0UITests-acknowledgements.plist */,
+				831768BFDEAC2FC5403FF93DBB514493 /* Pods-GolfCard1.0UITests-dummy.m */,
+				50575A5B4044665D463E6C875ACB51FB /* Pods-GolfCard1.0UITests-frameworks.sh */,
+				DB9CCFB3CF948ABFE10026BE8D996F2D /* Pods-GolfCard1.0UITests-resources.sh */,
+				BFF04B7CDB8637DF3630793658E2D8B7 /* Pods-GolfCard1.0UITests-umbrella.h */,
+				28696F5BD2466395FBB1C388EDDD073D /* Pods-GolfCard1.0UITests.debug.xcconfig */,
+				09C0EB78ABB827F99A730BE1CCE0721D /* Pods-GolfCard1.0UITests.release.xcconfig */,
+			);
+			name = "Pods-GolfCard1.0UITests";
+			path = "Target Support Files/Pods-GolfCard1.0UITests";
+			sourceTree = "<group>";
+		};
+		427EDCE640622DE78C6E6B5823FB7A75 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A282D057EBA8010E1C4366BD080ACD0 /* Alamofire.modulemap */,
+				9AEB592F49B811351D70A186624B9B5B /* Alamofire.xcconfig */,
+				F0319C265CD87F77A674031E8E2DA084 /* Alamofire-dummy.m */,
+				9CD959DC70523AA163A18902B72C91E6 /* Alamofire-prefix.pch */,
+				C8AD92F9B6B0CCF7892872B16857E4FC /* Alamofire-umbrella.h */,
+				7AF55C7E8D5E8172EF56DE9F90D677A4 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		6C6ADAF6050D42A8BF813F0BE591DCF2 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				772AD7030963F3BEEDE3EBECB95E154E /* AFError.swift */,
+				4ED8D6D2EA8B7781FA2E88552B090402 /* Alamofire.swift */,
+				634F6759917FE263CD95232688C9CD73 /* DispatchQueue+Alamofire.swift */,
+				9363B03D77905B3A6570E70DC55ECCA2 /* MultipartFormData.swift */,
+				A2134012A8F73F281968DC10936D62FC /* NetworkReachabilityManager.swift */,
+				744311378E9E952112363BB2FB9151C7 /* Notifications.swift */,
+				B237B230AF4115D4C4623E6BD7C95052 /* ParameterEncoding.swift */,
+				726F9839A1EA11F8DB97E2B767921BB2 /* Request.swift */,
+				7DCDF6CE05FDCE1797F713957098BD43 /* Response.swift */,
+				C74391FA6E44D137FD00D9B42B34ADE0 /* ResponseSerialization.swift */,
+				D5D3868C46C511D737EED2A0573CFE90 /* Result.swift */,
+				8E2F1830B6A828CC192D48B7169F5012 /* ServerTrustPolicy.swift */,
+				CB06816C74B669D2F950CFE3976CB5DD /* SessionDelegate.swift */,
+				9B737B3C86D1CC53260C7C7CC0866D47 /* SessionManager.swift */,
+				B37F49CE88008338309E2646DFDA5B12 /* TaskDelegate.swift */,
+				2BF880B98D14B3CB28ABDAD533C8A611 /* Timeline.swift */,
+				B0AF02FB0D48E83127B282FCE4EBAFF2 /* Validation.swift */,
+				427EDCE640622DE78C6E6B5823FB7A75 /* Support Files */,
+			);
+			name = Alamofire;
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				067958A6FD5214991D15F7E1702E8838 /* Pods */,
+				8F8CD8A926756573A32F9F61F353E29D /* Products */,
+				FED52A5AC34557EBD77EFFD60A1162DD /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8F8CD8A926756573A32F9F61F353E29D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A67A4C447B877CFD96485AC0651FDA5 /* Alamofire.framework */,
+				D79ED7A08C07D6432925C422EE480D03 /* Pods_GolfCard1_0.framework */,
+				58A6ABE3EDA2CD140E0D047A34DC7E34 /* Pods_GolfCard1_0Tests.framework */,
+				50680E665B1A20F5B2EDB5B32E67B960 /* Pods_GolfCard1_0UITests.framework */,
+				382C4DA65E447C8350684BF791E960A8 /* Starscream.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D6D979A39989C9B4C88A8D4E0749C46 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E58093F227C0D76EFA96C04C3A9A253E /* Info.plist */,
+				D389D8E88FDC103355C93AE5F0217245 /* Starscream.modulemap */,
+				5FC7DB482AD067FC5459591D482543E5 /* Starscream.xcconfig */,
+				4F5AE53422CE259BF8F1E7415129238B /* Starscream-dummy.m */,
+				2A71287662E07B765E64C1BBF7AEFBC0 /* Starscream-prefix.pch */,
+				510632E547EC08FA5C3E08EE9653B294 /* Starscream-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Starscream";
+			sourceTree = "<group>";
+		};
+		ACC066970F93BCF8DD963489C863E838 /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SwiftLint;
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDC48CC8F34C93F3A429A0A8E8F2007B /* Pods-GolfCard1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				90DD5660729BF715237720BAFE1FCCC1 /* Info.plist */,
+				B0636A0BC2DEE494CE6AB1EEC88D1574 /* Pods-GolfCard1.0.modulemap */,
+				0EB87EE10795AD2465FD8AF985939EBE /* Pods-GolfCard1.0-acknowledgements.markdown */,
+				B18203CCE2D1EF0BC2677F4509CED190 /* Pods-GolfCard1.0-acknowledgements.plist */,
+				FB46DBDF54F896DEEF5F79879901C8F0 /* Pods-GolfCard1.0-dummy.m */,
+				F3EDFC2528C38C9E47F96F1826930703 /* Pods-GolfCard1.0-frameworks.sh */,
+				0ACB458BD825169A4C462E81CD372046 /* Pods-GolfCard1.0-resources.sh */,
+				0A5AC530F586C83889E817CFBA3F583E /* Pods-GolfCard1.0-umbrella.h */,
+				BE47A900B8680C562FC525EBF5D5EDCB /* Pods-GolfCard1.0.debug.xcconfig */,
+				9E2A56137EAD0984660525B39E0F0D77 /* Pods-GolfCard1.0.release.xcconfig */,
+			);
+			name = "Pods-GolfCard1.0";
+			path = "Target Support Files/Pods-GolfCard1.0";
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		D5821A18298366AB5D47C827AC4157A2 /* Starscream */ = {
+			isa = PBXGroup;
+			children = (
+				2414761EF0CB469B3C7F04451EA99778 /* Compression.swift */,
+				790CB40C54914B2D07CBA1700A551DD5 /* SSLSecurity.swift */,
+				A6D4CEEBB1874582C3371003EAD2C4DA /* WebSocket.swift */,
+				9D6D979A39989C9B4C88A8D4E0749C46 /* Support Files */,
+			);
+			name = Starscream;
+			path = Starscream;
+			sourceTree = "<group>";
+		};
+		FED52A5AC34557EBD77EFFD60A1162DD /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BDC48CC8F34C93F3A429A0A8E8F2007B /* Pods-GolfCard1.0 */,
+				0A75B1561BCF097933217D6570D340B5 /* Pods-GolfCard1.0Tests */,
+				13D3920B1F3464C5D018E438C6795CD5 /* Pods-GolfCard1.0UITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		05B11E550BA79AD1349AA60F3CDA745E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E4C87D60C56B16AE4BAE2DF0EEA3F15 /* Pods-GolfCard1.0Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30A9F80A5E79BCCAE65AB3A84375094E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD28D97F5937B271F88F6012DEAB27AB /* Starscream-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E9319FF839292D28460F902CFB7F1FA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81471B614FEAED24E77944B0159F95B9 /* Pods-GolfCard1.0-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4002B6E97835FDCCAA5963EFE09A3E0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8DC2DA2A1C12A61F7BF9C74D361A51B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74CD901C8C8B621A2E39E424D6DB8CE8 /* Pods-GolfCard1.0UITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 419E5D95491847CD79841B971A8A3277 /* Build configuration list for PBXNativeTarget "Alamofire" */;
+			buildPhases = (
+				32B9974868188C4803318E36329C87FE /* Sources */,
+				99195E4207764744AEC07ECCBCD550EB /* Frameworks */,
+				B4002B6E97835FDCCAA5963EFE09A3E0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alamofire;
+			productName = Alamofire;
+			productReference = 7A67A4C447B877CFD96485AC0651FDA5 /* Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8D357AF709F0A0D3A156538CA8D1D4D2 /* Starscream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A27D428BB809E270D32B278B3E44FFD /* Build configuration list for PBXNativeTarget "Starscream" */;
+			buildPhases = (
+				413ED5633409D1E812D1D562D52ECECE /* Sources */,
+				E1FF1C624C12E158B8E64EA6DA476F7F /* Frameworks */,
+				30A9F80A5E79BCCAE65AB3A84375094E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Starscream;
+			productName = Starscream;
+			productReference = 382C4DA65E447C8350684BF791E960A8 /* Starscream.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A53AB7ABCC06858C7C5C401E4DE6B6B7 /* Pods-GolfCard1.0Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE3C2A7A361E877E21B58FD6E90A33DF /* Build configuration list for PBXNativeTarget "Pods-GolfCard1.0Tests" */;
+			buildPhases = (
+				6A74327F37AF7D7DC58A64C19945C3E5 /* Sources */,
+				491F4E330372A3DD396DAC75B6396A64 /* Frameworks */,
+				05B11E550BA79AD1349AA60F3CDA745E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DF8DC06EA69D92C90950ADB09F76975 /* PBXTargetDependency */,
+			);
+			name = "Pods-GolfCard1.0Tests";
+			productName = "Pods-GolfCard1.0Tests";
+			productReference = 58A6ABE3EDA2CD140E0D047A34DC7E34 /* Pods_GolfCard1_0Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A73A00D0FF9603FBD47CB1842C8F698F /* Pods-GolfCard1.0UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5893ED5FBFA07B76F9083D00CCA7C51 /* Build configuration list for PBXNativeTarget "Pods-GolfCard1.0UITests" */;
+			buildPhases = (
+				848ED729141007C1E11B4A256EB2BFBE /* Sources */,
+				CC86F0C9F8F9A25ABBC71734A97D9BC1 /* Frameworks */,
+				B8DC2DA2A1C12A61F7BF9C74D361A51B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34F3A0A31365B962E6F26D298ED78BEB /* PBXTargetDependency */,
+			);
+			name = "Pods-GolfCard1.0UITests";
+			productName = "Pods-GolfCard1.0UITests";
+			productReference = 50680E665B1A20F5B2EDB5B32E67B960 /* Pods_GolfCard1_0UITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CE8400D10B37AA12A404C312E52017A1 /* Pods-GolfCard1.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D1A61E2B2FEBC6F61BC2FE9E6CB78F9 /* Build configuration list for PBXNativeTarget "Pods-GolfCard1.0" */;
+			buildPhases = (
+				658B31FCD8FBB25F2B68066195D5D32E /* Sources */,
+				03A88D84FA818FD561405AED1F6350B8 /* Frameworks */,
+				7E9319FF839292D28460F902CFB7F1FA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05A3A4962C59B3F57A1BECF0615B4225 /* PBXTargetDependency */,
+				01B481BA3D0037C14C7C6FE25686B243 /* PBXTargetDependency */,
+			);
+			name = "Pods-GolfCard1.0";
+			productName = "Pods-GolfCard1.0";
+			productReference = D79ED7A08C07D6432925C422EE480D03 /* Pods_GolfCard1_0.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 8F8CD8A926756573A32F9F61F353E29D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
+				CE8400D10B37AA12A404C312E52017A1 /* Pods-GolfCard1.0 */,
+				A53AB7ABCC06858C7C5C401E4DE6B6B7 /* Pods-GolfCard1.0Tests */,
+				A73A00D0FF9603FBD47CB1842C8F698F /* Pods-GolfCard1.0UITests */,
+				8D357AF709F0A0D3A156538CA8D1D4D2 /* Starscream */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32B9974868188C4803318E36329C87FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */,
+				A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */,
+				F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */,
+				61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */,
+				B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */,
+				A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */,
+				EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */,
+				BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */,
+				5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */,
+				CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */,
+				F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */,
+				7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */,
+				62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */,
+				7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */,
+				AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */,
+				3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */,
+				10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */,
+				BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		413ED5633409D1E812D1D562D52ECECE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEA9061CDDC9B6835C6A2D35E3D48FBD /* Compression.swift in Sources */,
+				EA1F67ABBE473F2DA8CEAAECF0B371F9 /* SSLSecurity.swift in Sources */,
+				F69F3AB4C43A4CD2451C397FB45CE5A1 /* Starscream-dummy.m in Sources */,
+				B4456311E4B4282D358AAC3E8F7272B6 /* WebSocket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		658B31FCD8FBB25F2B68066195D5D32E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54477726D160D87F807C3DB301CC963B /* Pods-GolfCard1.0-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A74327F37AF7D7DC58A64C19945C3E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				946C69AB2EF687F6A77CE582DC71954D /* Pods-GolfCard1.0Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		848ED729141007C1E11B4A256EB2BFBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7DADAEAB74CB055CCB6EC72F9A1E827 /* Pods-GolfCard1.0UITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01B481BA3D0037C14C7C6FE25686B243 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 8D357AF709F0A0D3A156538CA8D1D4D2 /* Starscream */;
+			targetProxy = 0401965AF52BCBF5901FE2B195ED2721 /* PBXContainerItemProxy */;
+		};
+		05A3A4962C59B3F57A1BECF0615B4225 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
+			targetProxy = 7C207A497AB7B4B38F5A7A4A9F46301C /* PBXContainerItemProxy */;
+		};
+		34F3A0A31365B962E6F26D298ED78BEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GolfCard1.0";
+			target = CE8400D10B37AA12A404C312E52017A1 /* Pods-GolfCard1.0 */;
+			targetProxy = 2FA2AEE31D9C517494D1F95C98E51280 /* PBXContainerItemProxy */;
+		};
+		6DF8DC06EA69D92C90950ADB09F76975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GolfCard1.0";
+			target = CE8400D10B37AA12A404C312E52017A1 /* Pods-GolfCard1.0 */;
+			targetProxy = FBC24CEC7326596E2EEDC5789534FAFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		27A2352755CD301DF98AA295CDC92CBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FC7DB482AD067FC5459591D482543E5 /* Starscream.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				PRODUCT_MODULE_NAME = Starscream;
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2C8D509258F8917CCE74D4B3748EE3D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E2A56137EAD0984660525B39E0F0D77 /* Pods-GolfCard1.0.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GolfCard1.0/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GolfCard1.0/Pods-GolfCard1.0.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		30D948AE62C04225F8DEF8734A4C5A26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		40C6227BC8DC0EEC66C63B48FBBEC25A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E707D4EB65A39A400014F55EC1446420 /* Pods-GolfCard1.0Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GolfCard1.0Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GolfCard1.0Tests/Pods-GolfCard1.0Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5177C4952C9DE53949DC894DECD71306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09C0EB78ABB827F99A730BE1CCE0721D /* Pods-GolfCard1.0UITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GolfCard1.0UITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GolfCard1.0UITests/Pods-GolfCard1.0UITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		861CEEF8B3F23E7D8F30E711CC2EA1D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE47A900B8680C562FC525EBF5D5EDCB /* Pods-GolfCard1.0.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GolfCard1.0/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GolfCard1.0/Pods-GolfCard1.0.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		93FD11B793B495169C83A4C3123AA296 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FC7DB482AD067FC5459591D482543E5 /* Starscream.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				PRODUCT_MODULE_NAME = Starscream;
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9E88537B08ED4D6EB44DBA7BC8D56A35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		A18C9CC7E37563F2891E7DC87F2DE6CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AEB592F49B811351D70A186624B9B5B /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				PRODUCT_MODULE_NAME = Alamofire;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A364CB6C35016A1287BFC9F8A0D60299 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5861B38605F32EBCF59A13AACD3ECB45 /* Pods-GolfCard1.0Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GolfCard1.0Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GolfCard1.0Tests/Pods-GolfCard1.0Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EA0ADC75B20BB62958101306980460E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AEB592F49B811351D70A186624B9B5B /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				PRODUCT_MODULE_NAME = Alamofire;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F2BE3D6E65B239E5561729D9BC2D2E61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28696F5BD2466395FBB1C388EDDD073D /* Pods-GolfCard1.0UITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GolfCard1.0UITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GolfCard1.0UITests/Pods-GolfCard1.0UITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E88537B08ED4D6EB44DBA7BC8D56A35 /* Debug */,
+				30D948AE62C04225F8DEF8734A4C5A26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		419E5D95491847CD79841B971A8A3277 /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0ADC75B20BB62958101306980460E6 /* Debug */,
+				A18C9CC7E37563F2891E7DC87F2DE6CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A27D428BB809E270D32B278B3E44FFD /* Build configuration list for PBXNativeTarget "Starscream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A2352755CD301DF98AA295CDC92CBD /* Debug */,
+				93FD11B793B495169C83A4C3123AA296 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D1A61E2B2FEBC6F61BC2FE9E6CB78F9 /* Build configuration list for PBXNativeTarget "Pods-GolfCard1.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				861CEEF8B3F23E7D8F30E711CC2EA1D9 /* Debug */,
+				2C8D509258F8917CCE74D4B3748EE3D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE3C2A7A361E877E21B58FD6E90A33DF /* Build configuration list for PBXNativeTarget "Pods-GolfCard1.0Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40C6227BC8DC0EEC66C63B48FBBEC25A /* Debug */,
+				A364CB6C35016A1287BFC9F8A0D60299 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5893ED5FBFA07B76F9083D00CCA7C51 /* Build configuration list for PBXNativeTarget "Pods-GolfCard1.0UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2BE3D6E65B239E5561729D9BC2D2E61 /* Debug */,
+				5177C4952C9DE53949DC894DECD71306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
