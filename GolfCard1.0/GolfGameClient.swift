@@ -89,7 +89,6 @@ class GolfGameClient {
   var numberOfPlayers = 0
   var didGameStarted = false
   var roomState: String = ""
-  var roomStateChange = ""
   var isPic = false
   var gameState: String = ""
   var deckTopCard = Card()
