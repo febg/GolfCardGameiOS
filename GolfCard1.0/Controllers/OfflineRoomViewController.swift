@@ -270,6 +270,7 @@ class OfflineRoomViewController: UIViewController {
           let suit = String(describing: game.players[p].hand[i].suit!.rawValue)
           card.setTitle(rank+suit, for: UIControlState.normal)
           count += 1
+          continue
         case false:
           card.setTitle(nil, for: UIControlState.normal)
         }

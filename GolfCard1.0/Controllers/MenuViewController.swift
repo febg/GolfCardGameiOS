@@ -23,6 +23,8 @@ class MenuViewController: UIViewController {
     delegate?.didContinue()
   }
   
+  @IBAction func HideButton(_ sender: Any) {
+  }
   
   @IBAction func QuitButton(_ sender: Any) {
     print("clik q")

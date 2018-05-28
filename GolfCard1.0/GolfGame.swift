@@ -67,7 +67,7 @@ class GolfGame {
       handleBotMove()
     case (3,"1"),(2,"2"),(2,"3"):
       handleBotMove()
-    case (20,_) :
+    case (4,_) :
       handleTimeout()
   
     default:
@@ -408,7 +408,7 @@ class GolfGame {
   
   func startGame(){
     gameState = .playerWait
-    turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    turnTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
   public func stopGame(){
     if turnTimer.isValid{
