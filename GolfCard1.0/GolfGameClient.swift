@@ -25,7 +25,6 @@ extension GolfGameClient: NetworkControllerDelegate {
     connectionDelegate?.didConectToRoom()
     joinRoomSocket(roomId: roomId)
     updateFromServer(data: room.data)
-    //Connect to websocket
   }
   
   func didUpdatePlayerState(playerState: Bool) {
@@ -35,14 +34,8 @@ extension GolfGameClient: NetworkControllerDelegate {
   func didConectToWebSocket() {
     print("didConnecttoWebSocket")
     connectionDelegate?.didReadyToStart()
-    // Set room Id where websocket connection was stablished
   }
-  
-  //  func didLoadRooms(rooms roomList: RoomList) {
-  //    print("cliebt didLoadRooms")
-  //    self.roomList = roomList
-  //    roomDelagate?.didGotRooms(roomList: roomList.rooms)
-  //  }
+
   
   func didUpdateGame(room: Room) {
     setPlayerInControl(pic: room.playerInControl)
@@ -59,7 +52,6 @@ protocol GolfGameClientDelegate: class {
   func didFlipCard(player: String, at index: Int, descriptions: [String:String])
   func didStartRound(turnTime: Int, descriptions: [String:String])
   func didUpdateTime(turnTime: Int)
-  func didPlayerReadyUp(playerId: String)
   func didFlipDeck(description: String)
   func didSwapCard(playerId: String, at index: Int, from type:String, descriptions: [String:String])
   func didFinishRound()
@@ -81,7 +73,6 @@ class GolfGameClient {
   public weak var connectionDelegate: GolfGameConnectionDelegate?
   let networkController = NetworkController()
   var localPlayerId = ""
-  // var roomList: RoomList? = nil
   var cardsPerPlayer = 6
   var roomId: String = ""
   var playerInControl = ""
@@ -139,21 +130,14 @@ class GolfGameClient {
       //Add  Player on lobby screen
       break
     case ("GAME", "ACTION"):
-      //Route Player Action Type
       print("Got aactione \(room)")
       handlePlayerAction(playerAction: room.playerAction)
-      
-      //TODO PlayerAction
-      //TODO Periodic Update (Round time, etc)
       break
     case ("LOBBY", "TIME"):
       gameDelegate?.didUpdateLobby(newPlayer: false)
-      //TODO refresh Lobby screen
       break
     case ("GAME", "TIME"):
       gameDelegate?.didUpdateTime(turnTime: turnTime)
-      //TODO Add Player
-      //TODO Periodic Update
       break
     case ("STARTING", "TIME"):
       break

@@ -35,17 +35,11 @@ extension OnlineRoomViewController: GolfGameClientDelegate{
     updateStatusLabel(turnTime: turnTime)
   }
   
-  func didPlayerReadyUp(playerId: String) {
-    //TODO double check relevance
-    print("1")
-  }
-  
   func didFlipDeck(description: String) {
     showDeck(description: description)
   }
   
   func didFinishRound() {
-    //TODO Show names, status, main plater button, update all cards, trigger minimizable menu
     updateLobby()
   }
   
@@ -163,7 +157,7 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func showPlayerCard(position: String, card index: Int, with description: String) {
-    // TODO guard statesment and handling nil values
+    //TODO guard
     let cards = playerPostitions[position]
     let card = cards![index]
     UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
