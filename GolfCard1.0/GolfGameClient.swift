@@ -25,7 +25,6 @@ extension GolfGameClient: NetworkControllerDelegate {
     connectionDelegate?.didConectToRoom()
     joinRoomSocket(roomId: roomId)
     updateFromServer(data: room.data)
-    //Connect to websocket
   }
   
   func didUpdatePlayerState(playerState: Bool) {
@@ -35,14 +34,8 @@ extension GolfGameClient: NetworkControllerDelegate {
   func didConectToWebSocket() {
     print("didConnecttoWebSocket")
     connectionDelegate?.didReadyToStart()
-    // Set room Id where websocket connection was stablished
   }
-  
-//  func didLoadRooms(rooms roomList: RoomList) {
-//    print("cliebt didLoadRooms")
-//    self.roomList = roomList
-//    roomDelagate?.didGotRooms(roomList: roomList.rooms)
-//  }
+
   
   func didUpdateGame(room: Room) {
     setPlayerInControl(pic: room.playerInControl)
@@ -59,7 +52,6 @@ protocol GolfGameClientDelegate: class {
   func didFlipCard(player: String, at index: Int, descriptions: [String:String])
   func didStartRound(turnTime: Int, descriptions: [String:String])
   func didUpdateTime(turnTime: Int)
-  func didPlayerReadyUp(playerId: String)
   func didFlipDeck(description: String)
   func didSwapCard(playerId: String, at index: Int, from type:String, descriptions: [String:String])
   func didFinishRound()
@@ -81,7 +73,6 @@ class GolfGameClient {
   public weak var connectionDelegate: GolfGameConnectionDelegate?
   let networkController = NetworkController()
   var localPlayerId = ""
- // var roomList: RoomList? = nil
   var cardsPerPlayer = 6
   var roomId: String = ""
   var playerInControl = ""
@@ -104,18 +95,33 @@ class GolfGameClient {
   func updateFromServer(data: GameData){
     players = sortPlayers(players: data.players)
     numberOfPlayers = data.playerLeft
-    roomState = data.roomState
     gameState = data.gameState
     deckTopCard =  data.currentDeck
     pileTopCard =  data.pileDeck
     turnTime = data.turnTime
     round = data.round
     roundTime = data.roundTime
+    updateRoomState(serverRoomSate: data.roomState)
   }
   enum ClientState: String {
     case initializing = "STARTING"
     case lobby = "LOBBY"
     case game = "GAME"
+  }
+  
+  private func handleRoomStateChange(newRoomState: String) {
+    switch (roomState, newRoomState) {
+    case ("GAME", "LOBBY"):
+      gameDelegate?.didFinishRound()
+      didGameStarted = false
+      break
+    case ("STARTING", "LOBBY"):
+      break
+    case ("LOBBY", "GAME"):
+      startRound()
+    default:
+      break
+    }
   }
   
   private func routeResponse(room: Room){
@@ -124,27 +130,14 @@ class GolfGameClient {
       //Add  Player on lobby screen
       break
     case ("GAME", "ACTION"):
-      //Route Player Action Type
       print("Got aactione \(room)")
       handlePlayerAction(playerAction: room.playerAction)
-      
-      //TODO PlayerAction
-      //TODO Periodic Update (Round time, etc)
       break
     case ("LOBBY", "TIME"):
       gameDelegate?.didUpdateLobby(newPlayer: false)
-      
-      //TODO refresh Lobby screen
       break
     case ("GAME", "TIME"):
-      if (didGameStarted){
-        gameDelegate?.didUpdateTime(turnTime: turnTime)
-        break
-      }
-      
-      startRound()
-      //TODO Add Player
-      //TODO Periodic Update
+      gameDelegate?.didUpdateTime(turnTime: turnTime)
       break
     case ("STARTING", "TIME"):
       break
@@ -152,6 +145,13 @@ class GolfGameClient {
       break
     }
   }
+  
+  public func updateRoomState(serverRoomSate: String) {
+    if roomState == serverRoomSate { return }
+    handleRoomStateChange(newRoomState: serverRoomSate)
+    roomState = serverRoomSate
+  }
+  
   
   public func setPlayerStatus() {
     networkController.setReadyState(roomId: roomId, playerId: localPlayerId)
@@ -169,13 +169,13 @@ class GolfGameClient {
   
   private func startRound() {
     //TODO round start countdown
-    var descriptions = getVisibleCards(playerId: localPlayerId)
+    var descriptions = getVisibleCardsDescriptions(playerId: localPlayerId)
     descriptions["PILE"] = pileTopCard.getDescription()
     gameDelegate?.didStartRound(turnTime: turnTime, descriptions: descriptions)
     didGameStarted = true
   }
   
-  private func getVisibleCards(playerId: String) -> [String:String] {
+  private func getVisibleCardsDescriptions(playerId: String) -> [String:String] {
     var descriptions = [String:String]()
     for p in players {
       if p.playerId == playerId {
@@ -183,6 +183,18 @@ class GolfGameClient {
           if c.visibleToOwner { descriptions["C"+String(i)] = c.getDescription() }
         }
       }
+    }
+    return descriptions
+  }
+  
+  public func getAllDescriptions() -> [String:[String:String]]{
+    var descriptions = [String:[String:String]]()
+    for (i,p) in players.enumerated() {
+      var cards = [String:String]()
+      for (j,c) in p.hand.enumerated() {
+        cards["C"+String(j)] = c.getDescription()
+      }
+      descriptions["P"+String(i)] = cards
     }
     return descriptions
   }
@@ -233,7 +245,7 @@ class GolfGameClient {
     }
     switch (index){
     case 0:
-      return "MP"
+      return "P0"
     case 1:
       return "P1"
     case 2:

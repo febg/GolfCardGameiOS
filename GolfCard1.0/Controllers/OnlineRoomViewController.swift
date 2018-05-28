@@ -35,17 +35,14 @@ extension OnlineRoomViewController: GolfGameClientDelegate{
     updateStatusLabel(turnTime: turnTime)
   }
   
-  func didPlayerReadyUp(playerId: String) {
-    //TODO double check relevance
-    print("1")
-  }
-  
   func didFlipDeck(description: String) {
     showDeck(description: description)
   }
   
   func didFinishRound() {
-    print("1")
+    let descriptions = gameClient.getAllDescriptions()
+    updateAllCards(descriptions: descriptions)
+    updateLobby()
   }
   
   func didUpdateLobby(newPlayer: Bool) {
@@ -151,6 +148,17 @@ class OnlineRoomViewController: UIViewController {
     deckCard.setTitle(description, for: .normal)
   }
   
+  private func updateAllCards(descriptions: [String:[String:String]]) {
+    for (p, cards) in descriptions {
+      let cardButtons = playerPostitions[p]
+      cardButtons![0].setTitle(cards["C0"], for: .normal)
+      cardButtons![1].setTitle(cards["C1"], for: .normal)
+      cardButtons![2].setTitle(cards["C2"], for: .normal)
+      cardButtons![4].setTitle(cards["C4"], for: .normal)
+      cardButtons![5].setTitle(cards["C5"], for: .normal)
+    }
+  }
+  
   private func showVisibleCards(descriptions: [String:String]) {
     bottomCards[0].setTitle(descriptions["C0"], for: .normal)
     bottomCards[1].setTitle(descriptions["C1"], for: .normal)
@@ -158,7 +166,7 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func showPlayerCard(position: String, card index: Int, with description: String) {
-    // TODO guard statesment and handling nil values
+    //TODO guard
     let cards = playerPostitions[position]
     let card = cards![index]
     UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
@@ -175,6 +183,7 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func prepareForGame(turnTime: Int) {
+    clearAllCards()
     updateLobby()
     hideLabels()
     hideStatus()
@@ -228,6 +237,20 @@ class OnlineRoomViewController: UIViewController {
     activeCard = -1
   }
   
+  private func clearAllCards() {
+    clearDeck()
+    clearPlayerCards()
+  }
+  
+  private func clearPlayerCards() {
+    for c in 0..<gameClient.cardsPerPlayer {
+      bottomCards[c].setTitle("", for: .normal)
+      leftCards[c].setTitle("", for: .normal)
+      topCards[c].setTitle("", for: .normal)
+      rightCards[c].setTitle("", for: .normal)
+    }
+  }
+  
   private func hideLabels() {
     bottomPlayerLabel.text = ""
     leftPlayerLabel.text = ""
@@ -267,7 +290,8 @@ class OnlineRoomViewController: UIViewController {
     for (i,p) in gameClient.players.enumerated() {
       switch (i) {
       case 0:
-        showPlayerCards(position: "MP")
+        showPlayerCards(position: "P0")
+        if bottomStatusButton.isHidden { bottomStatusButton.isHidden = false }
         bottomStatusButton.setTitle(p.startGame.description, for: .normal)
         bottomPlayerLabel.text = p.playerId
         break
@@ -307,7 +331,7 @@ class OnlineRoomViewController: UIViewController {
     var positionMap = [String:[UIButton]]()
     var labelMap = [String:UILabel]()
     var statusMap = [String:UILabel]()
-    positionMap["MP"] = bottomCards
+    positionMap["P0"] = bottomCards
     switch (playerCount){
     case 4:
       positionMap["P1"] = leftCards
