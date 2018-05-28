@@ -57,7 +57,7 @@ extension NetworkController: WebSocketDelegate {
 class NetworkController {
   
   private var socket: WebSocket!
-  private let baseURL = "http://golf-dev-lb-dd62ea5c3ebb1121.elb.us-west-2.amazonaws.com"
+  private let baseURL = "http://localhost"
   private let jsonDecoder = JSONDecoder()
   private let jsonEncoder = JSONEncoder()
   public weak var delegate: NetworkControllerDelegate?
@@ -68,7 +68,7 @@ class NetworkController {
   }
   
   private func webSocketConnection(roomId: String, playerId: String){
-    socket = WebSocket(url: URL(string: "ws://golf-dev-lb-dd62ea5c3ebb1121.elb.us-west-2.amazonaws.com/ws/\(roomId)/\(playerId)")!)
+    socket = WebSocket(url: URL(string: "ws://localhost/ws/\(roomId)/\(playerId)")!)
     socket.delegate = self
     socket.connect()
   }

@@ -45,7 +45,8 @@ extension OnlineRoomViewController: GolfGameClientDelegate{
   }
   
   func didFinishRound() {
-    print("1")
+    //TODO Show names, status, main plater button, update all cards, trigger minimizable menu
+    updateLobby()
   }
   
   func didUpdateLobby(newPlayer: Bool) {
@@ -151,6 +152,10 @@ class OnlineRoomViewController: UIViewController {
     deckCard.setTitle(description, for: .normal)
   }
   
+  private func updateAllCards() {
+    //TODO
+  }
+  
   private func showVisibleCards(descriptions: [String:String]) {
     bottomCards[0].setTitle(descriptions["C0"], for: .normal)
     bottomCards[1].setTitle(descriptions["C1"], for: .normal)
@@ -175,6 +180,7 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func prepareForGame(turnTime: Int) {
+    clearAllCards()
     updateLobby()
     hideLabels()
     hideStatus()
@@ -228,6 +234,20 @@ class OnlineRoomViewController: UIViewController {
     activeCard = -1
   }
   
+  private func clearAllCards() {
+    clearDeck()
+    clearPlayerCards()
+  }
+  
+  private func clearPlayerCards() {
+    for c in 0..<gameClient.cardsPerPlayer {
+      bottomCards[c].setTitle("", for: .normal)
+      leftCards[c].setTitle("", for: .normal)
+      topCards[c].setTitle("", for: .normal)
+      rightCards[c].setTitle("", for: .normal)
+    }
+  }
+  
   private func hideLabels() {
     bottomPlayerLabel.text = ""
     leftPlayerLabel.text = ""
@@ -268,6 +288,7 @@ class OnlineRoomViewController: UIViewController {
       switch (i) {
       case 0:
         showPlayerCards(position: "MP")
+        if bottomStatusButton.isHidden { bottomStatusButton.isHidden = false }
         bottomStatusButton.setTitle(p.startGame.description, for: .normal)
         bottomPlayerLabel.text = p.playerId
         break

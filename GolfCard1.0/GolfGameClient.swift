@@ -38,11 +38,11 @@ extension GolfGameClient: NetworkControllerDelegate {
     // Set room Id where websocket connection was stablished
   }
   
-//  func didLoadRooms(rooms roomList: RoomList) {
-//    print("cliebt didLoadRooms")
-//    self.roomList = roomList
-//    roomDelagate?.didGotRooms(roomList: roomList.rooms)
-//  }
+  //  func didLoadRooms(rooms roomList: RoomList) {
+  //    print("cliebt didLoadRooms")
+  //    self.roomList = roomList
+  //    roomDelagate?.didGotRooms(roomList: roomList.rooms)
+  //  }
   
   func didUpdateGame(room: Room) {
     setPlayerInControl(pic: room.playerInControl)
@@ -81,7 +81,7 @@ class GolfGameClient {
   public weak var connectionDelegate: GolfGameConnectionDelegate?
   let networkController = NetworkController()
   var localPlayerId = ""
- // var roomList: RoomList? = nil
+  // var roomList: RoomList? = nil
   var cardsPerPlayer = 6
   var roomId: String = ""
   var playerInControl = ""
@@ -89,6 +89,7 @@ class GolfGameClient {
   var numberOfPlayers = 0
   var didGameStarted = false
   var roomState: String = ""
+  var roomStateChange = ""
   var isPic = false
   var gameState: String = ""
   var deckTopCard = Card()
@@ -104,18 +105,33 @@ class GolfGameClient {
   func updateFromServer(data: GameData){
     players = sortPlayers(players: data.players)
     numberOfPlayers = data.playerLeft
-    roomState = data.roomState
     gameState = data.gameState
     deckTopCard =  data.currentDeck
     pileTopCard =  data.pileDeck
     turnTime = data.turnTime
     round = data.round
     roundTime = data.roundTime
+    updateRoomState(serverRoomSate: data.roomState)
   }
   enum ClientState: String {
     case initializing = "STARTING"
     case lobby = "LOBBY"
     case game = "GAME"
+  }
+  
+  private func handleRoomStateChange(newRoomState: String) {
+    switch (roomState, newRoomState) {
+    case ("GAME", "LOBBY"):
+      gameDelegate?.didFinishRound()
+      didGameStarted = false
+      break
+    case ("STARTING", "LOBBY"):
+      break
+    case ("LOBBY", "GAME"):
+      startRound()
+    default:
+      break
+    }
   }
   
   private func routeResponse(room: Room){
@@ -133,16 +149,10 @@ class GolfGameClient {
       break
     case ("LOBBY", "TIME"):
       gameDelegate?.didUpdateLobby(newPlayer: false)
-      
       //TODO refresh Lobby screen
       break
     case ("GAME", "TIME"):
-      if (didGameStarted){
-        gameDelegate?.didUpdateTime(turnTime: turnTime)
-        break
-      }
-      
-      startRound()
+      gameDelegate?.didUpdateTime(turnTime: turnTime)
       //TODO Add Player
       //TODO Periodic Update
       break
@@ -151,6 +161,12 @@ class GolfGameClient {
     default:
       break
     }
+  }
+  
+  public func updateRoomState(serverRoomSate: String) {
+    if roomState == serverRoomSate { return }
+    handleRoomStateChange(newRoomState: serverRoomSate)
+    roomState = serverRoomSate
   }
   
   public func setPlayerStatus() {
