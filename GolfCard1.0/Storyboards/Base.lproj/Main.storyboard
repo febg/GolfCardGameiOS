@@ -356,6 +356,14 @@
                                     <constraint firstAttribute="height" constant="65" id="lWe-iN-qTg"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlC-uV-UBZ">
+                                <rect key="frame" x="348" y="45" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="showMenuButton:" destination="pbA-Do-PQL" eventType="touchUpInside" id="WnA-mc-78c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -973,6 +981,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="AxY-Uu-cNH"/>
         <segue reference="JI0-Np-blv"/>
     </inferredMetricsTieBreakers>
 </document>

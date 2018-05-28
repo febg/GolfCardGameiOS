@@ -127,6 +127,12 @@ class OfflineRoomViewController: UIViewController {
     }
   }
   
+  @IBAction func showMenuButton(_ sender: Any) {
+    self.performSegue (withIdentifier: "Menu", sender: self)
+    print("Finished")
+  }
+  
+  
   var dealer: Timer!
   var refreshTimer: Timer!
   
