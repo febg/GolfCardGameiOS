@@ -1,0 +1,22 @@
+# Mac OS X
+*.DS_Store
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xcworkspace/
+project.xcworkspace/
+xcuserdata/
+
+# Podfiles
+Pods/
+
+
+Lin.xcodeproj/xcuserdata/yingmu52.xcuserdatad/xcschemes/xcschememanagement.plist
+
+Lin/GoogleService-Info.plist
+
+cloud/functions/node_modules/
