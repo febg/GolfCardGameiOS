@@ -127,6 +127,12 @@ class OfflineRoomViewController: UIViewController {
     }
   }
   
+  @IBAction func showMenuButton(_ sender: Any) {
+    self.performSegue (withIdentifier: "Menu", sender: self)
+    print("Finished")
+  }
+  
+  
   var dealer: Timer!
   var refreshTimer: Timer!
   
@@ -270,6 +276,7 @@ class OfflineRoomViewController: UIViewController {
           let suit = String(describing: game.players[p].hand[i].suit!.rawValue)
           card.setTitle(rank+suit, for: UIControlState.normal)
           count += 1
+          continue
         case false:
           card.setTitle(nil, for: UIControlState.normal)
         }

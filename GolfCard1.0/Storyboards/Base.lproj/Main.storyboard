@@ -356,6 +356,14 @@
                                     <constraint firstAttribute="height" constant="65" id="lWe-iN-qTg"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlC-uV-UBZ">
+                                <rect key="frame" x="348" y="45" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="showMenuButton:" destination="pbA-Do-PQL" eventType="touchUpInside" id="WnA-mc-78c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -915,6 +923,16 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="0Dk-x4-8V5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7P-Ja-oKp">
+                                <rect key="frame" x="20" y="16" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37697942593830469" green="1" blue="0.37611842393746775" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Hide"/>
+                                <connections>
+                                    <action selector="HideButton:" destination="JMO-Gm-UoF" eventType="touchUpInside" id="rZj-bx-Zr0"/>
+                                    <segue destination="pbA-Do-PQL" kind="show" id="xnq-RP-SQC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.75248822773972601" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -928,7 +946,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqe-Yb-pDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300" y="-706"/>
+            <point key="canvasLocation" x="1298.5507246376812" y="-706.79347826086962"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="xQ3-75-6LH">
@@ -963,6 +981,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="AxY-Uu-cNH"/>
         <segue reference="JI0-Np-blv"/>
     </inferredMetricsTieBreakers>
 </document>
