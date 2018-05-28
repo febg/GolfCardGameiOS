@@ -152,6 +152,7 @@ class GolfGameClient {
     roomState = serverRoomSate
   }
   
+  
   public func setPlayerStatus() {
     networkController.setReadyState(roomId: roomId, playerId: localPlayerId)
   }
@@ -168,13 +169,13 @@ class GolfGameClient {
   
   private func startRound() {
     //TODO round start countdown
-    var descriptions = getVisibleCards(playerId: localPlayerId)
+    var descriptions = getVisibleCardsDescriptions(playerId: localPlayerId)
     descriptions["PILE"] = pileTopCard.getDescription()
     gameDelegate?.didStartRound(turnTime: turnTime, descriptions: descriptions)
     didGameStarted = true
   }
   
-  private func getVisibleCards(playerId: String) -> [String:String] {
+  private func getVisibleCardsDescriptions(playerId: String) -> [String:String] {
     var descriptions = [String:String]()
     for p in players {
       if p.playerId == playerId {
@@ -182,6 +183,18 @@ class GolfGameClient {
           if c.visibleToOwner { descriptions["C"+String(i)] = c.getDescription() }
         }
       }
+    }
+    return descriptions
+  }
+  
+  public func getAllDescriptions() -> [String:[String:String]]{
+    var descriptions = [String:[String:String]]()
+    for (i,p) in players.enumerated() {
+      var cards = [String:String]()
+      for (j,c) in p.hand.enumerated() {
+        cards["C"+String(j)] = c.getDescription()
+      }
+      descriptions["P"+String(i)] = cards
     }
     return descriptions
   }
@@ -232,7 +245,7 @@ class GolfGameClient {
     }
     switch (index){
     case 0:
-      return "MP"
+      return "P0"
     case 1:
       return "P1"
     case 2:

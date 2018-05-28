@@ -40,6 +40,8 @@ extension OnlineRoomViewController: GolfGameClientDelegate{
   }
   
   func didFinishRound() {
+    let descriptions = gameClient.getAllDescriptions()
+    updateAllCards(descriptions: descriptions)
     updateLobby()
   }
   
@@ -146,8 +148,15 @@ class OnlineRoomViewController: UIViewController {
     deckCard.setTitle(description, for: .normal)
   }
   
-  private func updateAllCards() {
-    //TODO
+  private func updateAllCards(descriptions: [String:[String:String]]) {
+    for (p, cards) in descriptions {
+      let cardButtons = playerPostitions[p]
+      cardButtons![0].setTitle(cards["C0"], for: .normal)
+      cardButtons![1].setTitle(cards["C1"], for: .normal)
+      cardButtons![2].setTitle(cards["C2"], for: .normal)
+      cardButtons![4].setTitle(cards["C4"], for: .normal)
+      cardButtons![5].setTitle(cards["C5"], for: .normal)
+    }
   }
   
   private func showVisibleCards(descriptions: [String:String]) {
@@ -281,7 +290,7 @@ class OnlineRoomViewController: UIViewController {
     for (i,p) in gameClient.players.enumerated() {
       switch (i) {
       case 0:
-        showPlayerCards(position: "MP")
+        showPlayerCards(position: "P0")
         if bottomStatusButton.isHidden { bottomStatusButton.isHidden = false }
         bottomStatusButton.setTitle(p.startGame.description, for: .normal)
         bottomPlayerLabel.text = p.playerId
@@ -322,7 +331,7 @@ class OnlineRoomViewController: UIViewController {
     var positionMap = [String:[UIButton]]()
     var labelMap = [String:UILabel]()
     var statusMap = [String:UILabel]()
-    positionMap["MP"] = bottomCards
+    positionMap["P0"] = bottomCards
     switch (playerCount){
     case 4:
       positionMap["P1"] = leftCards
