@@ -34,10 +34,10 @@ struct Card: Codable{
     
     var desription: String {
       switch self {
-      case .spades: return "♠️"
-      case .hearts: return "♥️"
-      case .clubs: return "♣️"
-      case .dimonds: return "♦️"
+      case .spades: return "spades"
+      case .hearts: return "hearts"
+      case .clubs: return "clubs"
+      case .dimonds: return "dimonds"
       }
     }
     

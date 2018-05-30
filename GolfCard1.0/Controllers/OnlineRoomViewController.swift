@@ -170,7 +170,10 @@ class OnlineRoomViewController: UIViewController {
     let cards = playerPostitions[position]
     let card = cards![index]
     UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
-      card.setTitle(description, for: .normal)
+      let cardImage = UIImage(named: description) as UIImage?
+      card.setBackgroundImage(cardImage, for: .disabled)
+      card.setTitle("", for: .normal)
+      card.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
       card.isEnabled = false
     }, completion: nil)
 
