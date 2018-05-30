@@ -145,24 +145,28 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func showDeck(description: String) {
-    let deckImage = UIImage(named: description) as UIImage?!
-    deckCard.setBackgroundImage(deckImage!, for: .normal)
+    guard
+      let deckImage = UIImage(named: description)
+      else {
+        return
+    }
+    deckCard.setBackgroundImage(deckImage, for: .normal)
     deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
   }
   
   private func updateAllCards(descriptions: [String:[String:String]]) {
     for (p, cards) in descriptions {
       guard
-      //TODO ask xinyi about unwarpping dependency optionals
-      let cardImage0 = UIImage(named: cards["C0"]!),
-      let cardImage1 = UIImage(named: cards["C1"]!),
-      let cardImage2 = UIImage(named: cards["C2"]!),
-      let cardImage3 = UIImage(named: cards["C3"]!),
-      let cardImage4 = UIImage(named: cards["C4"]!),
-      let cardImage5 = UIImage(named: cards["C5"]!)
-
-      else {
-        return
+        //TODO ask xinyi about unwarpping dependency optionals
+        let cardImage0 = UIImage(named: cards["C0"]!),
+        let cardImage1 = UIImage(named: cards["C1"]!),
+        let cardImage2 = UIImage(named: cards["C2"]!),
+        let cardImage3 = UIImage(named: cards["C3"]!),
+        let cardImage4 = UIImage(named: cards["C4"]!),
+        let cardImage5 = UIImage(named: cards["C5"]!)
+        
+        else {
+          return
       }
       let cardButtons = playerPostitions[p]
       cardButtons![0].setBackgroundImage(cardImage0, for: .disabled)
@@ -170,8 +174,8 @@ class OnlineRoomViewController: UIViewController {
       cardButtons![2].setBackgroundImage(cardImage2, for: .disabled)
       cardButtons![3].setBackgroundImage(cardImage3, for: .disabled)
       cardButtons![4].setBackgroundImage(cardImage4, for: .disabled)
-      cardButtons![5].setBackgroundImage(cardImage4, for: .disabled)
-
+      cardButtons![5].setBackgroundImage(cardImage5, for: .disabled)
+      
     }
   }
   
@@ -183,10 +187,14 @@ class OnlineRoomViewController: UIViewController {
   
   private func showPlayerCard(position: String, card index: Int, with description: String) {
     //TODO guard
-    let cards = playerPostitions[position]
-    let card = cards![index]
+    guard
+      let cards = playerPostitions[position],
+      let cardImage = UIImage(named: description)
+      else{
+        return
+    }
+    let card = cards[index]
     UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
-      let cardImage = UIImage(named: description) as UIImage?
       card.setBackgroundImage(cardImage, for: .disabled)
       card.setTitle("", for: .normal)
       card.isEnabled = false
@@ -251,9 +259,9 @@ class OnlineRoomViewController: UIViewController {
   
   private func clearDeck() {
     guard
-    let backCardImage = UIImage(named: "back")
-    else {
-      return
+      let backCardImage = UIImage(named: "back")
+      else {
+        return
     }
     deckCard.setBackgroundImage(backCardImage, for: .normal)
     activeCard = -1
