@@ -145,7 +145,9 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func showDeck(description: String) {
-    deckCard.setTitle(description, for: .normal)
+    let deckImage = UIImage(named: description) as UIImage?!
+    deckCard.setBackgroundImage(deckImage!, for: .normal)
+    deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
   }
   
   private func updateAllCards(descriptions: [String:[String:String]]) {
@@ -235,7 +237,8 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func clearDeck() {
-    deckCard.setTitle("", for: .normal)
+    deckCard.setBackgroundImage(nil, for: .normal)
+    deckCard.backgroundColor = UIColor(displayP3Red: 255/255, green: 164/255, blue: 193/255, alpha: 1)
     activeCard = -1
   }
   
@@ -261,7 +264,13 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func updatePileCard(description: String) {
-    pileCard.setTitle(description, for: .normal)
+    guard
+    let cardImage = UIImage(named: description)
+      else {
+        return
+    }
+    pileCard.setBackgroundImage(cardImage, for: .normal)
+    pileCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
   }
   
   private func hideOponentLabels(){
