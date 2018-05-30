@@ -188,7 +188,6 @@ class OnlineRoomViewController: UIViewController {
   private func prepareForGame(turnTime: Int) {
     clearAllCards()
     updateLobby()
-    hideLabels()
     hideStatus()
     updateStatusLabel(turnTime: turnTime)
   }
