@@ -284,6 +284,7 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func updateLobby() {
+    if (gameClient.roomState != "LOBBY") { return }
     setPlayerPositions(playerCount: gameClient.numberOfPlayers)
     updateLobbyBoard()
   }
