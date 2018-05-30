@@ -50,7 +50,7 @@ extension OnlineRoomViewController: GolfGameClientDelegate{
   }
 }
 
-  //<---------------------------- Main Class ---------------------------->
+//<---------------------------- Main Class ---------------------------->
 
 class OnlineRoomViewController: UIViewController {
   
@@ -152,12 +152,26 @@ class OnlineRoomViewController: UIViewController {
   
   private func updateAllCards(descriptions: [String:[String:String]]) {
     for (p, cards) in descriptions {
+      guard
+      //TODO ask xinyi about unwarpping dependency optionals
+      let cardImage0 = UIImage(named: cards["C0"]!),
+      let cardImage1 = UIImage(named: cards["C1"]!),
+      let cardImage2 = UIImage(named: cards["C2"]!),
+      let cardImage3 = UIImage(named: cards["C3"]!),
+      let cardImage4 = UIImage(named: cards["C4"]!),
+      let cardImage5 = UIImage(named: cards["C5"]!)
+
+      else {
+        return
+      }
       let cardButtons = playerPostitions[p]
-      cardButtons![0].setTitle(cards["C0"], for: .normal)
-      cardButtons![1].setTitle(cards["C1"], for: .normal)
-      cardButtons![2].setTitle(cards["C2"], for: .normal)
-      cardButtons![4].setTitle(cards["C4"], for: .normal)
-      cardButtons![5].setTitle(cards["C5"], for: .normal)
+      cardButtons![0].setBackgroundImage(cardImage0, for: .disabled)
+      cardButtons![1].setBackgroundImage(cardImage1, for: .disabled)
+      cardButtons![2].setBackgroundImage(cardImage2, for: .disabled)
+      cardButtons![3].setBackgroundImage(cardImage3, for: .disabled)
+      cardButtons![4].setBackgroundImage(cardImage4, for: .disabled)
+      cardButtons![5].setBackgroundImage(cardImage4, for: .disabled)
+
     }
   }
   
@@ -175,10 +189,9 @@ class OnlineRoomViewController: UIViewController {
       let cardImage = UIImage(named: description) as UIImage?
       card.setBackgroundImage(cardImage, for: .disabled)
       card.setTitle("", for: .normal)
-      card.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
       card.isEnabled = false
     }, completion: nil)
-
+    
   }
   
   private func initializeLobby(){
@@ -237,8 +250,12 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func clearDeck() {
-    deckCard.setBackgroundImage(nil, for: .normal)
-    deckCard.backgroundColor = UIColor(displayP3Red: 255/255, green: 164/255, blue: 193/255, alpha: 1)
+    guard
+    let backCardImage = UIImage(named: "back")
+    else {
+      return
+    }
+    deckCard.setBackgroundImage(backCardImage, for: .normal)
     activeCard = -1
   }
   
@@ -265,7 +282,7 @@ class OnlineRoomViewController: UIViewController {
   
   private func updatePileCard(description: String) {
     guard
-    let cardImage = UIImage(named: description)
+      let cardImage = UIImage(named: description)
       else {
         return
     }
