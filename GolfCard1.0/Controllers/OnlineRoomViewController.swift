@@ -158,13 +158,13 @@ class OnlineRoomViewController: UIViewController {
     for (p, cards) in descriptions {
       guard
         //TODO ask xinyi about unwarpping dependency optionals
-        let cardImage0 = UIImage(named: cards["C0"]!),
+        let car0 = cards["C0"],
+        let cardImage0 = UIImage(named: car0),
         let cardImage1 = UIImage(named: cards["C1"]!),
         let cardImage2 = UIImage(named: cards["C2"]!),
         let cardImage3 = UIImage(named: cards["C3"]!),
         let cardImage4 = UIImage(named: cards["C4"]!),
         let cardImage5 = UIImage(named: cards["C5"]!)
-        
         else {
           return
       }
@@ -410,5 +410,17 @@ class OnlineRoomViewController: UIViewController {
     playerPostitions = positionMap
     playerLabelPositions = labelMap
     playerStatusPositions = statusMap
+  }
+}
+
+enum CardImage {
+  case card(String)
+  var image: UIImage {
+    switch card(let s) {
+    case :
+      <#code#>
+    default:
+      <#code#>
+    }
   }
 }
