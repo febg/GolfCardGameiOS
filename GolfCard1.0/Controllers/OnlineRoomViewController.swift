@@ -144,16 +144,6 @@ class OnlineRoomViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  private func showDeck(description: String) {
-    guard
-      let deckImage = UIImage(named: description)
-      else {
-        return
-    }
-    deckCard.setBackgroundImage(deckImage, for: .normal)
-    deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-  }
-  
   private func updateAllCards(descriptions: [String:[String:String]]) {
     for (p, cards) in descriptions {
       guard
@@ -255,16 +245,6 @@ class OnlineRoomViewController: UIViewController {
       topCards[c].isHidden = true
       rightCards[c].isHidden = true
     }
-  }
-  
-  private func clearDeck() {
-    guard
-      let backCardImage = UIImage(named: "back")
-      else {
-        return
-    }
-    deckCard.setBackgroundImage(backCardImage, for: .normal)
-    activeCard = -1
   }
   
   private func clearAllCards() {
@@ -411,4 +391,31 @@ class OnlineRoomViewController: UIViewController {
     playerLabelPositions = labelMap
     playerStatusPositions = statusMap
   }
+}
+//MARK: Deck logic
+extension OnlineRoomViewController {
+  private func clearDeck() {
+    guard
+      let backCardImage = UIImage(named: "back")
+      else {
+        return
+    }
+    deckCard.setBackgroundImage(backCardImage, for: .normal)
+    activeCard = -1
+  }
+  
+  private func showDeck(description: String) {
+    guard
+      let deckImage = UIImage(named: description)
+      else {
+        return
+    }
+    deckCard.setBackgroundImage(deckImage, for: .normal)
+    deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
+  }
+}
+
+//MARK: Positions logic
+extension OnlineRoomViewController {
+  
 }
