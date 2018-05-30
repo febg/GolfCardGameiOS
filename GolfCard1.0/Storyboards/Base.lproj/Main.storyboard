@@ -740,18 +740,18 @@
                                     <action selector="statusButton:" destination="FPa-bi-ygJ" eventType="touchUpInside" id="li7-1l-Zcf"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cN9-Q4-ChQ">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cN9-Q4-ChQ">
                                 <rect key="frame" x="171.33333333333334" y="421" width="71.666666666666657" height="60"/>
                                 <subviews>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAO-3H-icj">
-                                        <rect key="frame" x="0.0" y="0.0" width="33" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="33.333333333333336" height="60"/>
                                         <color key="backgroundColor" red="1" green="0.64187298309999996" blue="0.75558990000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="deckAction:" destination="FPa-bi-ygJ" eventType="touchUpInside" id="MGc-Zf-KgQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuR-11-qWc">
-                                        <rect key="frame" x="38" y="0.0" width="33.666666666666657" height="60"/>
+                                        <rect key="frame" x="38.333333333333314" y="0.0" width="33.333333333333343" height="60"/>
                                         <color key="backgroundColor" red="1" green="0.64187298309999996" blue="0.75558990000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="pileAction:" destination="FPa-bi-ygJ" eventType="touchUpInside" id="v9Q-Uf-fWp"/>
