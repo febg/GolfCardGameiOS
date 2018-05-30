@@ -145,7 +145,9 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func showDeck(description: String) {
-    deckCard.setTitle(description, for: .normal)
+    let deckImage = UIImage(named: description) as UIImage?!
+    deckCard.setBackgroundImage(deckImage!, for: .normal)
+    deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
   }
   
   private func updateAllCards(descriptions: [String:[String:String]]) {
@@ -170,7 +172,10 @@ class OnlineRoomViewController: UIViewController {
     let cards = playerPostitions[position]
     let card = cards![index]
     UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
-      card.setTitle(description, for: .normal)
+      let cardImage = UIImage(named: description) as UIImage?
+      card.setBackgroundImage(cardImage, for: .disabled)
+      card.setTitle("", for: .normal)
+      card.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
       card.isEnabled = false
     }, completion: nil)
 
@@ -232,7 +237,8 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func clearDeck() {
-    deckCard.setTitle("", for: .normal)
+    deckCard.setBackgroundImage(nil, for: .normal)
+    deckCard.backgroundColor = UIColor(displayP3Red: 255/255, green: 164/255, blue: 193/255, alpha: 1)
     activeCard = -1
   }
   
@@ -258,7 +264,13 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func updatePileCard(description: String) {
-    pileCard.setTitle(description, for: .normal)
+    guard
+    let cardImage = UIImage(named: description)
+      else {
+        return
+    }
+    pileCard.setBackgroundImage(cardImage, for: .normal)
+    pileCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
   }
   
   private func hideOponentLabels(){
@@ -281,6 +293,7 @@ class OnlineRoomViewController: UIViewController {
   }
   
   private func updateLobby() {
+    if (gameClient.roomState != "LOBBY") { return }
     setPlayerPositions(playerCount: gameClient.numberOfPlayers)
     updateLobbyBoard()
   }

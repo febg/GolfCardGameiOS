@@ -9,8 +9,9 @@
 *.xcuserstate
 *.xcworkspace/
 project.xcworkspace/
-xcuserdata/
-
+*xcuserdata/
+*.xcuserstate
+*GolfCard1.0.xcworkspace/*
 # Podfiles
 Pods/
 
