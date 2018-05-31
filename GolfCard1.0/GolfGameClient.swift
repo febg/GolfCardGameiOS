@@ -38,6 +38,7 @@ extension GolfGameClient: NetworkControllerDelegate {
 
   
   func didUpdateGame(room: Room) {
+    checkPlayerInControl(pic: room.playerInControl)
     setPlayerInControl(pic: room.playerInControl)
     updateFromServer(data: room.data)
     routeResponse(room: room)
@@ -52,6 +53,7 @@ protocol GolfGameClientDelegate: class {
   func didFlipCard(player: String, at index: Int, descriptions: [String:String])
   func didStartRound(turnTime: Int, descriptions: [String:String])
   func didUpdateTime(turnTime: Int)
+  func updatePlayerInControl(position: String, playerInControl: String)
   func didFlipDeck(description: String)
   func didSwapCard(playerId: String, at index: Int, from type:String, descriptions: [String:String])
   func didFinishRound()
@@ -158,13 +160,13 @@ class GolfGameClient {
   }
   
   private func  setPlayerInControl(pic: String) {
-    if localPlayerId == pic { isPic = true }
-    else { isPic = false }
     playerInControl = pic
   }
   
-  private func checkNewTurn() {
-    
+  private func checkPlayerInControl(pic: String) {
+    if pic != playerInControl { updatePlayerInControl(pic: pic) }
+    if localPlayerId == pic { isPic = true }
+    else { isPic = false }
   }
   
   private func startRound() {
@@ -173,6 +175,13 @@ class GolfGameClient {
     descriptions["PILE"] = pileTopCard.getDescription()
     gameDelegate?.didStartRound(turnTime: turnTime, descriptions: descriptions)
     didGameStarted = true
+  }
+  
+  private func updatePlayerInControl(pic: String) {
+    guard let playerPosition = getPlayerIndex(playerId: pic) else {
+      return
+    }
+    gameDelegate?.updatePlayerInControl(position: playerPosition, playerInControl: pic)
   }
   
   private func getVisibleCardsDescriptions(playerId: String) -> [String:String] {

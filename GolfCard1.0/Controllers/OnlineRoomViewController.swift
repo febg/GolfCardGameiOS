@@ -13,6 +13,10 @@ import UIKit
 //MARK: GolfGameClient Protocol
 
 extension OnlineRoomViewController: GolfGameClientDelegate{
+  func updatePlayerInControl(position: String, playerInControl: String) {
+     showPlayerInControl(position: position, playerId: playerInControl)
+  }
+  
   func didSwapCard(playerId: String, at index: Int, from type: String, descriptions: [String : String]) {
     swapCard(playerId: playerId, at: index, from: type, descriptions: descriptions)
     clearDeck()
@@ -239,6 +243,7 @@ extension OnlineRoomViewController {
     var labelMap = [String:UILabel]()
     var statusMap = [String:UILabel]()
     positionMap["P0"] = bottomCards
+    labelMap["P0"] = bottomPlayerLabel
     switch (playerCount){
     case 4:
       positionMap["P1"] = leftCards
@@ -384,7 +389,18 @@ extension OnlineRoomViewController {
 }
 //MARK: Board Info Logic
 extension OnlineRoomViewController {
+  private func showPlayerInControl(position: String, playerId: String) {
+    for (key, label) in playerLabelPositions {
+      if key == position {
+        label.textColor = UIColor(displayP3Red: 9/255, green: 125/255, blue: 235/255, alpha: 1.0)
+        continue
+      }
+      label.textColor = UIColor(displayP3Red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0)
+    }
+  }
+  
   private func showPlayerInfo(position: String, playerId: String, playerStatus: Bool) {
+    //TODO guard
     let label = playerLabelPositions[position]
     let status = playerStatusPositions[position]
     label?.text = playerId
