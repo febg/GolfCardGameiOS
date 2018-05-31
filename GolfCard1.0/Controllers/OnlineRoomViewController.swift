@@ -10,7 +10,7 @@ import UIKit
 
 //<---------------------------- Extensions ---------------------------->
 
-//<------- Protocols ------->
+//MARK: GolfGameClient Protocol
 
 extension OnlineRoomViewController: GolfGameClientDelegate{
   func didSwapCard(playerId: String, at index: Int, from type: String, descriptions: [String : String]) {
@@ -144,70 +144,17 @@ class OnlineRoomViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  private func showDeck(description: String) {
-    guard
-      let deckImage = UIImage(named: description)
-      else {
-        return
-    }
-    deckCard.setBackgroundImage(deckImage, for: .normal)
-    deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-  }
-  
-  private func updateAllCards(descriptions: [String:[String:String]]) {
-    for (p, cards) in descriptions {
-      guard
-        //TODO ask xinyi about unwarpping dependency optionals
-        let cardImage0 = UIImage(named: cards["C0"]!),
-        let cardImage1 = UIImage(named: cards["C1"]!),
-        let cardImage2 = UIImage(named: cards["C2"]!),
-        let cardImage3 = UIImage(named: cards["C3"]!),
-        let cardImage4 = UIImage(named: cards["C4"]!),
-        let cardImage5 = UIImage(named: cards["C5"]!)
-        
-        else {
-          return
-      }
-      let cardButtons = playerPostitions[p]
-      cardButtons![0].setBackgroundImage(cardImage0, for: .disabled)
-      cardButtons![1].setBackgroundImage(cardImage1, for: .disabled)
-      cardButtons![2].setBackgroundImage(cardImage2, for: .disabled)
-      cardButtons![3].setBackgroundImage(cardImage3, for: .disabled)
-      cardButtons![4].setBackgroundImage(cardImage4, for: .disabled)
-      cardButtons![5].setBackgroundImage(cardImage5, for: .disabled)
-      
-    }
-  }
-  
-  private func showVisibleCards(descriptions: [String:String]) {
-    bottomCards[0].setTitle(descriptions["C0"], for: .normal)
-    bottomCards[1].setTitle(descriptions["C1"], for: .normal)
-    bottomCards[2].setTitle(descriptions["C2"], for: .normal)
-  }
-  
-  private func showPlayerCard(position: String, card index: Int, with description: String) {
-    //TODO guard
-    guard
-      let cards = playerPostitions[position],
-      let cardImage = UIImage(named: description)
-      else{
-        return
-    }
-    let card = cards[index]
-    UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
-      card.setBackgroundImage(cardImage, for: .disabled)
-      card.setTitle("", for: .normal)
-      card.isEnabled = false
-    }, completion: nil)
-    
-  }
+
   
   private func initializeLobby(){
     hideAllPlayerCards()
     updateLobby()
     updateStatusLabel(message: "Waiting for Players...")
   }
-  
+}
+
+//MARK: Control logic
+extension OnlineRoomViewController {
   private func prepareForGame(turnTime: Int) {
     clearAllCards()
     updateLobby()
@@ -215,107 +162,6 @@ class OnlineRoomViewController: UIViewController {
     updateStatusLabel(turnTime: turnTime)
   }
   
-  private func swapCard(playerId: String, at index: Int, from type: String, descriptions: [String:String]) {
-    switch (type) {
-    case "DECK":
-      //TODO animation from deck to hand from hand to pile
-      break
-    case "PILE":
-      //TODO animation from pile to hand from hand to pile
-      break
-    default:
-      break
-    }
-    //TODO safely unwarp values
-    showPlayerCard(position: playerId, card: index, with: descriptions["C"]!)
-    updatePileCard(description: descriptions["PILE"]!)
-    
-  }
-  
-  private func updateStatusLabel(turnTime: Int) {
-    statusLabel.text = String(turnTime)
-  }
-  
-  private func updateStatusLabel(message: String) {
-    statusLabel.text = message
-  }
-  
-  private func hideAllPlayerCards(){
-    for c in 0..<gameClient.cardsPerPlayer {
-      bottomCards[c].isHidden = true
-      leftCards[c].isHidden = true
-      topCards[c].isHidden = true
-      rightCards[c].isHidden = true
-    }
-  }
-  
-  private func hideOponentsCards() {
-    for c in 0..<gameClient.cardsPerPlayer {
-      leftCards[c].isHidden = true
-      topCards[c].isHidden = true
-      rightCards[c].isHidden = true
-    }
-  }
-  
-  private func clearDeck() {
-    guard
-      let backCardImage = UIImage(named: "back")
-      else {
-        return
-    }
-    deckCard.setBackgroundImage(backCardImage, for: .normal)
-    activeCard = -1
-  }
-  
-  private func clearAllCards() {
-    clearDeck()
-    clearPlayerCards()
-  }
-  
-  private func clearPlayerCards() {
-    for c in 0..<gameClient.cardsPerPlayer {
-      bottomCards[c].setTitle("", for: .normal)
-      leftCards[c].setTitle("", for: .normal)
-      topCards[c].setTitle("", for: .normal)
-      rightCards[c].setTitle("", for: .normal)
-    }
-  }
-  
-  private func hideLabels() {
-    bottomPlayerLabel.text = ""
-    leftPlayerLabel.text = ""
-    topPlayerLabel.text = ""
-    rightPlayerLabel.text = ""
-  }
-  
-  private func updatePileCard(description: String) {
-    guard
-      let cardImage = UIImage(named: description)
-      else {
-        return
-    }
-    pileCard.setBackgroundImage(cardImage, for: .normal)
-    pileCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-  }
-  
-  private func hideOponentLabels(){
-    leftPlayerLabel.text = ""
-    topPlayerLabel.text = ""
-    rightPlayerLabel.text = ""
-  }
-  
-  private func hideStatus() {
-    bottomStatusButton.isHidden = true
-    leftStatusLabel.text = ""
-    topStatusLabel.text = ""
-    rightStatusLabel.text = ""
-  }
-  
-  private func hideOponentStatus() {
-    leftStatusLabel.text = ""
-    topStatusLabel.text = ""
-    rightStatusLabel.text = ""
-  }
   
   private func updateLobby() {
     if (gameClient.roomState != "LOBBY") { return }
@@ -349,21 +195,45 @@ class OnlineRoomViewController: UIViewController {
       }
     }
   }
-  
-  private func showPlayerCards(position: String) {
-    let cards = playerPostitions[position]
-    for c in cards! {
-      c.isHidden = false
+}
+
+//MARK: Pile Logic
+extension OnlineRoomViewController {
+  private func updatePileCard(description: String) {
+    guard
+      let cardImage = UIImage(named: description)
+      else {
+        return
     }
+    pileCard.setBackgroundImage(cardImage, for: .normal)
+    pileCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
+  }
+}
+//MARK: Deck logic
+extension OnlineRoomViewController {
+  private func clearDeck() {
+    guard
+      let backCardImage = UIImage(named: "back")
+      else {
+        return
+    }
+    deckCard.setBackgroundImage(backCardImage, for: .normal)
+    activeCard = -1
   }
   
-  private func showPlayerInfo(position: String, playerId: String, playerStatus: Bool) {
-    let label = playerLabelPositions[position]
-    let status = playerStatusPositions[position]
-    label?.text = playerId
-    status?.text = playerStatus.description
+  private func showDeck(description: String) {
+    guard
+      let deckImage = UIImage(named: description)
+      else {
+        return
+    }
+    deckCard.setBackgroundImage(deckImage, for: .normal)
+    deckCard.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
   }
-  
+}
+
+//MARK: Cards logic
+extension OnlineRoomViewController {
   private func setPlayerPositions(playerCount: Int) {
     var positionMap = [String:[UIButton]]()
     var labelMap = [String:UILabel]()
@@ -410,5 +280,148 @@ class OnlineRoomViewController: UIViewController {
     playerPostitions = positionMap
     playerLabelPositions = labelMap
     playerStatusPositions = statusMap
+  }
+  private func hideAllPlayerCards(){
+    for c in 0..<gameClient.cardsPerPlayer {
+      bottomCards[c].isHidden = true
+      leftCards[c].isHidden = true
+      topCards[c].isHidden = true
+      rightCards[c].isHidden = true
+    }
+  }
+  
+  private func showPlayerCards(position: String) {
+    let cards = playerPostitions[position]
+    for c in cards! {
+      c.isHidden = false
+    }
+  }
+  
+  
+  private func hideOponentsCards() {
+    for c in 0..<gameClient.cardsPerPlayer {
+      leftCards[c].isHidden = true
+      topCards[c].isHidden = true
+      rightCards[c].isHidden = true
+    }
+  }
+  
+  private func clearAllCards() {
+    clearDeck()
+    clearPlayerCards()
+  }
+  
+  private func clearPlayerCards() {
+    for c in 0..<gameClient.cardsPerPlayer {
+      bottomCards[c].setTitle("", for: .normal)
+      leftCards[c].setTitle("", for: .normal)
+      topCards[c].setTitle("", for: .normal)
+      rightCards[c].setTitle("", for: .normal)
+    }
+  }
+  private func swapCard(playerId: String, at index: Int, from type: String, descriptions: [String:String]) {
+    switch (type) {
+    case "DECK":
+      //TODO animation from deck to hand from hand to pile
+      break
+    case "PILE":
+      //TODO animation from pile to hand from hand to pile
+      break
+    default:
+      break
+    }
+    //TODO safely unwarp values
+    showPlayerCard(position: playerId, card: index, with: descriptions["C"]!)
+    updatePileCard(description: descriptions["PILE"]!)
+    
+  }
+  private func updateAllCards(descriptions: [String:[String:String]]) {
+    for (p, cards) in descriptions {
+      guard
+        //TODO ask xinyi about unwarpping dependency optionals
+        let cardImage0 = UIImage(named: cards["C0"]!),
+        let cardImage1 = UIImage(named: cards["C1"]!),
+        let cardImage2 = UIImage(named: cards["C2"]!),
+        let cardImage3 = UIImage(named: cards["C3"]!),
+        let cardImage4 = UIImage(named: cards["C4"]!),
+        let cardImage5 = UIImage(named: cards["C5"]!)
+        
+        else {
+          return
+      }
+      let cardButtons = playerPostitions[p]
+      cardButtons![0].setBackgroundImage(cardImage0, for: .disabled)
+      cardButtons![1].setBackgroundImage(cardImage1, for: .disabled)
+      cardButtons![2].setBackgroundImage(cardImage2, for: .disabled)
+      cardButtons![3].setBackgroundImage(cardImage3, for: .disabled)
+      cardButtons![4].setBackgroundImage(cardImage4, for: .disabled)
+      cardButtons![5].setBackgroundImage(cardImage5, for: .disabled)
+    }
+  }
+  
+  private func showVisibleCards(descriptions: [String:String]) {
+    bottomCards[0].setTitle(descriptions["C0"], for: .normal)
+    bottomCards[1].setTitle(descriptions["C1"], for: .normal)
+    bottomCards[2].setTitle(descriptions["C2"], for: .normal)
+  }
+  
+  private func showPlayerCard(position: String, card index: Int, with description: String) {
+    //TODO guard
+    guard
+      let cards = playerPostitions[position],
+      let cardImage = UIImage(named: description)
+      else{
+        return
+    }
+    let card = cards[index]
+    UIView.transition(with: card, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+      card.setBackgroundImage(cardImage, for: .disabled)
+      card.setTitle("", for: .normal)
+      card.isEnabled = false
+    }, completion: nil)
+    
+  }
+}
+//MARK: Board Info Logic
+extension OnlineRoomViewController {
+  private func showPlayerInfo(position: String, playerId: String, playerStatus: Bool) {
+    let label = playerLabelPositions[position]
+    let status = playerStatusPositions[position]
+    label?.text = playerId
+    status?.text = playerStatus.description
+  }
+  
+  private func hideLabels() {
+    bottomPlayerLabel.text = ""
+    leftPlayerLabel.text = ""
+    topPlayerLabel.text = ""
+    rightPlayerLabel.text = ""
+  }
+  
+  private func hideOponentLabels(){
+    leftPlayerLabel.text = ""
+    topPlayerLabel.text = ""
+    rightPlayerLabel.text = ""
+  }
+  
+  private func hideStatus() {
+    bottomStatusButton.isHidden = true
+    leftStatusLabel.text = ""
+    topStatusLabel.text = ""
+    rightStatusLabel.text = ""
+  }
+  
+  private func hideOponentStatus() {
+    leftStatusLabel.text = ""
+    topStatusLabel.text = ""
+    rightStatusLabel.text = ""
+  }
+  
+  private func updateStatusLabel(turnTime: Int) {
+    statusLabel.text = String(turnTime)
+  }
+  
+  private func updateStatusLabel(message: String) {
+    statusLabel.text = message
   }
 }
