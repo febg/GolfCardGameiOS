@@ -15,21 +15,22 @@ class BotManager {
     var type: MoveType
     var setAt: Int?
     
-    init(moveType: MoveType){
+    init(moveType: MoveType) {
       type = moveType
     }
-    init(moveType:MoveType, at: Int){
+    
+    init(moveType: MoveType, at: Int) {
       type = moveType
       setAt = at
     }
   }
   
-  enum Source{
+  enum Source {
     case pile
     case deck
   }
   
-  enum MoveType{
+  enum MoveType {
     case getDeck
     case getPile
     case getSelf
@@ -37,7 +38,7 @@ class BotManager {
     case swap
   }
   
-  enum CardHierarchy{
+  enum CardHierarchy {
     case negative
     case neutral
     case low
@@ -54,15 +55,15 @@ class BotManager {
   }
   
   //makeFirstMove either getsPileCard, flip selfCard or getsDeckCard
-  public func makeFirstMove(playerHand: [Card], topPileCard:Card) -> Move {
+  public func makeFirstMove(playerHand: [Card], topPileCard: Card) -> Move {
     let pileHierchary = getHierarchy(cardRank: topPileCard.rank!)
     let cardsHierarchies = getHierarchies(cardList: playerHand)
-    if (isNewCardValid(newCard: topPileCard, newCardHierarchy: pileHierchary, cards: playerHand)){
+    if (isNewCardValid(newCard: topPileCard, newCardHierarchy: pileHierchary, cards: playerHand)) {
       return Move(moveType: .getPile)
     }
-    if let flipCardAt = flipOwnCard(cards: playerHand, cardsHierarchies: cardsHierarchies){
+    if let flipCardAt = flipOwnCard(cards: playerHand, cardsHierarchies: cardsHierarchies) {
       return Move(moveType: .setSelf, at: flipCardAt)
-    }else{
+    } else {
       return Move(moveType: .getDeck)
     }
   }
@@ -70,13 +71,13 @@ class BotManager {
   public func makeSecondMove(playerHand: [Card], newCard: Card) -> Move? {
     let cardHierchary = getHierarchy(cardRank: newCard.rank!)
     let cardsHierarchies = getHierarchies(cardList: playerHand)
-    if (isNewCardValid(newCard: newCard, newCardHierarchy: cardHierchary, cards: playerHand)){
+    if (isNewCardValid(newCard: newCard, newCardHierarchy: cardHierchary, cards: playerHand)) {
       let move = makeSecondMove(playerHand: playerHand, card: newCard)
       return move
     }
-    if let flipCardAt = flipOwnCard(cards: playerHand, cardsHierarchies: cardsHierarchies){
+    if let flipCardAt = flipOwnCard(cards: playerHand, cardsHierarchies: cardsHierarchies) {
       return Move(moveType: .setSelf, at: flipCardAt)
-    }else{
+    } else {
       let randomIndex = getRandomUnseenCard(cards: playerHand)
       return Move(moveType: .setSelf, at: randomIndex)
     }
@@ -84,7 +85,7 @@ class BotManager {
   
   public func makeSecondMove(playerHand: [Card], card: Card) -> Move? {
     let cardHierarchy = getHierarchy(cardRank: card.rank!)
-    switch(cardHierarchy){
+    switch cardHierarchy {
     case .negative:
       let index = placeNegative(card: card, cards: playerHand)
       return Move(moveType: .swap, at: index)
@@ -98,41 +99,39 @@ class BotManager {
       let index = placeHigh(card: card, cards: playerHand)
       return Move(moveType: .swap, at: index)
     case .avoided:
-
       break
     }
     return nil
   }
   
-  private func getHierarchy(cardRank: Card.Rank) -> CardHierarchy{
-    switch(cardRank) {
+  private func getHierarchy(cardRank: Card.Rank) -> CardHierarchy {
+    switch cardRank {
     case .two: return .negative
     case .king, .jack: return .neutral
-    case .ace ,.three, .four, .five: return .low
+    case .ace, .three, .four, .five: return .low
     case .six, .seven, .eight, .nine, .ten: return .high
     case .queen: return .avoided
     }
   }
   
-  private func isNewCardValid(newCard: Card, newCardHierarchy: CardHierarchy, cards: [Card]) -> Bool{
-    switch (newCardHierarchy) {
+  private func isNewCardValid(newCard: Card, newCardHierarchy: CardHierarchy, cards: [Card]) -> Bool {
+    switch newCardHierarchy {
     case .negative:
       return true
     case .neutral:
       return true
     case .low:
-      if let singleEqualCard = findSingleEqualCard(card: newCard, cards: cards){
+      if let singleEqualCard = findSingleEqualCard(card: newCard, cards: cards) {
         return singleEqualCard
-      }else if let sigleHighestCard = findHighestSingleCard(card: newCard, inCards: cards){
+      } else if let sigleHighestCard = findHighestSingleCard(card: newCard, inCards: cards) {
         return sigleHighestCard
-      }
-      else{
+      } else {
         return false
       }
     case .high:
       if let singleEqualCard = findSingleEqualCard(card: newCard, cards: cards) {
         return singleEqualCard
-      }else{
+      } else {
         return false
       }
     case .avoided:
@@ -146,9 +145,9 @@ class BotManager {
   private func flipOwnCard(cards: [Card], cardsHierarchies: [CardHierarchy]) -> Int? {
     if let doubleCard = checkDoubleCards(cards: cards) {
       return doubleCard
-    }else{
+    } else {
       for c in 0..<cards.count {
-        switch(cards[c].faceUp, cardsHierarchies[c]){
+        switch(cards[c].faceUp, cardsHierarchies[c]) {
         case (false, .negative):
           return c
         case (false, .neutral):
@@ -165,7 +164,7 @@ class BotManager {
     let cardCount = getCardCount(cards: cards)
     for c in 0..<cards.count {
       if cardCount[cards[c].rank!.value] == 2 {
-        if (!cards[c].faceUp) { return c }
+        if !cards[c].faceUp { return c }
       }
     }
     return nil
@@ -174,7 +173,7 @@ class BotManager {
   private func placeNegative(card: Card, cards: [Card] ) -> Int {
     if let highestSingleCard = getHigherSingleCard(card: card, inCards: cards) {
       return highestSingleCard
-    }else{
+    } else {
       let randomUnseenCard = getRandomUnseenCard(cards: cards)
       return randomUnseenCard
     }
@@ -183,31 +182,31 @@ class BotManager {
   private func placeNeutral(card: Card, cards: [Card]) -> Int {
     if let highestSingleCard = getHigherSingleCard(card: card, inCards: cards) {
       return highestSingleCard
-    }else{
+    } else {
       let randomUnseenCard = getRandomUnseenCard(cards: cards)
       return randomUnseenCard
     }
   }
   
-  private func placeLow(card: Card, cards: [Card]) -> Int{
-    if let replaceForEqual = getHighNotEqualSingleCard(card: card, inCards: cards){
+  private func placeLow(card: Card, cards: [Card]) -> Int {
+    if let replaceForEqual = getHighNotEqualSingleCard(card: card, inCards: cards) {
       return replaceForEqual
-    }else{
+    } else {
       let randomUnseenCard = getRandomUnseenCard(cards: cards)
       return randomUnseenCard
     }
   }
   
-  private func placeHigh(card: Card, cards: [Card]) -> Int{
-    if let replaceForEqual = getHighNotEqualSingleCard(card: card, inCards: cards){
+  private func placeHigh(card: Card, cards: [Card]) -> Int {
+    if let replaceForEqual = getHighNotEqualSingleCard(card: card, inCards: cards) {
       return replaceForEqual
-    }else{
+    } else {
       let randomUnseenCard = getRandomUnseenCard(cards: cards)
       return randomUnseenCard
     }
   }
   
-  private func placeAvoided(card: Card, cards: [Card]) -> Int{
+  private func placeAvoided(card: Card, cards: [Card]) -> Int {
     if let doubleEqualCard = getDoubleCard(card: card, inCards: cards) {
       return doubleEqualCard
     }
@@ -216,15 +215,15 @@ class BotManager {
   
   private func findHighestSingleCard(card: Card, inCards cards: [Card]) -> Bool? {
     let cardValue = card.rank!.value
-    var higherValues = [Int : Int]()
+    var higherValues = [Int: Int]()
     for c in 0..<cards.count {
-      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner){
+      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner) {
       //TODO: Handle case when two neutral
-      case (0, true, _),(0, false, true):
+      case (0, true, _), (0, false, true):
         if cards[c].rank!.value > cardValue {
-          if let count = higherValues[cards[c].rank!.value]{
+          if let count = higherValues[cards[c].rank!.value] {
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
@@ -233,17 +232,16 @@ class BotManager {
       }
     }
     for (_, count) in higherValues {
-      if (count == 1) {return true}
+      if count == 1 { return true }
     }
     return nil
   }
   
-  
   private func findSingleEqualCard(card: Card, cards: [Card]) -> Bool? {
     var count = 0
     for c in 0..<cards.count {
-      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner){
-      case (0, false, true), (0, true,  _):
+      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner) {
+      case (0, false, true), (0, true, _):
         count = cards[c].rank! == card.rank! ? count + 1 : count
       default:
         break
@@ -252,13 +250,12 @@ class BotManager {
     return (count == 1) ? true : nil
   }
   
-  
-  private func getCardCount(cards: [Card]) -> [Int:Int] {
-    var cardCount = [Int : Int]()
+  private func getCardCount(cards: [Card]) -> [Int: Int] {
+    var cardCount = [Int: Int]()
     for c in 0..<cards.count {
       if cardCount[cards[c].rank!.value] != nil {
         cardCount[cards[c].rank!.value] = cardCount[cards[c].rank!.value]! + 1
-      }else{
+      } else {
         cardCount[cards[c].rank!.value] = 1
       }
     }
@@ -266,11 +263,11 @@ class BotManager {
   }
   
   private func getRandomUnseenCard(cards: [Card]) -> Int {
-    var cardIndexMap = [Int:Int]()
+    var cardIndexMap = [Int: Int]()
     //TODO: unseenCards int?
     var unSeenCards = Array<Card>()
     for c in 0..<cards.count {
-      if (!cards[c].faceUp){
+      if (!cards[c].faceUp) {
         cardIndexMap[unSeenCards.count] = c
         unSeenCards.append(cards[c])
       }
@@ -286,28 +283,28 @@ class BotManager {
     }
     return (count == 2) ? true : nil
   }
-  private func getHigherSingleCard(card: Card, inCards cards: [Card]) -> Int?{
+  private func getHigherSingleCard(card: Card, inCards cards: [Card]) -> Int? {
     let cardValue = card.rank!.value
-    var cardMap = [Int : Int]()
-    var higherValues = [Int : Int]()
+    var cardMap = [Int: Int]()
+    var higherValues = [Int: Int]()
     var maxValue = cardValue
     for c in 0..<cards.count {
-      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner){
+      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner) {
       //TODO: Handle case when two neutral
       case (0, true, _):
         if cards[c].rank!.value > cardValue {
-          if let count = higherValues[cards[c].rank!.value]{
+          if let count = higherValues[cards[c].rank!.value] {
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
       case (0, false, true):
         if cards[c].rank!.value > cardValue {
           cardMap[cards[c].rank!.value] = c
-          if let count = higherValues[cards[c].rank!.value]{
+          if let count = higherValues[cards[c].rank!.value] {
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
@@ -315,35 +312,35 @@ class BotManager {
         break
       }
     }
-    for (value, count) in higherValues{
-      if (value > maxValue && count == 1) { maxValue = value }
+    for (value, count) in higherValues {
+      if value > maxValue && count == 1 { maxValue = value }
     }
     return maxValue > cardValue ? cardMap[maxValue] : nil
   }
   
   //TODO fix function to be not equal...kind of confusing
-  private func getHighNotEqualSingleCard(card: Card, inCards cards: [Card]) -> Int?{
+  private func getHighNotEqualSingleCard(card: Card, inCards cards: [Card]) -> Int? {
     let cardValue = card.rank!.value
-    var cardMap = [Int : Int]()
-    var higherValues = [Int : Int]()
+    var cardMap = [Int: Int]()
+    var higherValues = [Int: Int]()
     var maxValue = -2
     for c in 0..<cards.count {
-      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner){
+      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner) {
       //TODO: Handle case when two neutral
       case (0, true, _):
         if (cards[c].rank!.value > maxValue && cards[c].rank!.value != cardValue) {
-          if let count = higherValues[cards[c].rank!.value]{
+          if let count = higherValues[cards[c].rank!.value] {
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
       case (0, false, true):
         cardMap[cards[c].rank!.value] = c
-        if (cards[c].rank!.value > cardValue && cards[c].rank!.value != cardValue) {
-          if let count = higherValues[cards[c].rank!.value]{
+        if cards[c].rank!.value > cardValue && cards[c].rank!.value != cardValue {
+          if let count = higherValues[cards[c].rank!.value] {
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
@@ -351,35 +348,35 @@ class BotManager {
         break
       }
     }
-    for (value, count) in higherValues{
-      if (value > maxValue && count == 1) { maxValue = value }
-      else if (value <= 0 && value > maxValue) { maxValue = value }
+    for (value, count) in higherValues {
+      if value > maxValue && count == 1 { maxValue = value }
+      else if value <= 0 && value > maxValue { maxValue = value }
     }
     return maxValue > cardValue ? cardMap[maxValue] : nil
   }
   
-  private func getDoubleCard(card: Card, inCards cards: [Card]) -> Int?{
+  private func getDoubleCard(card: Card, inCards cards: [Card]) -> Int? {
     let cardValue = card.rank!.value
-    var cardMap = [Int : Int]()
-    var higherValues = [Int : Int]()
+    var cardMap = [Int: Int]()
+    var higherValues = [Int: Int]()
     var maxValue = -2
     for c in 0..<cards.count {
-      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner){
+      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner) {
       //TODO: Handle case when two neutral
       case (0, true, _):
-        if (cards[c].rank!.value > maxValue && cards[c].rank!.value != cardValue) {
+        if cards[c].rank!.value > maxValue && cards[c].rank!.value != cardValue {
           if let count = higherValues[cards[c].rank!.value]{
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
       case (0, false, true):
         cardMap[cards[c].rank!.value] = c
-        if (cards[c].rank!.value > cardValue && cards[c].rank!.value != cardValue) {
-          if let count = higherValues[cards[c].rank!.value]{
+        if cards[c].rank!.value > cardValue && cards[c].rank!.value != cardValue {
+          if let count = higherValues[cards[c].rank!.value] {
             higherValues[cards[c].rank!.value] = count + 1
-          }else{
+          } else {
             higherValues[cards[c].rank!.value] = 1
           }
         }
@@ -387,9 +384,9 @@ class BotManager {
         break
       }
     }
-    for (value, count) in higherValues{
-      if (value > maxValue && count == 1) { maxValue = value }
-      else if (value <= 0 && value > maxValue) { maxValue = value }
+    for (value, count) in higherValues {
+      if value > maxValue && count == 1 { maxValue = value }
+      else if value <= 0 && value > maxValue { maxValue = value }
     }
     return maxValue > cardValue ? cardMap[maxValue] : nil
   }
@@ -397,11 +394,10 @@ class BotManager {
   private func getHighestCard(cards: [Card]) -> Int {
     var maxValue = -3
     for c in 0..<cards.count {
-      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner){
+      switch(dificulty, cards[c].faceUp, cards[c].visibleToOwner) {
       //TODO: Handle case when two neutral
       case (0, true, true):
         maxValue = cards[c].rank!.value > maxValue ? cards[c].rank!.value : maxValue
-        break
       default:
         //TODO Add dificulties
         break

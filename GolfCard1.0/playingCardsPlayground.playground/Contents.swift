@@ -4,8 +4,6 @@ import UIKit
 
 var str = "Hello, playground"
 
-
-
 //let card1 = Card(type: .ace, suit: .spades, faceUp: false, visibleToOwner: false)
 let jcard1 = "{\"Suit\": \"hearts\",\"FaceUp\": false,\"VisibleToOwner\": false}"
 print(jcard1)
@@ -17,18 +15,9 @@ let jData: Data = jcard1.data(using: .utf8)!
 
 let jsonDecoder = JSONDecoder()
 
-do{
+do {
 let data = try jsonDecoder.decode(Card.self, from: jData)
 print(data)
-}catch let error {
+} catch let error {
   print(error)
 }
-
-
-
-
-
-
-
-
-

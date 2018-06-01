@@ -383,7 +383,7 @@ class GolfGame {
     }
   }
   
-  private func getRandomSlot(playerId: String) -> Int{
+  private func getRandomSlot(playerId: String) -> Int {
     guard let player = self.getPlayer(playerId: playerId) else { return 0 }
     var availableSlots = [Int]()
     for c in 0..<player.hand.count {
@@ -393,7 +393,7 @@ class GolfGame {
     return availableSlots[randNumber]
   }
   
-  private func nextTurn(){
+  private func nextTurn() {
     print(turn)
     print(playersLeft * cardsPerPlayer)
     if turn == playersLeft * cardsPerPlayer {
@@ -406,12 +406,12 @@ class GolfGame {
     turn += 1
   }
   
-  func startGame(){
+  func startGame() {
     gameState = .playerWait
     turnTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
-  public func stopGame(){
-    if turnTimer.isValid{
+  public func stopGame() {
+    if turnTimer.isValid {
       turnTimer.invalidate()
     }
   }

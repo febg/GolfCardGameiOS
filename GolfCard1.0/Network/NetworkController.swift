@@ -18,12 +18,11 @@ protocol NetworkControllerDelegate: class {
   func didConectToWebSocket()
 }
 
-
 extension NetworkController: WebSocketDelegate {
   func websocketDidConnect(socket: WebSocketClient) {
     print("Connected")
     delegate?.didConectToWebSocket()
-    //TODO passdown Room id where socket was connected
+    //TODO: passdown Room id where socket was connected
   }
   
   func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -38,17 +37,17 @@ extension NetworkController: WebSocketDelegate {
     do {
       let serverResponse = try self.jsonDecoder.decode(Room.self, from: data)
       delegate?.didUpdateGame(room: serverResponse)
-    }catch let error {
+    } catch let error {
       print(error)
     }
   }
   
-  func sendAction(playerAction: PlayerAction){
+  func sendAction(playerAction: PlayerAction) {
     print("send Action \(playerAction)")
     do {
     let data = try JSONEncoder().encode(playerAction)
     socket.write(data: data)
-    }catch let error {
+    } catch let error {
       print(error)
     }
     }
@@ -62,37 +61,32 @@ class NetworkController {
   private let jsonEncoder = JSONEncoder()
   public weak var delegate: NetworkControllerDelegate?
   public var hasWSConnection: Bool {
-    get{
-      return (socket != nil) ? socket.isConnected : false
-    }
+    return socket.isConnected
   }
   
-  private func webSocketConnection(roomId: String, playerId: String){
+  private func webSocketConnection(roomId: String, playerId: String) {
+    //swiftlint:disable force_unwrapping
     socket = WebSocket(url: URL(string: "ws://localhost/ws/\(roomId)/\(playerId)")!)
     socket.delegate = self
     socket.connect()
   }
-  public func getRooms(){
+  
+  public func getRooms() {
     let getRoomsPath = "/rooms/"
     print("getting rooms")
-    Alamofire.request(baseURL+getRoomsPath).responseJSON { response in
-//      if let json = response.data, let rooms = try? self.jsonDecoder.decode(RoomList.self, from: json) {
-//        self.delegate?.didLoadRooms(rooms: rooms)
-//      } else {
-//        print(response.error)
-//      }
+    Alamofire.request(baseURL+getRoomsPath).responseJSON { _ in
     }
   }
   
-  public func setReadyState(roomId: String, playerId: String){
+  public func setReadyState(roomId: String, playerId: String) {
     let setReadyStatePath = "/readyState/"
     let parameters: [String: Any] = [
-      "room_id" : roomId,
-      "player_id" : playerId
+      "room_id": roomId,
+      "player_id": playerId
     ]
  
     Alamofire.request(baseURL+setReadyStatePath, method: .post, parameters: parameters).responseJSON {
-      response in
+      _ in
       self.delegate?.didUpdatePlayerState(playerState: true)
     }
   }
@@ -104,22 +98,20 @@ class NetworkController {
   public func joinAvailableRoom(playerId: String) {
     let setReadyStatePath = "/join-room/"
     let parameters: [String: Any] = [
-      "user_id" : playerId
+      "user_id": playerId
     ]
     
     Alamofire.request(baseURL+setReadyStatePath, method: .post, parameters: parameters).responseJSON {
       response in
-
       if let json = response.data, let room = try? self.jsonDecoder.decode(Room.self, from: json) {
         self.delegate?.didJoinRoom(room: room)
       } else {
-        print(response.error)
+        print(response.error ?? "unknown error")
       }
     }
   }
   
-  public func joinRoomSocket(roomId: String, userId: String){
+  public func joinRoomSocket(roomId: String, userId: String) {
     webSocketConnection(roomId: roomId, playerId: userId)
   }
 }
-

@@ -36,7 +36,6 @@ extension GolfGameClient: NetworkControllerDelegate {
     connectionDelegate?.didReadyToStart()
   }
 
-  
   func didUpdateGame(room: Room) {
     checkPlayerInControl(pic: room.playerInControl)
     setPlayerInControl(pic: room.playerInControl)
@@ -50,8 +49,8 @@ protocol GolfGameRoomDelegate: class {
 }
 
 protocol GolfGameClientDelegate: class {
-  func didFlipCard(player: String, at index: Int, descriptions: [String:String])
-  func didStartRound(turnTime: Int, descriptions: [String:String])
+  func didFlipCard(player: String, at index: Int, descriptions: [String: String])
+  func didStartRound(turnTime: Int, descriptions: [String: String])
   func didUpdateTime(turnTime: Int)
   func updatePlayerInControl(position: String, playerInControl: String)
   func didFlipDeck(description: String)
@@ -90,11 +89,11 @@ class GolfGameClient {
   var round: Int = 0
   var roundTime: String = ""
   
-  init(){
+  init() {
     networkController.delegate = self
   }
   
-  func updateFromServer(data: GameData){
+  func updateFromServer(data: GameData) {
     players = sortPlayers(players: data.players)
     numberOfPlayers = data.playerLeft
     gameState = data.gameState
@@ -116,7 +115,6 @@ class GolfGameClient {
     case ("GAME", "LOBBY"):
       gameDelegate?.didFinishRound()
       didGameStarted = false
-      break
     case ("STARTING", "LOBBY"):
       break
     case ("LOBBY", "GAME"):
@@ -126,21 +124,18 @@ class GolfGameClient {
     }
   }
   
-  private func routeResponse(room: Room){
-    switch (room.data.roomState, room.responseType){
+  private func routeResponse(room: Room) {
+    switch (room.data.roomState, room.responseType) {
     case ("LOBBY", "PLAYER"):
       //Add  Player on lobby screen
       break
     case ("GAME", "ACTION"):
       print("Got aactione \(room)")
       handlePlayerAction(playerAction: room.playerAction)
-      break
     case ("LOBBY", "TIME"):
       gameDelegate?.didUpdateLobby(newPlayer: false)
-      break
     case ("GAME", "TIME"):
       gameDelegate?.didUpdateTime(turnTime: turnTime)
-      break
     case ("STARTING", "TIME"):
       break
     default:
@@ -154,7 +149,6 @@ class GolfGameClient {
     roomState = serverRoomSate
   }
   
-  
   public func setPlayerStatus() {
     networkController.setReadyState(roomId: roomId, playerId: localPlayerId)
   }
@@ -165,8 +159,7 @@ class GolfGameClient {
   
   private func checkPlayerInControl(pic: String) {
     if pic != playerInControl { updatePlayerInControl(pic: pic) }
-    if localPlayerId == pic { isPic = true }
-    else { isPic = false }
+    isPic = localPlayerId == pic ? true : false
   }
   
   private func startRound() {
@@ -184,8 +177,8 @@ class GolfGameClient {
     gameDelegate?.updatePlayerInControl(position: playerPosition, playerInControl: pic)
   }
   
-  private func getVisibleCardsDescriptions(playerId: String) -> [String:String] {
-    var descriptions = [String:String]()
+  private func getVisibleCardsDescriptions(playerId: String) -> [String: String] {
+    var descriptions = [String: String]()
     for p in players {
       if p.playerId == playerId {
         for (i, c) in p.hand.enumerated() {
@@ -196,11 +189,11 @@ class GolfGameClient {
     return descriptions
   }
   
-  public func getAllDescriptions() -> [String:[String:String]]{
-    var descriptions = [String:[String:String]]()
-    for (i,p) in players.enumerated() {
-      var cards = [String:String]()
-      for (j,c) in p.hand.enumerated() {
+  public func getAllDescriptions() -> [String:[String: String]] {
+    var descriptions = [String: [String: String]]()
+    for (i, p) in players.enumerated() {
+      var cards = [String: String]()
+      for (j, c) in p.hand.enumerated() {
         cards["C"+String(j)] = c.getDescription()
       }
       descriptions["P"+String(i)] = cards
@@ -252,7 +245,7 @@ class GolfGameClient {
         index = i
       }
     }
-    switch (index){
+    switch (index) {
     case 0:
       return "P0"
     case 1:
@@ -266,9 +259,8 @@ class GolfGameClient {
     }
   }
   
-  
   private func handlePlayerAction(playerAction: PlayerAction) {
-    switch (playerAction.actionType) {
+    switch playerAction.actionType {
     case "flip":
       guard
         let c = getCardIndex(playerId: playerAction.playerId, card: playerAction.flipCard),
@@ -276,13 +268,11 @@ class GolfGameClient {
         let description = playerAction.flipCard.getDescription()
         else { break }
       flipCard(player: p, at: c, description: description)
-      break
     case "flipDeck":
       guard
         let description = deckTopCard.getDescription()
         else { break }
       gameDelegate?.didFlipDeck(description: description)
-      break
     case "replacePile":
       guard
         let c = getCardIndex(playerId: playerAction.playerId, card: playerAction.flipCard),
@@ -290,7 +280,6 @@ class GolfGameClient {
         let description = playerAction.flipCard.getDescription()
         else { break }
       replacePile(player: p, at: c, description: description)
-      break
     case "replaceDeck":
       guard
         let c = getCardIndex(playerId: playerAction.playerId, card: playerAction.flipCard),
@@ -298,28 +287,27 @@ class GolfGameClient {
         let description = playerAction.flipCard.getDescription()
         else { break }
       replaceDeck(player: p, at: c, description: description)
-      break
     default:
       break
     }
   }
   
   private func flipCard(player: String, at index: Int, description: String) {
-    var descriptions = [String:String]()
+    var descriptions = [String: String]()
     descriptions["C"] = description
     descriptions["PILE"] = pileTopCard.getDescription()
     gameDelegate?.didFlipCard(player: player, at: index, descriptions: descriptions)
   }
   
   private func replacePile(player: String, at index: Int, description: String) {
-    var descriptions = [String:String]()
+    var descriptions = [String: String]()
     descriptions["C"] = description
     descriptions["PILE"] = pileTopCard.getDescription()
     gameDelegate?.didSwapCard(playerId: player, at: index, from: "PILE", descriptions: descriptions)
   }
   
   private func replaceDeck(player: String, at index: Int, description: String) {
-    var descriptions = [String:String]()
+    var descriptions = [String: String]()
     descriptions["C"] = description
     descriptions["PILE"] = pileTopCard.getDescription()
     gameDelegate?.didSwapCard(playerId: player, at: index, from: "DECK", descriptions: descriptions)
@@ -350,10 +338,9 @@ class GolfGameClient {
   
   public func isCardFaceUp(index: Int) -> Bool {
     for p in players {
-      if p.playerId ==  localPlayerId { return p.hand[index].faceUp}
+      if p.playerId ==  localPlayerId { return p.hand[index].faceUp }
     }
     return false
   }
   
 }
-

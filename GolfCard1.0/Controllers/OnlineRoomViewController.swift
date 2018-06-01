@@ -166,7 +166,6 @@ extension OnlineRoomViewController {
     updateStatusLabel(turnTime: turnTime)
   }
   
-  
   private func updateLobby() {
     if (gameClient.roomState != "LOBBY") { return }
     setPlayerPositions(playerCount: gameClient.numberOfPlayers)
@@ -256,7 +255,6 @@ extension OnlineRoomViewController {
       labelMap["P3"] = rightPlayerLabel
       statusMap["P3"] = rightStatusLabel
       //Normal behaviour
-      break
     case 3:
       positionMap["P1"] = leftCards
       labelMap["P1"] = leftPlayerLabel
@@ -265,13 +263,11 @@ extension OnlineRoomViewController {
       labelMap["P2"] = rightPlayerLabel
       statusMap["P2"] = rightStatusLabel
       // T-shape layout
-      break
     case 2:
       positionMap["P1"] = topCards
       labelMap["P1"] = topPlayerLabel
       statusMap["P1"] = topStatusLabel
       // Face-to-face layout
-      break
     default:
       //only main player on lobby
       break
@@ -364,7 +360,7 @@ extension OnlineRoomViewController {
     }
   }
   
-  private func showVisibleCards(descriptions: [String:String]) {
+  private func showVisibleCards(descriptions: [String : String]) {
     bottomCards[0].setTitle(descriptions["C0"], for: .normal)
     bottomCards[1].setTitle(descriptions["C1"], for: .normal)
     bottomCards[2].setTitle(descriptions["C2"], for: .normal)
@@ -414,7 +410,7 @@ extension OnlineRoomViewController {
     rightPlayerLabel.text = ""
   }
   
-  private func hideOponentLabels(){
+  private func hideOponentLabels() {
     leftPlayerLabel.text = ""
     topPlayerLabel.text = ""
     rightPlayerLabel.text = ""
