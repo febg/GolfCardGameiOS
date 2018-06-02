@@ -377,7 +377,7 @@ class GolfGame {
   }
   
   public func cleanGame(quit: Bool) {
-    // TODO clear timers
+    // TODO clear timer
     for p in 0..<players.count {
       players[p].clearHand()
     }
