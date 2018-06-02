@@ -8,6 +8,8 @@ target 'GolfCard1.0' do
   pod 'Alamofire', '~> 4.7' 
   pod 'Starscream', '~> 3.0.2'
   pod 'SwiftLint'
+pod 'Fabric'
+pod 'Crashlytics'
   target 'GolfCard1.0Tests' do
     inherit! :search_paths
     # Pods for testing
