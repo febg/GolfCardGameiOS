@@ -20,7 +20,7 @@ extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagat
   func didContinue() {
     //TODO Remove testing only
     game.stopGame()
-    game.startRound()
+    game.startGame()
     print("Player Continue")
   }
   
@@ -71,32 +71,40 @@ extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagat
 }
 
 
-
+//MARK: Main Class
 class OfflineRoomViewController: UIViewController {
   
-  let game = GolfGame.localShared
-  
+  //MARK: [  Properties  ]
+  var game: GolfGame!
   var cardsDelt = 0
   var turnTime = 0
   var pic = ""
   var lastCardTag = 0
   var playersCards = [String:[Int]]()
+  var dealer: Timer!
+  var refreshTimer: Timer!
+  
+  
+  //MARK: [  Outlets  ]
   @IBOutlet weak var picLabel: UILabel!
   @IBOutlet private var cardsButtons:  [UIButton]!
   @IBOutlet private var deckButton: UIButton!
   @IBOutlet private var pileButton: UIButton!
+  
+  //MARK: [  ActionOutlets  ]
   @IBAction private func cardAction(_ sender: UIButton){
+    if !game.isPIC { return }
     let cardFace = game.getCardFace(cardTag: sender.tag, playerId: "0")
-    switch (pic, cardFace, game.gameState, sender.tag){
-    case ("0", false, .playerWait,_), ("0", false, .playerSecondWait,_):
+    switch (cardFace, game.gameState, sender.tag){
+    case (false, .playerWait,_), (false, .playerSecondWait,_):
       game.selectSelfAction(playerId: "0")
       break
-    case ("0", false, .playerMoveSelf, lastCardTag):
+    case (false, .playerMoveSelf, lastCardTag):
       game.confirmSelfAction(playerId: "0", cardTag: sender.tag)
-    case ("0", false, .playerMoveDeck,_):
+    case (false, .playerMoveDeck,_):
       game.replaceDeckCard(playerId: "0", cardTag: sender.tag)
       break
-    case ("0", false, .playerMovePile,_):
+    case (false, .playerMovePile,_):
       game.replacePileCard(playerId: "0", cardTag: sender.tag)
       break
     default:
@@ -106,10 +114,11 @@ class OfflineRoomViewController: UIViewController {
   }
   
   @IBAction func deckAction(_ sender: Any) {
-    switch (pic, game.gameState){
-    case ("0", .playerWait), ("0", .playerMovePile), ("0", .playerSecondWait):
+    if !game.isPIC { return }
+    switch (game.gameState){
+    case (.playerWait), (.playerMovePile), (.playerSecondWait):
       game.selectDeckAction(playerId: "0")
-    case (pic, .playerMoveDeck):
+    case (.playerMoveDeck):
       game.clearDeckAction(playerId: "0")
     default:
       break
@@ -117,10 +126,11 @@ class OfflineRoomViewController: UIViewController {
   }
   
   @IBAction func pileAction(_ sender: Any) {
-    switch (pic, game.gameState){
-    case ("0", .playerWait):
+    if !game.isPIC { return }
+    switch (game.gameState){
+    case (.playerWait):
       game.selectPileAction(playerId: "0")
-    case (pic, .playerMovePile):
+    case (.playerMovePile):
       game.clearPileAction(playerId: "0")
     default:
       break
@@ -131,10 +141,6 @@ class OfflineRoomViewController: UIViewController {
     self.performSegue (withIdentifier: "Menu", sender: self)
     print("Finished")
   }
-  
-  
-  var dealer: Timer!
-  var refreshTimer: Timer!
   
   @objc public func updateTime(){
     updateDecks()
@@ -153,6 +159,96 @@ class OfflineRoomViewController: UIViewController {
       self.dealer.invalidate()
     }
   }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    game.delegate = self
+    print(game)
+    var count = 0
+    for p in 0..<game.players.count{
+      for i in 0..<game.cardsPerPlayer{
+        //TODO fix error after quit game
+        let card = getButton(buttonTag: count)!
+        let faceUp = game.players[p].hand[i].faceUp
+        switch(faceUp){
+        case true:
+          let rank = String(describing: game.players[p].hand[i].rank!.rawValue)
+          let suit = String(describing: game.players[p].hand[i].suit!.rawValue)
+          card.setTitle(rank+suit, for: UIControlState.normal)
+          count += 1
+          continue
+        case false:
+          card.setTitle(nil, for: UIControlState.normal)
+        }
+        count += 1
+        card.alpha = 0.0
+      }
+      playersCards[game.players[p].playerId] = Array(p*6...(p*6)+5)
+    }
+    getGame()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? MenuViewController {
+      destination.game = game
+      destination.delegate = self
+    }
+  }
+}
+
+//MARK: Deck Logic
+extension OfflineRoomViewController {
+  func updateDecks() {
+    let pileTopCard = game.getPileDeckTopCard()
+    let deckTopCard = game.getCurrentDeckTopCard()
+    updateDecksTittle(pileTopCard: pileTopCard, deckTopCard: deckTopCard)
+    updateDecksColors(pileTopCard: pileTopCard, deckTopCard: deckTopCard)
+  }
+  
+  func updateDecksTittle(pileTopCard: Card, deckTopCard: Card){
+    var cardLabel = pileTopCard.faceUp ? pileTopCard.getDescription() : ""
+    pileButton.setTitle(cardLabel, for: UIControlState.normal)
+    cardLabel = deckTopCard.faceUp ? deckTopCard.getDescription() : ""
+    deckButton.setTitle(cardLabel, for: UIControlState.normal)
+  }
+  
+  func updateDecksColors(pileTopCard: Card, deckTopCard: Card){
+    switch (game.gameState, pic){
+    case (.playerWait, "0"), (.playerMoveSelf, "0"):
+      pileButton.backgroundColor = UIColor(displayP3Red: 0.86, green: 0.97, blue: 0.78, alpha: 1)
+      deckButton.backgroundColor = UIColor(displayP3Red: 0.86, green: 0.97, blue: 0.78, alpha: 1)
+      break
+    case (.playerMoveDeck, "0"):
+      pileButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
+      deckButton.backgroundColor = UIColor(displayP3Red: 0.98, green: 0.84, blue: 0.22, alpha: 1)
+      break
+    case (.playerMovePile, "0"):
+      pileButton.backgroundColor = UIColor(displayP3Red: 0.98, green: 0.84, blue: 0.22, alpha: 1)
+      deckButton.backgroundColor = UIColor(displayP3Red: 0.98, green: 0.84, blue: 0.22, alpha: 1)
+      break
+    case (.playerSecondWait, "0"):
+      pileButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
+      deckButton.backgroundColor = UIColor(displayP3Red: 0.86, green: 0.97, blue: 0.78, alpha: 1)
+      break
+    default:
+      pileButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
+      deckButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
+    }
+  }
+}
+
+//MARK: Pile Logic
+extension OfflineRoomViewController {
+  
+}
+
+//MARK: Cards Logic
+extension OfflineRoomViewController {
+  
+}
+
+//MARK: Control Logic
+extension OfflineRoomViewController {
   func startDealer(){
     self.cardsDelt = 0
     dealer = Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(test), userInfo: nil, repeats: true)
@@ -166,13 +262,6 @@ class OfflineRoomViewController: UIViewController {
   func updatePlayerCards(){
     updatePlayerCardsTitles()
     updatePlayerCardsColors()
-  }
-  
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let destination = segue.destination as? MenuViewController {
-      destination.delegate = self
-    }
   }
   
   func updatePlayerCardsTitles(){
@@ -200,20 +289,6 @@ class OfflineRoomViewController: UIViewController {
     }
   }
   
-  func updateDecks() {
-    let pileTopCard = game.getPileDeckTopCard()
-    let deckTopCard = game.getCurrentDeckTopCard()
-    updateDecksTittle(pileTopCard: pileTopCard, deckTopCard: deckTopCard)
-    updateDecksColors(pileTopCard: pileTopCard, deckTopCard: deckTopCard)
-  }
-  
-  func updateDecksTittle(pileTopCard: Card, deckTopCard: Card){
-    var cardLabel = pileTopCard.faceUp ? pileTopCard.getDescription() : ""
-    pileButton.setTitle(cardLabel, for: UIControlState.normal)
-    cardLabel = deckTopCard.faceUp ? deckTopCard.getDescription() : ""
-    deckButton.setTitle(cardLabel, for: UIControlState.normal)
-  }
-  
   func updatePlayerCardsColors(){
     var count = 0
     for p in 0..<game.players.count{
@@ -236,58 +311,6 @@ class OfflineRoomViewController: UIViewController {
     }
   }
   
-  func updateDecksColors(pileTopCard: Card, deckTopCard: Card){
-    switch (game.gameState, pic){
-    case (.playerWait, "0"), (.playerMoveSelf, "0"):
-      pileButton.backgroundColor = UIColor(displayP3Red: 0.86, green: 0.97, blue: 0.78, alpha: 1)
-      deckButton.backgroundColor = UIColor(displayP3Red: 0.86, green: 0.97, blue: 0.78, alpha: 1)
-      break
-    case (.playerMoveDeck, "0"):
-      pileButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
-      deckButton.backgroundColor = UIColor(displayP3Red: 0.98, green: 0.84, blue: 0.22, alpha: 1)
-      break
-    case (.playerMovePile, "0"):
-      pileButton.backgroundColor = UIColor(displayP3Red: 0.98, green: 0.84, blue: 0.22, alpha: 1)
-      deckButton.backgroundColor = UIColor(displayP3Red: 0.98, green: 0.84, blue: 0.22, alpha: 1)
-      break
-    case (.playerSecondWait, "0"):
-      pileButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
-      deckButton.backgroundColor = UIColor(displayP3Red: 0.86, green: 0.97, blue: 0.78, alpha: 1)
-      break
-    default:
-      pileButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
-      deckButton.backgroundColor = UIColor(displayP3Red: 1.00, green: 0.64, blue: 0.76, alpha: 1)
-    }
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    GolfGame.localShared.delegate = self
-    print(game)
-    var count = 0
-    for p in 0..<game.players.count{
-      for i in 0..<game.cardsPerPlayer{
-        //TODO fix error after quit game
-        let card = getButton(buttonTag: count)!
-        let faceUp = game.players[p].hand[i].faceUp
-        switch(faceUp){
-        case true:
-          let rank = String(describing: game.players[p].hand[i].rank!.rawValue)
-          let suit = String(describing: game.players[p].hand[i].suit!.rawValue)
-          card.setTitle(rank+suit, for: UIControlState.normal)
-          count += 1
-          continue
-        case false:
-          card.setTitle(nil, for: UIControlState.normal)
-        }
-        count += 1
-        card.alpha = 0.0
-      }
-      playersCards[game.players[p].playerId] = Array(p*6...(p*6)+5)
-    }
-    getGame()
-  }
-  
   public func getButton(buttonTag tag: Int) -> UIButton? {
     for (button) in cardsButtons {
       if (button.tag == tag){
@@ -296,11 +319,4 @@ class OfflineRoomViewController: UIViewController {
     }
     return nil
   }
-  
-  
-  //  public func dealCards(){
-  //    self.timer = Repeater.once(after: .seconds(5)) { timer in
-  ////       do something
-  //    }
-  // }
 }

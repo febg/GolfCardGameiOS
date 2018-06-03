@@ -15,7 +15,7 @@ protocol MenuViewControllerDelagate: class {
 }
 
 class MenuViewController: UIViewController {
-  
+  public var game: GolfGame!
   public var delegate: MenuViewControllerDelagate?
   
   @IBAction func ContinueButton(_ sender: Any) {
@@ -33,8 +33,13 @@ class MenuViewController: UIViewController {
   }
   override func viewDidLoad() {
         super.viewDidLoad()
-
-      
         // Do any additional setup after loading the view.
     }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? OfflineRoomViewController {
+      destination.game = game
+    }
+  }
+  
 }

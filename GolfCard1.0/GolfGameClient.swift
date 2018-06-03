@@ -72,6 +72,7 @@ class GolfGameClient {
   public weak var roomDelagate: GolfGameRoomDelegate?
   public weak var gameDelegate: GolfGameClientDelegate?
   public weak var connectionDelegate: GolfGameConnectionDelegate?
+  
   let networkController = NetworkController()
   var localPlayerId = ""
   var cardsPerPlayer = 6

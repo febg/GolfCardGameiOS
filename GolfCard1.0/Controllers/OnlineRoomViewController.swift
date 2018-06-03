@@ -58,8 +58,7 @@ extension OnlineRoomViewController: GolfGameClientDelegate{
 
 class OnlineRoomViewController: UIViewController {
   
-  // [  Properties  ]
-  
+  //MARK: [  Properties  ]
   var gameClient: GolfGameClient!
   private var activeCard = -1
   private var playerPostitions = [String:[UIButton]]()
@@ -67,7 +66,7 @@ class OnlineRoomViewController: UIViewController {
   private var playerStatusPositions = [String:UILabel]()
   private var visiblePlayers = 1 //Default to 1 -> local player
   
-  // [  Outlets  ]
+  //MARK: [  Outlets  ]
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var bottomPlayerLabel: UILabel!
   @IBOutlet weak var leftPlayerLabel: UILabel!
@@ -84,7 +83,7 @@ class OnlineRoomViewController: UIViewController {
   @IBOutlet private var topCards:  [UIButton]!
   @IBOutlet private var rightCards:  [UIButton]!
   
-  // [ ActionOutlets  ]
+  //MARK: [ ActionOutlets  ]
   
   @IBAction private func cardAction(_ sender: UIButton){
     print("toest01: Activate \(sender.tag)")
@@ -136,8 +135,6 @@ class OnlineRoomViewController: UIViewController {
     gameClient.setPlayerStatus()
   }
   
-  // [ Methods  ]
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     gameClient.gameDelegate = self
@@ -147,8 +144,6 @@ class OnlineRoomViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-
   
   private func initializeLobby(){
     hideAllPlayerCards()
