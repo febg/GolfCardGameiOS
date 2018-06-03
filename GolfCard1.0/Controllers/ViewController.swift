@@ -33,6 +33,10 @@ class ViewController: UIViewController {
       let golfGameClient = GolfGameClient()
       onlineMenu.golfGameClient = golfGameClient
     }
+    if let localGame = segue.destination as? OfflineRoomViewController {
+      //TODO dynamic players
+      localGame.game = GolfGame(playerCount: 4)
+    }
   }
 }
 

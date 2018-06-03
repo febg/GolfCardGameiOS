@@ -18,37 +18,22 @@ protocol GolfGameDelegate: class {
 class GolfGame {
   
   public weak var delegate: GolfGameDelegate?
-  
-  public static let localShared = {
-    return GolfGame(isLocal: true, playerCount: 4)
-  }()
-  
-  public static let remoteShared = {
-    return GolfGame(isLocal: false, playerCount: 4)
-  }()
-  
-  private init() {
-    fatalError("You can't touch this shit with signleton")
-  }
-  
-  
   public var players = [Player]()
   public let cardsPerPlayer: Int = 6
   public let visibleCards: Int = 3
-  public var gameState: GameStates
+  public var gameState: GameStates = .loading
   public var turn = 1
   public var round = 1
-  private var local: Bool
-  private var botManager: BotManager?
+  public var isPIC = false
+  private var botManager = BotManager()
   private var playersLeft: Int = 0
-  private var currentDeck: Deck
-  private var pileDeck: Deck
+  private var currentDeck: Deck = Deck(empty: true)
+  private var pileDeck: Deck = Deck(empty: true)
   private var playerInControl: String = ""
   private var turnTime = 0
   private var gameTime = 0
   private var turnTimer: Timer!
   private var gameTimer: Timer!
-  
   
   enum GameStates {
     case loading
@@ -60,74 +45,44 @@ class GolfGame {
     case playerConfirm
   }
   
-  
   @objc public func updateTime(){
     switch (self.turnTime, playerInControl){
     case (2,"1"),(1,"2"),(1,"3"):
       handleBotMove()
     case (3,"1"),(2,"2"),(2,"3"):
       handleBotMove()
-    case (4,_) :
+    case (10,_) :
       handleTimeout()
-  
+      
     default:
       self.turnTime += 1
     }
   }
   
-  
-  
-  init(isLocal: Bool, playerCount: Int){
-    local = isLocal
+  init(playerCount: Int){
     playersLeft = playerCount
-    switch local{
-    case true:
-      //Mark: Logic handled by client
-      gameState = .loading
-      currentDeck = Deck(empty: false)
-      pileDeck = Deck(empty: true)
-      initializePlayers()
-      dealCards()
-      initializePileDeck()
-      playerInControl = players[0].playerId
-      botManager = BotManager()
-      startGame()
-    case false:
-      //TODO: Initialize current deck from server JSON
-      gameState = .loading
-      currentDeck = Deck(empty: true)
-      pileDeck = Deck(empty: true)
-      botManager = nil
-    }
+    initializePlayers()
+    startGame()
   }
+  
   private func initializePlayers(){
     for i in 0..<playersLeft {
       players.append(Player(playerId: String(i)))
     }
   }
   
-  public func startRound(){
+  public func startGame(){
     round = 1
     turn = 1
-    cleanGame(quit: false)
-    switch local{
-    case true:
-      //Mark: Logic handled by client
-      gameState = .loading
-      currentDeck = Deck(empty: false)
-      pileDeck = Deck(empty: true)
-      dealCards()
-      initializePileDeck()
-      playerInControl = players[0].playerId
-      botManager = BotManager()
-      startGame()
-    case false:
-      //TODO: Initialize current deck from server JSON
-      gameState = .loading
-      currentDeck = Deck(empty: true)
-      pileDeck = Deck(empty: true)
-      botManager = nil
-    }
+    cleanGame()
+    //Mark: Logic handled by client
+    gameState = .loading
+    currentDeck = Deck(empty: false)
+    pileDeck = Deck(empty: true)
+    dealCards()
+    initializePileDeck()
+    setInitialPlayerInControl()
+    startRound()
   }
   
   public func confirmSelfAction(playerId: String, cardTag: Int){
@@ -139,7 +94,6 @@ class GolfGame {
         self.delegate?.didFlipCard(with: playerId, at: cardTag)
         gameState = .playerWait
         nextTurn()
-
       default:
         break
       }
@@ -229,13 +183,11 @@ class GolfGame {
     return self.playerInControl
   }
   
-  
   public func flipCard(playerId: String, cardTag: Int){
     for p in 0..<players.count{
       if players[p].playerId == playerId && players[p].playerId == playerInControl { players[p].hand[cardTag % 6].flipCard() }
     }
   }
-  
   
   public func replaceDeckCard(playerId: String, cardTag: Int){
     for p in 0..<players.count{
@@ -249,7 +201,7 @@ class GolfGame {
         gameState = .playerWait
         self.delegate?.didFlipCard(with: playerId, at: cardTag)
         nextTurn()
-
+        
       default:
         break
       }
@@ -268,7 +220,6 @@ class GolfGame {
         gameState = .playerWait
         self.delegate?.didFlipCard(with: playerId, at: cardTag)
         nextTurn()
-
       default:
         break
       }
@@ -285,7 +236,6 @@ class GolfGame {
           self.players[i].addToHand(card: card)
         default:
           self.players[i].addToHand(card: currentDeck.getTopCard()!)
-          
         }
       }
     }
@@ -343,15 +293,15 @@ class GolfGame {
     let player = getPlayer(playerId: playerInControl)!
     switch(gameState){
     case .playerWait:
-      let move = botManager?.makeFirstMove(playerHand: player.hand, topPileCard: pileDeck.getTopCardCopy())
-      handleBotResponse(move: move!)
+      let move = botManager.makeFirstMove(playerHand: player.hand, topPileCard: pileDeck.getTopCardCopy())
+      handleBotResponse(move: move)
       break
     case .playerMoveDeck:
-      let move = botManager?.makeSecondMove(playerHand: player.hand, newCard: player.newCard)
+      let move = botManager.makeSecondMove(playerHand: player.hand, newCard: player.newCard)
       handleBotResponse(move: move!)
       break
     case .playerMovePile:
-      let move = botManager?.makeSecondMove(playerHand: player.hand, card: player.newCard)
+      let move = botManager.makeSecondMove(playerHand: player.hand, card: player.newCard)
       handleBotResponse(move: move!)
       break
     default:
@@ -376,7 +326,7 @@ class GolfGame {
     }
   }
   
-  public func cleanGame(quit: Bool) {
+  public func cleanGame() {
     // TODO clear timer
     for p in 0..<players.count {
       players[p].clearHand()
@@ -393,20 +343,44 @@ class GolfGame {
     return availableSlots[randNumber]
   }
   
+  //TODO: Refactor
   private func nextTurn() {
-    print(turn)
-    print(playersLeft * cardsPerPlayer)
-    if turn == playersLeft * cardsPerPlayer {
-      round += 1
-      delegate?.didFinishRound()
-      stopGame()
-    }
+    if isEndOfGame() { return }
+    beginNextTurn()
+    setPlayerInControl()
+  }
+  
+  private func setPlayerInControl() {
     playerInControl = getNextPlayerId(currentPlayerId: playerInControl)!
+    if playerInControl == "0" { isPIC = true }
+    else {isPIC = false}
+  }
+  
+  private func setInitialPlayerInControl() {
+      playerInControl = players[0].playerId
+      isPIC = true
+  }
+  
+  private func beginNextTurn() {
     self.turnTime = 0
     turn += 1
   }
   
-  func startGame() {
+  private func isEndOfGame() -> Bool {
+    if turn == playersLeft * cardsPerPlayer {
+     finishRound()
+      return true
+    }
+    return false
+  }
+  
+  private func finishRound() {
+    round += 1
+    delegate?.didFinishRound()
+    stopGame()
+  }
+  
+  func startRound() {
     gameState = .playerWait
     turnTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
