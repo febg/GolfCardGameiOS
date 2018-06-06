@@ -381,7 +381,7 @@ class GolfGame {
   
   func startRound() {
     gameState = .playerWait
-    turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    turnTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
   public func stopGame() {
     if turnTimer.isValid {

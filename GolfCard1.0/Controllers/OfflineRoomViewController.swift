@@ -11,7 +11,7 @@ import UIKit
 
 extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagate {
   func didFinishRound() {
-    self.performSegue (withIdentifier: "Menu", sender: self)
+   // self.performSegue (withIdentifier: "Menu", sender: self)
     print("Finished")
   }
   
@@ -153,9 +153,9 @@ class OfflineRoomViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    game.delegate = self
-    initilizeLobby()
-    startDealer()
+//    game.delegate = self
+//    initilizeLobby()
+//    startDealer()
     
   }
   
