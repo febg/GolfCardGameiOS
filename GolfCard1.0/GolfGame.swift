@@ -47,11 +47,11 @@ class GolfGame {
   
   @objc public func updateTime(){
     switch (self.turnTime, playerInControl){
-    case (2,"1"),(1,"2"),(1,"3"):
+    case (1,"1"),(1,"2"),(1,"3"):
       handleBotMove()
-    case (3,"1"),(2,"2"),(2,"3"):
+    case (2,"1"),(2,"2"),(2,"3"):
       handleBotMove()
-    case (10,_) :
+    case (15,_) :
       handleTimeout()
       
     default:
@@ -199,9 +199,8 @@ class GolfGame {
         players[p].hand[cardTag] = currentDeck.getTopCard()!
         players[p].newCard = Card()
         gameState = .playerWait
-        self.delegate?.didFlipCard(with: playerId, at: cardTag)
+        self.delegate?.didSwapCard(playerId: playerId, at: cardTag, from: "DECK")
         nextTurn()
-        
       default:
         break
       }
@@ -218,7 +217,7 @@ class GolfGame {
         players[p].newCard = Card()
         pileDeck.add(card: newPileCard)
         gameState = .playerWait
-        self.delegate?.didFlipCard(with: playerId, at: cardTag)
+             self.delegate?.didSwapCard(playerId: playerId, at: cardTag, from: "PILE")
         nextTurn()
       default:
         break
@@ -382,7 +381,7 @@ class GolfGame {
   
   func startRound() {
     gameState = .playerWait
-    turnTimer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
   public func stopGame() {
     if turnTimer.isValid {

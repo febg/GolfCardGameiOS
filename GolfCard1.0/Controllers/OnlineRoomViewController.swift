@@ -145,7 +145,7 @@ class OnlineRoomViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  private func initializeLobby(){
+  private func initializeLobby() {
     hideAllPlayerCards()
     updateLobby()
     updateStatusLabel(message: "Waiting for Players...")
@@ -308,11 +308,15 @@ extension OnlineRoomViewController {
   }
   
   private func clearPlayerCards() {
+    guard let backImage = UIImage(named: "back")
+      else {
+        return
+    }
     for c in 0..<gameClient.cardsPerPlayer {
-      bottomCards[c].setTitle("", for: .normal)
-      leftCards[c].setTitle("", for: .normal)
-      topCards[c].setTitle("", for: .normal)
-      rightCards[c].setTitle("", for: .normal)
+      bottomCards[c].setBackgroundImage(backImage, for: .normal)
+      leftCards[c].setBackgroundImage(backImage, for: .normal)
+      topCards[c].setBackgroundImage(backImage, for: .normal)
+      rightCards[c].setBackgroundImage(backImage, for: .normal)
     }
   }
   private func swapCard(playerId: String, at index: Int, from type: String, descriptions: [String:String]) {
