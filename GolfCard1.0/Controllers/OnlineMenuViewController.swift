@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension OnlineMenuViewController {
+  func textFieldShouldReturn(_ userNameTextField: UITextField) -> Bool {
+    self.view.endEditing(true)
+    return true;
+  }
+}
+
 extension OnlineMenuViewController: GolfGameRoomDelegate {
   func didGotRooms(roomList: [RoomData]) {
     print("Display UI available rooms")
@@ -15,12 +22,12 @@ extension OnlineMenuViewController: GolfGameRoomDelegate {
   }
 }
 
-class OnlineMenuViewController: UIViewController {
+class OnlineMenuViewController: UIViewController, UITextFieldDelegate {
   
   var golfGameClient: GolfGameClient!
   var roomsAvailable: Int = 0
   
-  @IBOutlet weak var userNameTextField: UITextField!
+  @IBOutlet var userNameTextField: UITextField!
   
   @IBAction func joinRoomButton(_ sender: Any) {
     if userNameTextField.text == "" { return }
@@ -31,14 +38,15 @@ class OnlineMenuViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-      print("viewDidLoad")
+      let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+      self.view.addGestureRecognizer(tapGesture)
+      userNameTextField.delegate = self
     }
   
   override func viewWillAppear(_ animated: Bool) {
     print("viewdidAppear")
     super.viewWillAppear(animated)
-    golfGameClient.roomDelagate = self
+    golfGameClient.roomDelagate = self as? GolfGameRoomDelegate
   }
   
   func showConnection(){
@@ -51,7 +59,9 @@ class OnlineMenuViewController: UIViewController {
     }
     
 
-
+  @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+    userNameTextField.resignFirstResponder()
+  }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let onlineRoom = segue.destination as? ConnectionViewController {

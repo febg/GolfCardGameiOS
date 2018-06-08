@@ -51,5 +51,39 @@ struct Player: Codable {
     }
     return nil
   }
+  
+  public func computeHandValue() -> Int {
+    var sum = 0
+    let cardMap = getCardCount()
+    for c in hand {
+      switch(c.faceUp,c.rank?.description){
+      case (false, _):
+        break
+      case (true, "0"),(true, "J"),(true, "K"):
+        break
+      case (true, "2"):
+        sum -= 2
+      case (true,_):
+        var cardCount = cardMap[(c.rank?.description)!]
+        if cardCount! % 2 == 0 { break }
+        if cardCount! % 2 == 1 { cardCount = cardCount! - 1 }
+        sum += (c.rank?.value)!
+      }
+    }
+    return sum
+    
+  }
+  
+  private func getCardCount() -> [String:Int] {
+    var cardMap = [String:Int]()
+    for c in hand {
+      if c.faceUp {
+        var count = cardMap[(c.rank?.description)!] ?? 0
+        count += 1
+        cardMap[(c.rank?.description)!] = count
+      }
+    }
+    return cardMap
+  }
 
 }

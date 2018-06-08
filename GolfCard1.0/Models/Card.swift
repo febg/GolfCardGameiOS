@@ -27,10 +27,10 @@ struct Card: Codable{
   }
   
   enum Suit: String, Codable {
-    case spades = "spade"
-    case hearts  = "heart"
-    case clubs = "club"
-    case dimonds = "dimond"
+    case spades = "Spade"
+    case hearts  = "Heart"
+    case clubs = "Club"
+    case dimonds = "Dimond"
     
     var desription: String {
       switch self {
@@ -113,10 +113,24 @@ struct Card: Codable{
     static let all: [Rank] = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
   }
   
-  public func getDescription() -> String?{
+  public func getDescription() -> String? {
     guard let rank = self.rank, let suit = self.suit else { return nil }
     return rank.description + suit.desription
   }
   
+  public func getImageKeys() -> (String,String) {
+    guard let rank = self.rank?.description, let suit = self.suit?.rawValue else { return ("","") }
+    switch (self.faceUp, self.visibleToOwner) {
+    case (true, _):
+      return ("Front"+suit, rank)
+    //FACEUP
+    case (_, true):
+      //BackVisible
+      return ("BackVisible"+suit, rank)
+    default:
+      //back
+      return ("Back-1", "")
+    }
+  }
 }
 

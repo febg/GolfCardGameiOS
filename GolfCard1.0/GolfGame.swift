@@ -308,6 +308,15 @@ class GolfGame {
     }
   }
   
+  public func getPlayersPoints() -> [String:String]{
+    var playerPointsMap = [String:String]()
+    for (i, p) in players.enumerated() {
+      let points = p.computeHandValue()
+      playerPointsMap["P\(i)"] = String(points)
+    }
+    return playerPointsMap
+  }
+  
   private func handleBotResponse(move: BotManager.Move){
     switch(move.type, gameState){
     case (.getPile, .playerWait):
@@ -381,7 +390,7 @@ class GolfGame {
   
   func startRound() {
     gameState = .playerWait
-    turnTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
   public func stopGame() {
     if turnTimer.isValid {

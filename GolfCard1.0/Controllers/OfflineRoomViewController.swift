@@ -11,7 +11,7 @@ import UIKit
 
 extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagate {
   func didFinishRound() {
-   // self.performSegue (withIdentifier: "Menu", sender: self)
+    self.performSegue (withIdentifier: "Menu", sender: self)
     print("Finished")
   }
   
@@ -29,7 +29,7 @@ extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagat
   
   func didFlipCard(with playerId: String, at index: Int) {
     //TODO: Update pile
-    showPlayerCard(playerId: playerId, index: index)
+    showPlayerCard(playerId: playerId, index: index, animated: true)
     clearDeck()
     updatePileCard()
   }
@@ -39,25 +39,9 @@ extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagat
     showDeck()
   }
   func didSwapCard(playerId: String, at index: Int, from type: String){
-    let player = game.getPlayer(playerId: playerId)!
-    let playerCards = playerPositions[playerId]
-    let cardButton = playerCards![index]
-    let playerCard = player.hand[index % 6]
-    let cardImage = UIImage(named: playerCard.getDescription()!)
-    if (playerCard.faceUp) {
-      UIView.transition(with: cardButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
-        cardButton.setBackgroundImage(cardImage, for: .disabled)
-        cardButton.isEnabled = false
-      }, completion: nil)
-    }
-    switch (type) {
-    case "DECK":
-      clearDeck()
-    case "PILE":
-      updatePileCard()
-    default:
-      return
-    }
+    showPlayerCard(playerId: playerId, index: index, animated: true)
+    if (type == "DECK") { clearDeck() }
+    updatePileCard()
   }
 }
 
@@ -73,6 +57,7 @@ class OfflineRoomViewController: UIViewController {
   var lastCardTag = 0
   var playersCards = [String:[Int]]()
   var dealer: Timer!
+  var newGame: Bool!
   var playerPositions = [String: [UIButton]]()
   
   
@@ -153,9 +138,18 @@ class OfflineRoomViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    game.delegate = self
-//    initilizeLobby()
-//    startDealer()
+    setPlayerPositions()
+
+    if newGame {
+      initilizeLobby()
+      startDealer()
+    }
+    else{
+      updatePileCard()
+      updateAllCards()
+    }
+    game.delegate = self
+    
     
   }
   
@@ -171,13 +165,46 @@ class OfflineRoomViewController: UIViewController {
 //MARK: New functions
 extension OfflineRoomViewController {
   private func initilizeLobby() {
-    setPlayerPositions()
     hideAllCards()
-    //TODO: Set player positions
-    //TODO: Hide all  cards
-    //TODO: Deal all cards, show player visible cards
+    showVisibleCards()
   }
-
+  
+  private func showVisibleCards() {
+    for i in 0..<3 {
+      showVisibleCard(playerId: "0", index: i)
+    }
+  }
+  
+  private func showVisibleCard(playerId: String, index: Int) {
+    guard let player = game.getPlayer(playerId: playerId),
+      let playerCards = playerPositions[playerId]
+      else{
+        return
+    }
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    if (playerCard.visibleToOwner) {
+      UIView.transition(with: cardButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+        cardButton.setBackgroundImage(cardImage, for: .normal)
+        cardButton.setTitle(text, for: .normal)
+        let textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+        cardButton.setTitleColor(textColor, for: .normal)
+        cardButton.isEnabled = true
+      }, completion: nil)
+    }
+    
+  }
+  
+  private func updateAllCards() {
+    for (i,p) in game.players.enumerated() {
+      for (j, _) in p.hand.enumerated() {
+        updatePlayerCard(playerId: "\(i)", index: j)
+      }
+    }
+  }
+  
   private func setPlayerPositions() {
     playerPositions["0"] = bottomCards
     playerPositions["1"] = leftCards
@@ -211,20 +238,25 @@ extension OfflineRoomViewController {
 //MARK: Deck Logic
 extension OfflineRoomViewController {
   private func clearDeck() {
-    guard let backCard = UIImage(named: "back")
-    else{
-      return
+    guard let backCard = UIImage(named: "Back-1")
+      else{
+        return
     }
-      self.deckButton.setBackgroundImage(backCard, for: .normal)
-
+    self.deckButton.setBackgroundImage(backCard, for: .normal)
+    self.deckButton.setTitle("", for: .normal)
   }
   
   private func showDeck() {
     let deckCard = game.getCurrentDeckTopCard()
-    let cardImage = UIImage(named: deckCard.getDescription()!)
+    let (imageName, cardText) = deckCard.getImageKeys()
+    guard let cardImage = UIImage(named: imageName)
+      else{
+        return
+    }
     if (deckCard.faceUp) {
       UIView.transition(with: deckButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
         self.deckButton.setBackgroundImage(cardImage, for: .normal)
+        self.deckButton.setTitle(cardText, for: .normal)
       }, completion: nil)
     }
   }
@@ -233,33 +265,72 @@ extension OfflineRoomViewController {
 //MARK: Pile Logic
 extension OfflineRoomViewController {
   private func updatePileCard() {
-    guard let description = game.getPileDeckTopCard().getDescription(),
-      let cardImage = UIImage(named: description)
+    let (imageName, text) = game.getPileDeckTopCard().getImageKeys()
+    guard let cardImage = UIImage(named: imageName)
       else{
         return
     }
     UIView.transition(with: pileButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
       self.pileButton.setBackgroundImage(cardImage, for: .normal)
+      self.pileButton.setTitle(text, for: .normal)
     }, completion: nil)
   }
 }
 
 //MARK: Cards Logic
 extension OfflineRoomViewController {
-  private func showPlayerCard(playerId: String, index: Int) {
-    let player = game.getPlayer(playerId: playerId)!
+  private func showPlayerCard(playerId: String, index: Int, animated: Bool) {
+    guard let player = game.getPlayer(playerId: playerId),
+      let playerCards = playerPositions[playerId]
+      else{
+        return
+    }
     let playerCard = player.hand[index % 6]
-    let playerCards = playerPositions[playerId]
-    let cardButton = playerCards![index]
-    let cardImage = UIImage(named: playerCard.getDescription()!)
-    if (playerCard.faceUp) {
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    if (animated) {
       UIView.transition(with: cardButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
         cardButton.setBackgroundImage(cardImage, for: .disabled)
+        cardButton.setTitle(text, for: .disabled)
+        let textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+        cardButton.setTitleColor(textColor, for: .disabled)
         cardButton.isEnabled = false
       }, completion: nil)
     }
   }
+  
+  
+  
+  private func updatePlayerCard(playerId: String, index: Int) {
+    guard let player = game.getPlayer(playerId: playerId),
+      let playerCards = playerPositions[playerId]
+      else{
+        return
+    }
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    var textColor = UIColor()
+    if playerCard.faceUp {
+      cardButton.isEnabled = false
+      textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+      cardButton.setBackgroundImage(cardImage, for: .disabled)
+      cardButton.setTitle(text, for: .disabled)
+      cardButton.setTitleColor(textColor, for: .disabled)
+      return
+    }
+    if playerCard.visibleToOwner && playerId != "0" {
+      return
+    }
+    textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+    cardButton.setBackgroundImage(cardImage, for: .normal)
+    cardButton.setTitle(text, for: .normal)
+    cardButton.setTitleColor(textColor, for: .normal)
+  }
 }
+
 
 //MARK: Control Logic
 extension OfflineRoomViewController {

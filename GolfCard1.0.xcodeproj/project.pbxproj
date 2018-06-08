@@ -30,6 +30,7 @@
 		824C1CAF207A901A00C14FDB /* RoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C1CAE207A901A00C14FDB /* RoomResponse.swift */; };
 		824C1CB2207A915900C14FDB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C1CB1207A915900C14FDB /* Card.swift */; };
 		824C1CB6207A92A600C14FDB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C1CB5207A92A500C14FDB /* Player.swift */; };
+		8260F40020C8C359000CC8DD /* PlayerScoresMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */; };
 		82AB58FF209FCFBA006548C9 /* PlayerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB58FE209FCFBA006548C9 /* PlayerAction.swift */; };
 		82BD5F41207ED64900107593 /* UIVIewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BD5F40207ED64900107593 /* UIVIewExtensions.swift */; };
 		82C730D820A23B370020787F /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C730D720A23B370020787F /* ServerResponse.swift */; };
@@ -88,6 +89,7 @@
 		824C1CAE207A901A00C14FDB /* RoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomResponse.swift; sourceTree = "<group>"; };
 		824C1CB1207A915900C14FDB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		824C1CB5207A92A500C14FDB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoresMenu.swift; sourceTree = "<group>"; };
 		82AB58FE209FCFBA006548C9 /* PlayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAction.swift; sourceTree = "<group>"; };
 		82BD5F40207ED64900107593 /* UIVIewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtensions.swift; sourceTree = "<group>"; };
 		82C730D720A23B370020787F /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				820DAE0520916FA800F92FE3 /* MenuViewController.swift */,
 				823F7BC5209E760A004AE490 /* OnlineMenuViewController.swift */,
 				823FFF4A20ABA97D00DCC2F4 /* OnlineRoomViewController.swift */,
+				8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				823F7BC6209E760A004AE490 /* OnlineMenuViewController.swift in Sources */,
 				820BB129207C96B80080BCCB /* GolfGame.swift in Sources */,
 				823FFF4920ABA71100DCC2F4 /* ConnectionViewController.swift in Sources */,
+				8260F40020C8C359000CC8DD /* PlayerScoresMenu.swift in Sources */,
 				824C1C82207A8E2800C14FDB /* ViewController.swift in Sources */,
 				820BB123207C5FCE0080BCCB /* Room.swift in Sources */,
 				82C730D820A23B370020787F /* ServerResponse.swift in Sources */,

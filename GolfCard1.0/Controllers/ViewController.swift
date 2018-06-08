@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     }
     if let localGame = segue.destination as? OfflineRoomViewController {
       //TODO dynamic players
+      localGame.newGame = true
       localGame.game = GolfGame(playerCount: 4)
     }
   }
