@@ -27,28 +27,51 @@ extension UIView {
   }
   
   func grow() {
-    let time: TimeInterval = 0.0
+    let time: TimeInterval = 0.5
     UIView.animate(
-      withDuration: 1.0,
+      withDuration: time,
       delay: 0.0,
-      options: .curveEaseOut,
       animations: {
-        for (i, c) in self.constraints.enumerated() {
+        for c in self.constraints {
         switch (c.firstAttribute) {
         case .width:
-          let width = c.constant
-          c.constant = width + 30
+          c.constant = 156
+
         case .height:
-          let height = c.constant
-          c.constant = height + 30
+          c.constant = 176
         default:
           break
         }
         }
-        
+        self.layoutIfNeeded()
     },
       completion: nil
     )
+    self.borderWidth = 1.0
+    
+  }
+  
+  func shrink() {
+    let time: TimeInterval = 0.5
+    UIView.animate(
+      withDuration: time,
+      delay: 0.0,
+      animations: {
+        for c in self.constraints {
+          switch (c.firstAttribute) {
+          case .width:
+            c.constant = 126
+          case .height:
+            c.constant = 146
+          default:
+            break
+          }
+        }
+        self.layoutIfNeeded()
+    },
+      completion: nil
+    )
+     self.borderWidth = 0.0
   }
   
   func flip (){

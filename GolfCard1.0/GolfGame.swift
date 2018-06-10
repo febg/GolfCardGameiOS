@@ -11,6 +11,7 @@ import Foundation
 protocol GolfGameDelegate: class {
   func didFlipCard(with playerId: String, at index: Int)
   func didFlipDeck()
+  func didChangedTurn(playerId: String)
   func didSwapCard(playerId: String, at index: Int, from type: String)
   func didFinishRound()
 }
@@ -356,6 +357,7 @@ class GolfGame {
     if isEndOfGame() { return }
     beginNextTurn()
     setPlayerInControl()
+    self.delegate?.didChangedTurn(playerId: playerInControl)
   }
   
   private func setPlayerInControl() {

@@ -10,6 +10,32 @@ import UIKit
 
 
 extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagate {
+  func didChangedTurn(playerId: String) {
+    switch (playerId) {
+    case "0":
+      playersViews[0].grow()
+      playersViews[1].shrink()
+      playersViews[2].shrink()
+      playersViews[3].shrink()
+    case "1":
+      playersViews[1].grow()
+      playersViews[0].shrink()
+      playersViews[2].shrink()
+      playersViews[3].shrink()
+    case "2":
+      playersViews[2].grow()
+      playersViews[0].shrink()
+      playersViews[1].shrink()
+      playersViews[3].shrink()
+    case "3":
+      playersViews[3].grow()
+      playersViews[0].shrink()
+      playersViews[1].shrink()
+      playersViews[2].shrink()
+    default: break
+    }
+  }
+  
   func didFinishRound() {
     self.performSegue (withIdentifier: "Menu", sender: self)
     print("Finished")
@@ -76,7 +102,7 @@ class OfflineRoomViewController: UIViewController {
   
   //MARK: [  ActionOutlets  ]
   @IBAction private func cardAction(_ sender: UIButton){
-    animateView() 
+
     if !game.isPIC { return }
     let cardFace = game.getCardFace(cardTag: sender.tag, playerId: "0")
     switch (cardFace, game.gameState, sender.tag){
@@ -97,9 +123,6 @@ class OfflineRoomViewController: UIViewController {
     lastCardTag = sender.tag
   }
   
-  func animateView() {
-    playersViews[1].grow()
-  }
   
   @IBAction func deckAction(_ sender: Any) {
     if !game.isPIC { return }
@@ -175,6 +198,7 @@ extension OfflineRoomViewController {
   private func initilizeLobby() {
     hideAllCards()
     showVisibleCards()
+    playersViews[0].grow()
   }
   
   private func showVisibleCards() {
