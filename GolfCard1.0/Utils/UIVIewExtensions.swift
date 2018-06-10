@@ -17,7 +17,6 @@ extension UIView {
   }
   
   func fadeOut(_ duration: TimeInterval = 1.0, delay: TimeInterval = 0.0) {
-   
     UIView.animate(
       withDuration: duration,
       delay: delay,
@@ -27,7 +26,33 @@ extension UIView {
     )
   }
   
+  func grow() {
+    let time: TimeInterval = 0.0
+    UIView.animate(
+      withDuration: 1.0,
+      delay: 0.0,
+      options: .curveEaseOut,
+      animations: {
+        for (i, c) in self.constraints.enumerated() {
+        switch (c.firstAttribute) {
+        case .width:
+          let width = c.constant
+          c.constant = width + 30
+        case .height:
+          let height = c.constant
+          c.constant = height + 30
+        default:
+          break
+        }
+        }
+        
+    },
+      completion: nil
+    )
+  }
+  
   func flip (){
     
   }
+  
 }

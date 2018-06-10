@@ -61,8 +61,11 @@ class OfflineRoomViewController: UIViewController {
   var playerPositions = [String: [UIButton]]()
   
   
+  
+  
+  
   //MARK: [  Outlets  ]
-  @IBOutlet weak var picLabel: UILabel!
+  @IBOutlet private var playersViews:  [UIView]!
   @IBOutlet private var cardsButtons:  [UIButton]!
   @IBOutlet private var bottomCards: [UIButton]!
   @IBOutlet private var leftCards: [UIButton]!
@@ -73,6 +76,7 @@ class OfflineRoomViewController: UIViewController {
   
   //MARK: [  ActionOutlets  ]
   @IBAction private func cardAction(_ sender: UIButton){
+    animateView() 
     if !game.isPIC { return }
     let cardFace = game.getCardFace(cardTag: sender.tag, playerId: "0")
     switch (cardFace, game.gameState, sender.tag){
@@ -91,6 +95,10 @@ class OfflineRoomViewController: UIViewController {
       break
     }
     lastCardTag = sender.tag
+  }
+  
+  func animateView() {
+    playersViews[1].grow()
   }
   
   @IBAction func deckAction(_ sender: Any) {
