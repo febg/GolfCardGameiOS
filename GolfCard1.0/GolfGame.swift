@@ -317,6 +317,17 @@ class GolfGame {
     }
     return playerPointsMap
   }
+
+  
+  public func getPlayerPoints(playerId: String) -> String {
+    for p in players {
+      if p.playerId == playerId {
+      let points = p.computeHandValue()
+        return String(points)
+      }
+    }
+    return "0"
+  }
   
   private func handleBotResponse(move: BotManager.Move){
     switch(move.type, gameState){

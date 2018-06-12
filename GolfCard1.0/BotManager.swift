@@ -99,7 +99,9 @@ class BotManager {
       let index = placeHigh(card: card, cards: playerHand)
       return Move(moveType: .swap, at: index)
     case .avoided:
-      break
+      let index = placeHigh(card: card, cards: playerHand)
+      return Move(moveType: .swap, at: index)
+      
     }
     return nil
   }

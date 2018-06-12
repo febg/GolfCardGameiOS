@@ -11,29 +11,8 @@ import UIKit
 
 extension OfflineRoomViewController: GolfGameDelegate, MenuViewControllerDelagate {
   func didChangedTurn(playerId: String) {
-    switch (playerId) {
-    case "0":
-      playersViews[0].grow()
-      playersViews[1].shrink()
-      playersViews[2].shrink()
-      playersViews[3].shrink()
-    case "1":
-      playersViews[1].grow()
-      playersViews[0].shrink()
-      playersViews[2].shrink()
-      playersViews[3].shrink()
-    case "2":
-      playersViews[2].grow()
-      playersViews[0].shrink()
-      playersViews[1].shrink()
-      playersViews[3].shrink()
-    case "3":
-      playersViews[3].grow()
-      playersViews[0].shrink()
-      playersViews[1].shrink()
-      playersViews[2].shrink()
-    default: break
-    }
+    resizePlayers(playerId: playerId)
+    updatePlayersPoints()
   }
   
   func didFinishRound() {
@@ -91,6 +70,8 @@ class OfflineRoomViewController: UIViewController {
   
   
   //MARK: [  Outlets  ]
+   @IBOutlet private var pointsLabels:  [UILabel]!
+  
   @IBOutlet private var playersViews:  [UIView]!
   @IBOutlet private var cardsButtons:  [UIButton]!
   @IBOutlet private var bottomCards: [UIButton]!
@@ -178,6 +159,7 @@ class OfflineRoomViewController: UIViewController {
     else{
       updatePileCard()
       updateAllCards()
+      updatePlayersPoints()
     }
     game.delegate = self
     
@@ -379,4 +361,38 @@ extension OfflineRoomViewController {
     }
     return nil
   }
+  
+  private func resizePlayers(playerId: String) {
+    switch (playerId) {
+    case "0":
+      playersViews[0].grow()
+      playersViews[1].shrink()
+      playersViews[2].shrink()
+      playersViews[3].shrink()
+    case "1":
+      playersViews[1].grow()
+      playersViews[0].shrink()
+      playersViews[2].shrink()
+      playersViews[3].shrink()
+    case "2":
+      playersViews[2].grow()
+      playersViews[0].shrink()
+      playersViews[1].shrink()
+      playersViews[3].shrink()
+    case "3":
+      playersViews[3].grow()
+      playersViews[0].shrink()
+      playersViews[1].shrink()
+      playersViews[2].shrink()
+    default: break
+    }
+  }
+  
+  private func updatePlayersPoints() {
+    pointsLabels[0].text = game.getPlayerPoints(playerId: "0")
+    pointsLabels[1].text = game.getPlayerPoints(playerId: "1")
+    pointsLabels[2].text = game.getPlayerPoints(playerId: "2")
+    pointsLabels[3].text = game.getPlayerPoints(playerId: "3")
+  }
+  
 }

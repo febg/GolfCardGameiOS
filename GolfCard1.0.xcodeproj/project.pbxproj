@@ -93,7 +93,7 @@
 		82AB58FE209FCFBA006548C9 /* PlayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAction.swift; sourceTree = "<group>"; };
 		82BD5F40207ED64900107593 /* UIVIewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtensions.swift; sourceTree = "<group>"; };
 		82C730D720A23B370020787F /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
-		82D878F820C7BEF00087912F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = Controllers/CustomButton.swift; sourceTree = "<group>"; };
+		82D878F820C7BEF00087912F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		83659F05B83392C3CF321B93 /* Pods-GolfCard1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolfCard1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GolfCard1.0/Pods-GolfCard1.0.debug.xcconfig"; sourceTree = "<group>"; };
 		878114B812E4F9C1B2FB6D0D /* Pods-GolfCard1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolfCard1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-GolfCard1.0/Pods-GolfCard1.0.release.xcconfig"; sourceTree = "<group>"; };
 		AE5DAA2CC58EBBB4AF945586 /* Pods_GolfCard1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolfCard1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,7 +157,6 @@
 				820DAE0520916FA800F92FE3 /* MenuViewController.swift */,
 				823F7BC5209E760A004AE490 /* OnlineMenuViewController.swift */,
 				823FFF4A20ABA97D00DCC2F4 /* OnlineRoomViewController.swift */,
-				8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -217,7 +216,6 @@
 				820BB128207C96B80080BCCB /* GolfGame.swift */,
 				8201F31C2082863F0037AFF1 /* BotManager.swift */,
 				823F7BC7209E90D8004AE490 /* GolfGameClient.swift */,
-				82D878F820C7BEF00087912F /* CustomButton.swift */,
 			);
 			path = GolfCard1.0;
 			sourceTree = "<group>";
@@ -249,6 +247,8 @@
 				820BB120207C5F5B0080BCCB /* Deck.swift */,
 				820BB122207C5FCE0080BCCB /* Room.swift */,
 				82AB58FE209FCFBA006548C9 /* PlayerAction.swift */,
+				8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */,
+				82D878F820C7BEF00087912F /* CustomButton.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
