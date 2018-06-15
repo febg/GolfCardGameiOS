@@ -826,9 +826,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="5v5-hF-8AL">
-                                <rect key="frame" x="0.0" y="-24" width="375" height="725"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aUm-US-ds1">
                                 <rect key="frame" x="132.5" y="55" width="110" height="125"/>
                                 <subviews>
@@ -1179,13 +1176,12 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.56924175126903553" green="0.56924175126903553" blue="0.56924175126903553" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.94117647059999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="aUm-US-ds1" firstAttribute="centerX" secondItem="SoZ-dX-JyB" secondAttribute="centerX" id="24D-Uo-cUV"/>
                             <constraint firstItem="dip-TF-0Tg" firstAttribute="leading" secondItem="NL1-yu-WRf" secondAttribute="trailing" constant="-76" id="4jU-rl-JLv"/>
                             <constraint firstItem="g8v-op-bHm" firstAttribute="leading" secondItem="d6l-Qb-WQy" secondAttribute="trailing" constant="-110" id="6WV-r4-a0r"/>
                             <constraint firstItem="NL1-yu-WRf" firstAttribute="top" secondItem="h2A-L2-qOZ" secondAttribute="bottom" constant="8" id="AS8-sb-LPJ"/>
-                            <constraint firstItem="5v5-hF-8AL" firstAttribute="top" secondItem="G48-X6-RWg" secondAttribute="bottom" constant="-243" id="EJ8-p9-1Hk"/>
                             <constraint firstItem="dip-TF-0Tg" firstAttribute="top" secondItem="NL1-yu-WRf" secondAttribute="bottom" constant="18" id="K7f-JO-Cwb"/>
                             <constraint firstItem="uSN-Xs-vgL" firstAttribute="top" secondItem="d6l-Qb-WQy" secondAttribute="bottom" constant="18" id="KPj-OK-Ae5"/>
                             <constraint firstItem="aUm-US-ds1" firstAttribute="top" secondItem="BBu-S9-gu6" secondAttribute="bottom" constant="8" id="LPf-0u-d3Y"/>
@@ -1197,7 +1193,6 @@
                             <constraint firstItem="tvX-dH-wvR" firstAttribute="top" secondItem="o8E-Gt-Y9U" secondAttribute="bottom" constant="17" id="UPL-pi-fGW"/>
                             <constraint firstItem="d6l-Qb-WQy" firstAttribute="top" secondItem="g8v-op-bHm" secondAttribute="bottom" constant="11" id="Vhd-8P-6yU"/>
                             <constraint firstItem="uSN-Xs-vgL" firstAttribute="leading" secondItem="d6l-Qb-WQy" secondAttribute="trailing" constant="-76" id="YuO-0i-pyS"/>
-                            <constraint firstItem="o8E-Gt-Y9U" firstAttribute="top" secondItem="5v5-hF-8AL" secondAttribute="bottom" constant="-229" id="eaw-aC-UeL"/>
                             <constraint firstItem="h2A-L2-qOZ" firstAttribute="leading" secondItem="NL1-yu-WRf" secondAttribute="trailing" constant="-110" id="glg-1G-e65"/>
                             <constraint firstItem="NL1-yu-WRf" firstAttribute="leading" secondItem="21r-wa-VO7" secondAttribute="leading" constant="35" id="hJf-eM-aaW"/>
                             <constraint firstItem="21r-wa-VO7" firstAttribute="bottom" secondItem="o8E-Gt-Y9U" secondAttribute="bottom" constant="70" id="iWm-fd-8o1"/>
@@ -1207,11 +1202,9 @@
                             <constraint firstItem="aUm-US-ds1" firstAttribute="top" secondItem="21r-wa-VO7" secondAttribute="top" constant="35" id="mSx-gb-F4U"/>
                             <constraint firstItem="o8E-Gt-Y9U" firstAttribute="top" secondItem="DAA-YX-FO2" secondAttribute="bottom" constant="-30" id="noy-s2-9FE"/>
                             <constraint firstItem="o8E-Gt-Y9U" firstAttribute="centerX" secondItem="SoZ-dX-JyB" secondAttribute="centerX" id="rKn-Nr-QXI"/>
-                            <constraint firstItem="21r-wa-VO7" firstAttribute="trailing" secondItem="5v5-hF-8AL" secondAttribute="trailing" id="rk8-3m-ObU"/>
                             <constraint firstItem="DAA-YX-FO2" firstAttribute="top" secondItem="o8E-Gt-Y9U" secondAttribute="top" id="t9V-TN-dbi"/>
                             <constraint firstItem="G48-X6-RWg" firstAttribute="leading" secondItem="aUm-US-ds1" secondAttribute="trailing" constant="-76" id="uh6-e8-vuk"/>
                             <constraint firstItem="o8E-Gt-Y9U" firstAttribute="leading" secondItem="tvX-dH-wvR" secondAttribute="trailing" constant="-109.33333333333334" id="v7a-mB-Zro"/>
-                            <constraint firstItem="5v5-hF-8AL" firstAttribute="leading" secondItem="21r-wa-VO7" secondAttribute="leading" id="w2R-im-rPG"/>
                             <constraint firstItem="G48-X6-RWg" firstAttribute="top" secondItem="aUm-US-ds1" secondAttribute="bottom" constant="18" id="wjV-t1-xFY"/>
                             <constraint firstItem="NL1-yu-WRf" firstAttribute="top" secondItem="aUm-US-ds1" secondAttribute="bottom" constant="38" id="wkv-0g-Yn0"/>
                         </constraints>
@@ -1655,7 +1648,6 @@
     <resources>
         <image name="Back-1" width="635" height="889"/>
         <image name="HS1" width="61" height="79"/>
-        <image name="Rectangle" width="375" height="667"/>
         <image name="back" width="167" height="297"/>
         <image name="back-2" width="36" height="95"/>
         <image name="menu2" width="37" height="33"/>
