@@ -8,7 +8,12 @@
 
 import UIKit
 
-extension TutorialPageViewController: UIPageViewControllerDataSource {
+protocol TutorialPageDelegate: class {
+  func setControlConfig(count: Int)
+  func updateControl(at: Int)
+}
+
+extension TutorialPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     
     guard let currentIndex = tutorialViewList.index(of: viewController) else {
@@ -28,8 +33,14 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
     return tutorialViewList[nextIndex]
   }
   func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-    let pageContentViewController = pageViewController.viewControllers![0]
-    self.pageControl.currentPage = tutorialViewList.index(of: pageContentViewController)!
+    guard
+      let currentViewController = viewControllers?.first,
+      let index = tutorialViewList.index(of: currentViewController)
+      else{
+        return
+    }
+      print("updating")
+      tutorialPageDelegate?.updateControl(at: index)
   }
 }
 
@@ -42,6 +53,7 @@ class TutorialPageViewController: UIPageViewController {
             getViewController(number: 3)]
   }()
   
+  weak var tutorialPageDelegate: TutorialPageDelegate?
   
   @IBOutlet weak var pageControl: UIPageControl!
 
@@ -51,8 +63,10 @@ class TutorialPageViewController: UIPageViewController {
     if let firstViewController = tutorialViewList.first {
       setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
     }
+    
     dataSource = self
-    pageControlConfig()
+    delegate = self
+    tutorialPageDelegate?.setControlConfig(count: tutorialViewList.count)
     // Do any additional setup after loading the view.
   }
   
@@ -61,26 +75,9 @@ class TutorialPageViewController: UIPageViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
   private func getViewController(number: Int) -> UIViewController {
     return UIStoryboard(name: "Main", bundle: nil) .
       instantiateViewController(withIdentifier: "TutorialViewController_\(number)")
   }
 }
 
-extension TutorialPageViewController {
-  private func pageControlConfig() {
-//    pageControl.numberOfPages = tutorialViewList.count
-//    pageControl.currentPage = 0
-  }
-}

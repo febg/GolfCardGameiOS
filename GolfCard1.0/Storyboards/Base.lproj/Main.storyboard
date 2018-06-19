@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KbD-4T-5Nv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -926,10 +926,10 @@
             </objects>
             <point key="canvasLocation" x="4887" y="-1064"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial View Controller-->
         <scene sceneID="Cg9-jK-KPe">
             <objects>
-                <viewController id="KbD-4T-5Nv" sceneMemberID="viewController">
+                <viewController id="KbD-4T-5Nv" customClass="TutorialViewController" customModule="GolfCard1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SaH-7P-Fu2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -937,7 +937,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEl-MH-QrS">
                                 <rect key="frame" x="35" y="117" width="304" height="432"/>
                                 <connections>
-                                    <segue destination="iHP-HD-byd" kind="embed" id="DF0-Bw-E4l"/>
+                                    <segue destination="iHP-HD-byd" kind="embed" identifier="tutorialSegue" id="DF0-Bw-E4l"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Static Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOl-Li-WDi">
@@ -946,12 +946,8 @@
                                 <color key="textColor" red="0.46274509800000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="QLO-im-L5k">
-                                <rect key="frame" x="168" y="610" width="39" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="QAL-hT-mM1"/>
-                                    <constraint firstAttribute="height" constant="37" id="riE-fl-spO"/>
-                                </constraints>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="QLO-im-L5k">
+                                <rect key="frame" x="168" y="602" width="39" height="37"/>
                                 <color key="pageIndicatorTintColor" red="0.46274509800000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.81176470590000005" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -959,7 +955,7 @@
                                         <color key="value" red="0.81176470590000005" green="0.26274509800000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </pageControl>
@@ -977,6 +973,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sd4-Bv-eEz"/>
                     </view>
+                    <connections>
+                        <outlet property="pageControl" destination="QLO-im-L5k" id="XMb-4Q-9LT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2BL-qS-iaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -988,7 +987,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="1" navigationOrientation="horizontal" spineLocation="none" id="iHP-HD-byd" customClass="TutorialPageViewController" customModule="GolfCard1_0" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEa-KN-jfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4313" y="-1925"/>
+            <point key="canvasLocation" x="4046" y="-1936"/>
         </scene>
         <!--Online Room View Controller-->
         <scene sceneID="qHN-rR-SAq">
