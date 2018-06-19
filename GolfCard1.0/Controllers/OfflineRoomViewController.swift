@@ -162,8 +162,6 @@ class OfflineRoomViewController: UIViewController {
       updatePlayersPoints()
     }
     game.delegate = self
-    
-    
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
