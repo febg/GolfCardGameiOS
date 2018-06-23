@@ -164,6 +164,10 @@ class GolfGame {
     }
   }
   
+  public func clearCardAction(playerId: String) {
+    
+  }
+  
   public func selectSelfAction(playerId: String){
     self.gameState = .playerMoveSelf
   }

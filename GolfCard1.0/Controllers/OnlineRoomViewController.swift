@@ -60,7 +60,7 @@ class OnlineRoomViewController: UIViewController {
   
   //MARK: [  Properties  ]
   var gameClient: GolfGameClient!
-  private var activeCard = -1
+  private var selectedCard = -1
   private var playerPostitions = [String:[UIButton]]()
   private var playerLabelPositions = [String:UILabel]()
   private var playerStatusPositions = [String:UILabel]()
@@ -90,25 +90,23 @@ class OnlineRoomViewController: UIViewController {
     if !gameClient.isPic { return }
     if gameClient.isCardFaceUp(index: sender.tag) { return }
     switch (gameClient.gameState, sender.tag) {
-    case ("waitingPlayerMove", activeCard), ("playerMoveDeck", activeCard):
+    case ("waitingPlayerMove", selectedCard), ("playerMoveDeck", selectedCard):
       gameClient.flipCardAction(index: sender.tag)
       print("test01: Select Card")
       break
     case ("waitingPlayerMove", _), ("playerMoveDeck", _):
-      activeCard = sender.tag
-      print("toest01: Activate card \(activeCard)")
+      selectedCard = sender.tag
+      print("toest01: Activate card \(selectedCard)")
     default:
-      activeCard = -1
+      selectedCard = -1
     }
   }
   
-  @IBAction func pileAction(_ sender: UIButton) {
-    print("toest01: Pile, active card \(activeCard)")
-    
+  @IBAction func pileAction(_ sender: UIButton) {    
     if !gameClient.isPic { return }
-    switch (gameClient.gameState, activeCard){
+    switch (gameClient.gameState, selectedCard){
     case ("waitingPlayerMove", (0...5)):
-      gameClient.replacePileAction(index: activeCard)
+      gameClient.replacePileAction(index: selectedCard)
       break
     default:
       break
@@ -117,12 +115,12 @@ class OnlineRoomViewController: UIViewController {
   
   @IBAction func deckAction(_ sender: UIButton) {
     if !gameClient.isPic { return }
-    switch (gameClient.gameState, activeCard){
+    switch (gameClient.gameState, selectedCard){
     case ("playerMoveDeck", (0...5)):
-      gameClient.replaceDeckAction(index: activeCard)
+      gameClient.replaceDeckAction(index: selectedCard)
       break;
     case ("waitingPlayerMove", (0...5)):
-      activeCard = -1
+      selectedCard = -1
     case ("waitingPlayerMove", -1):
       gameClient.flipDeckAction()
     default:
@@ -216,7 +214,7 @@ extension OnlineRoomViewController {
         return
     }
     deckCard.setBackgroundImage(backCardImage, for: .normal)
-    activeCard = -1
+    selectedCard = -1
   }
   
   private func showDeck(description: String) {

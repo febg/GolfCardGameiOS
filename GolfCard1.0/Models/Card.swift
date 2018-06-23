@@ -109,7 +109,6 @@ struct Card: Codable{
       case .king: return "K"
       }
     }
-    
     static let all: [Rank] = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
   }
   
@@ -123,13 +122,10 @@ struct Card: Codable{
     switch (self.faceUp, self.visibleToOwner) {
     case (true, _):
       return ("Front"+suit, rank)
-    //FACEUP
     case (_, true):
-      //BackVisible
-      return ("BackVisible"+suit, rank)
+      return ("Visible"+suit, rank)
     default:
-      //back
-      return ("Back-1", "")
+      return ("Back", "")
     }
   }
 }

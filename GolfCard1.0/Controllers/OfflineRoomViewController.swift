@@ -88,42 +88,50 @@ class OfflineRoomViewController: UIViewController {
     let cardFace = game.getCardFace(cardTag: sender.tag, playerId: "0")
     switch (cardFace, game.gameState, sender.tag){
     case (false, .playerWait,_), (false, .playerSecondWait,_):
+      lastCardTag = sender.tag
       game.selectSelfAction(playerId: "0")
+      selectCard(at: sender.tag)
       break
     case (false, .playerMoveSelf, lastCardTag):
       game.confirmSelfAction(playerId: "0", cardTag: sender.tag)
+      deselectCard(at: lastCardTag)
     case (false, .playerMoveDeck,_):
       game.replaceDeckCard(playerId: "0", cardTag: sender.tag)
+      deselectCard(at: lastCardTag)
       break
     case (false, .playerMovePile,_):
       game.replacePileCard(playerId: "0", cardTag: sender.tag)
+      deselectCard(at: lastCardTag)
       break
     default:
       break
     }
-    lastCardTag = sender.tag
   }
   
   
-  @IBAction func deckAction(_ sender: Any) {
+  @IBAction func deckAction(_ sender: UIButton) {
     if !game.isPIC { return }
     switch (game.gameState){
-    case (.playerWait), (.playerMovePile), (.playerSecondWait):
+    case (.playerWait), (.playerSecondWait):
       game.selectDeckAction(playerId: "0")
+      selectDeck()
     case (.playerMoveDeck):
       game.clearDeckAction(playerId: "0")
+      deselectDeck()
     default:
       break
     }
   }
   
-  @IBAction func pileAction(_ sender: Any) {
+  @IBAction func pileAction(_ sender: UIButton) {
     if !game.isPIC { return }
     switch (game.gameState){
     case (.playerWait):
       game.selectPileAction(playerId: "0")
+      selectPile()
     case (.playerMovePile):
       game.clearPileAction(playerId: "0")
+      deselectPile()
     default:
       break
     }
@@ -151,7 +159,6 @@ class OfflineRoomViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setPlayerPositions()
-
     if newGame {
       initilizeLobby()
       startDealer()
@@ -176,7 +183,7 @@ class OfflineRoomViewController: UIViewController {
 //MARK: New functions
 extension OfflineRoomViewController {
   private func initilizeLobby() {
-    hideAllCards()
+   // hideAllCards()
     showVisibleCards()
     playersViews[0].grow()
   }
@@ -250,12 +257,34 @@ extension OfflineRoomViewController {
 //MARK: Deck Logic
 extension OfflineRoomViewController {
   private func clearDeck() {
-    guard let backCard = UIImage(named: "Back-1")
+    guard let backCard = UIImage(named: "Back")
       else{
         return
     }
     self.deckButton.setBackgroundImage(backCard, for: .normal)
     self.deckButton.setTitle("", for: .normal)
+  }
+  
+  private func selectDeck() {
+    let deckCard = game.getCurrentDeckTopCard()
+    let (imageName, text) = deckCard.getImageKeys()
+    let cardImage = UIImage(named: "Selected"+imageName)
+    var textColor: UIColor
+    deckButton.setBackgroundImage(cardImage, for: .normal)
+    deckButton.setTitle(text, for: .normal)
+    textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+
+  }
+  
+  private func deselectDeck() {
+    let deckCard = game.getCurrentDeckTopCard()
+    let (imageName, text) = deckCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    var textColor: UIColor
+    deckButton.setBackgroundImage(cardImage, for: .normal)
+    deckButton.setTitle(text, for: .normal)
+    textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+
   }
   
   private func showDeck() {
@@ -287,6 +316,28 @@ extension OfflineRoomViewController {
       self.pileButton.setTitle(text, for: .normal)
     }, completion: nil)
   }
+  
+  private func selectPile() {
+    let deckCard = game.getPileDeckTopCard()
+    let (imageName, text) = deckCard.getImageKeys()
+    let cardImage = UIImage(named: "Selected"+imageName)
+    var textColor: UIColor
+    pileButton.setBackgroundImage(cardImage, for: .normal)
+    pileButton.setTitle(text, for: .normal)
+    textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    
+  }
+  
+  private func deselectPile() {
+    let deckCard = game.getPileDeckTopCard()
+    let (imageName, text) = deckCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    var textColor: UIColor
+    pileButton.setBackgroundImage(cardImage, for: .normal)
+    pileButton.setTitle(text, for: .normal)
+    textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    
+  }
 }
 
 //MARK: Cards Logic
@@ -312,7 +363,49 @@ extension OfflineRoomViewController {
     }
   }
   
+  private func selectCard(at index: Int) {
+    guard let player = game.getPlayer(playerId: "0"),
+      let playerCards = playerPositions["0"]
+      else{
+        return
+    }
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: "Selected"+imageName)
+    let cardButton = playerCards[index]
+    var textColor: UIColor
+    cardButton.setBackgroundImage(cardImage, for: .normal)
+    cardButton.setTitle(text, for: .normal)
+    if playerCard.faceUp {
+      textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    }
+    else {
+      textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+    }
+    cardButton.setTitleColor(textColor, for: .normal)
+  }
   
+  private func deselectCard(at index: Int) {
+    guard let player = game.getPlayer(playerId: "0"),
+      let playerCards = playerPositions["0"]
+      else{
+        return
+    }
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    var textColor: UIColor
+    cardButton.setBackgroundImage(cardImage, for: .normal)
+    cardButton.setTitle(text, for: .normal)
+    if playerCard.faceUp {
+      textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    }
+    else {
+      textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+    }
+    cardButton.setTitleColor(textColor, for: .normal)
+  }
   
   private func updatePlayerCard(playerId: String, index: Int) {
     guard let player = game.getPlayer(playerId: playerId),
