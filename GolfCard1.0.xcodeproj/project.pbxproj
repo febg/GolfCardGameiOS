@@ -16,6 +16,7 @@
 		820BB129207C96B80080BCCB /* GolfGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820BB128207C96B80080BCCB /* GolfGame.swift */; };
 		820DAE0620916FA800F92FE3 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820DAE0520916FA800F92FE3 /* MenuViewController.swift */; };
 		8214619D209D76EA00496AE5 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214619C209D76EA00496AE5 /* NetworkController.swift */; };
+		822168B320DF3FBE00D13CF0 /* FirstTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822168B220DF3FBE00D13CF0 /* FirstTutorialViewController.swift */; };
 		823F7BC6209E760A004AE490 /* OnlineMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F7BC5209E760A004AE490 /* OnlineMenuViewController.swift */; };
 		823F7BC8209E90D8004AE490 /* GolfGameClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F7BC7209E90D8004AE490 /* GolfGameClient.swift */; };
 		823FFF4920ABA71100DCC2F4 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823FFF4820ABA71100DCC2F4 /* ConnectionViewController.swift */; };
@@ -71,6 +72,7 @@
 		820BB128207C96B80080BCCB /* GolfGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfGame.swift; sourceTree = "<group>"; };
 		820DAE0520916FA800F92FE3 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8214619C209D76EA00496AE5 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		822168B220DF3FBE00D13CF0 /* FirstTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTutorialViewController.swift; sourceTree = "<group>"; };
 		823F7BC5209E760A004AE490 /* OnlineMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Online\U0010\U0010MenuViewController.swift"; sourceTree = "<group>"; };
 		823F7BC7209E90D8004AE490 /* GolfGameClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfGameClient.swift; sourceTree = "<group>"; };
 		823FFF4820ABA71100DCC2F4 /* ConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				823FFF4A20ABA97D00DCC2F4 /* OnlineRoomViewController.swift */,
 				82B2279820D8DC2E000BA174 /* TutorialPageViewController.swift */,
 				82FE011120D99A3A0047400F /* TutorialViewController.swift */,
+				822168B220DF3FBE00D13CF0 /* FirstTutorialViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				82FE011220D99A3A0047400F /* TutorialViewController.swift in Sources */,
 				82B2279920D8DC2E000BA174 /* TutorialPageViewController.swift in Sources */,
 				820BB123207C5FCE0080BCCB /* Room.swift in Sources */,
+				822168B320DF3FBE00D13CF0 /* FirstTutorialViewController.swift in Sources */,
 				82C730D820A23B370020787F /* ServerResponse.swift in Sources */,
 				82D878F920C7BEF00087912F /* CustomButton.swift in Sources */,
 				82AB58FF209FCFBA006548C9 /* PlayerAction.swift in Sources */,
