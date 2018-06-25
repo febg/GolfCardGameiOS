@@ -35,10 +35,10 @@ extension UIView {
         for c in self.constraints {
         switch (c.firstAttribute) {
         case .width:
-          c.constant = 156
+          c.constant = 140
 
         case .height:
-          c.constant = 176
+          c.constant = 160
         default:
           break
         }
