@@ -31,6 +31,7 @@
 		824C1CAF207A901A00C14FDB /* RoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C1CAE207A901A00C14FDB /* RoomResponse.swift */; };
 		824C1CB2207A915900C14FDB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C1CB1207A915900C14FDB /* Card.swift */; };
 		824C1CB6207A92A600C14FDB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824C1CB5207A92A500C14FDB /* Player.swift */; };
+		825E6F2720E1602D00DC70C6 /* TutorialGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E6F2620E1602D00DC70C6 /* TutorialGame.swift */; };
 		8260F40020C8C359000CC8DD /* PlayerScoresMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */; };
 		82AB58FF209FCFBA006548C9 /* PlayerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB58FE209FCFBA006548C9 /* PlayerAction.swift */; };
 		82B2279920D8DC2E000BA174 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B2279820D8DC2E000BA174 /* TutorialPageViewController.swift */; };
@@ -93,6 +94,7 @@
 		824C1CAE207A901A00C14FDB /* RoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomResponse.swift; sourceTree = "<group>"; };
 		824C1CB1207A915900C14FDB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		824C1CB5207A92A500C14FDB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		825E6F2620E1602D00DC70C6 /* TutorialGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialGame.swift; sourceTree = "<group>"; };
 		8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoresMenu.swift; sourceTree = "<group>"; };
 		82AB58FE209FCFBA006548C9 /* PlayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAction.swift; sourceTree = "<group>"; };
 		82B2279820D8DC2E000BA174 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				820BB128207C96B80080BCCB /* GolfGame.swift */,
 				8201F31C2082863F0037AFF1 /* BotManager.swift */,
 				823F7BC7209E90D8004AE490 /* GolfGameClient.swift */,
+				825E6F2620E1602D00DC70C6 /* TutorialGame.swift */,
 			);
 			path = GolfCard1.0;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				824C1CAF207A901A00C14FDB /* RoomResponse.swift in Sources */,
 				8201F31D2082863F0037AFF1 /* BotManager.swift in Sources */,
 				824C1CB6207A92A600C14FDB /* Player.swift in Sources */,
+				825E6F2720E1602D00DC70C6 /* TutorialGame.swift in Sources */,
 				8214619D209D76EA00496AE5 /* NetworkController.swift in Sources */,
 				824C1CB2207A915900C14FDB /* Card.swift in Sources */,
 			);
