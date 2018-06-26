@@ -35,6 +35,15 @@ struct Player: Codable {
     actionCard = Card()
   }
   
+  init(playerId: String, hand: [Card]){
+    self.playerId = playerId
+    self.hand = hand
+    handValue = 0
+    newCard = Card()
+    startGame = false
+    actionCard = Card()
+  }
+  
   mutating func addToHand(card: Card) {
     hand.append(card)
   }
