@@ -26,6 +26,24 @@ extension UIView {
     )
   }
   
+  func pulse(count: Int) {
+    UIView.animate(withDuration: 1.0, animations: {
+      self.alpha = 1.0
+    }, completion: {
+      (Completed: Bool) -> Void in
+      UIView.animate(withDuration: 1.0, animations: {
+        self.alpha = 0.0
+      }, completion: {
+        (Completion: Bool) -> Void in
+        if (count == 0) {
+          self.alpha = 1.0
+          return
+        }
+        self.pulse(count: count - 1)
+      })
+    })
+  }
+  
   func grow() {
     let time: TimeInterval = 0.5
     UIView.animate(
