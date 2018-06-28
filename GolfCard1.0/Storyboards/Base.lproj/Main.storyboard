@@ -119,6 +119,9 @@
                                         <color key="value" red="0.0" green="0.1450980392" blue="0.22352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="jzA-xK-Mfh" kind="show" id="WId-6O-CPu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.94117647058823528" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1290,6 +1293,8 @@
                         <outletCollection property="oponentCards" destination="DKB-J6-i1p" collectionClass="NSMutableArray" id="51K-Zy-G77"/>
                         <outletCollection property="oponentCards" destination="seL-0u-56o" collectionClass="NSMutableArray" id="Umv-wX-Tii"/>
                         <outletCollection property="oponentCards" destination="DZN-Tl-Aag" collectionClass="NSMutableArray" id="alI-IA-rmv"/>
+                        <outletCollection property="playerPositions" destination="h8t-q1-T0M" collectionClass="NSMutableArray" id="LZu-3E-dgV"/>
+                        <outletCollection property="playerPositions" destination="E39-kc-8vJ" collectionClass="NSMutableArray" id="fPY-vl-dEA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cr9-Wg-gRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2102,11 +2107,11 @@
         <scene sceneID="B0h-fc-2mI">
             <objects>
                 <viewController id="JMO-Gm-UoF" customClass="MenuViewController" customModule="GolfCard1_0" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PtD-Ay-BYg">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="PtD-Ay-BYg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIN-lb-7ZK">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tIN-lb-7ZK">
                                 <rect key="frame" x="20" y="20" width="75" height="55"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.94117647058823528" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2114,7 +2119,7 @@
                                     <constraint firstAttribute="height" constant="55" id="QFC-Z0-Uqh"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jew-TQ-CSW" customClass="CustomButton" customModule="GolfCard1_0" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jew-TQ-CSW" customClass="CustomButton" customModule="GolfCard1_0" customModuleProvider="target">
                                 <rect key="frame" x="50" y="631" width="120" height="55"/>
                                 <color key="backgroundColor" red="0.81176470588235294" green="0.2627450980392157" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2135,8 +2140,8 @@
                                     <segue destination="pbA-Do-PQL" kind="show" id="JI0-Np-blv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7P-Ja-oKp">
-                                <rect key="frame" x="20" y="20" width="22" height="75"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7P-Ja-oKp">
+                                <rect key="frame" x="20.000000000000004" y="20" width="21.999999999999996" height="75"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.94117647058823528" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="eT9-cX-4bQ"/>
@@ -2148,8 +2153,8 @@
                                     <segue destination="pbA-Do-PQL" kind="showDetail" id="xnq-RP-SQC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ews-vi-4l5">
-                                <rect key="frame" x="135.66666666666666" y="72" width="142.99999999999997" height="55"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ews-vi-4l5">
+                                <rect key="frame" x="116.33333333333331" y="72" width="143" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Gfc-RW-WL1"/>
                                     <constraint firstAttribute="width" constant="143" id="Szc-XE-gYr"/>
@@ -2158,16 +2163,16 @@
                                 <color key="textColor" red="0.46274509803921571" green="0.49803921568627452" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoq-zZ-3Sv" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
-                                <rect key="frame" x="50" y="147" width="312.66666666666669" height="331"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eoq-zZ-3Sv" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
+                                <rect key="frame" x="50" y="147" width="274" height="331"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqV-V8-mdN">
-                                        <rect key="frame" x="36.666666666666686" y="36.666666666666657" width="240" height="258"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqV-V8-mdN">
+                                        <rect key="frame" x="17.666666666666686" y="36.666666666666657" width="240" height="258"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAU-W1-XRs" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAU-W1-XRs" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCI-sx-lC4">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCI-sx-lC4">
                                                         <rect key="frame" x="10" y="-0.66666666666665719" width="100" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="Q5c-eP-3I3"/>
@@ -2176,7 +2181,7 @@
                                                         <color key="textColor" red="0.46274509800000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hh-vP-8Uf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hh-vP-8Uf">
                                                         <rect key="frame" x="130" y="0.0" width="100" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="q4Q-Ys-9Po"/>
@@ -2215,16 +2220,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3G-yn-8kr" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3G-yn-8kr" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="74.000000000000028" width="240" height="36"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxA-2g-jzE">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Player 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxA-2g-jzE">
                                                         <rect key="frame" x="10" y="0.0" width="69" height="36"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" red="0.46274509800000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19a-aG-naA">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19a-aG-naA">
                                                         <rect key="frame" x="130" y="0.0" width="100" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="85D-Q3-fhA"/>
@@ -2263,16 +2268,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gyg-V6-lrb" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="222.00000000000003" width="240" height="35.999999999999972"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gyg-V6-lrb" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="222" width="240" height="36"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeD-le-OhF">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Player 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeD-le-OhF">
                                                         <rect key="frame" x="10" y="0.0" width="69" height="36"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" red="0.46274509800000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRf-ra-f1y">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRf-ra-f1y">
                                                         <rect key="frame" x="130" y="0.0" width="100" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="mGa-jl-sMH"/>
@@ -2311,16 +2316,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uZ-ys-OyT" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0uZ-ys-OyT" customClass="PlayerScoresMenu" customModule="GolfCard1_0" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="148.00000000000003" width="240" height="36"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVj-Vm-Pgy">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Player 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVj-Vm-Pgy">
                                                         <rect key="frame" x="10" y="0.0" width="69" height="36"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" red="0.46274509800000002" green="0.49803921569999998" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZo-3O-yJb">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="29" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZo-3O-yJb">
                                                         <rect key="frame" x="130" y="0.0" width="100" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="ASC-i2-F7O"/>
@@ -2406,8 +2411,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9O3-po-zHW" customClass="CustomButton" customModule="GolfCard1_0" customModuleProvider="target">
-                                <rect key="frame" x="243" y="631" width="120" height="55"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9O3-po-zHW" customClass="CustomButton" customModule="GolfCard1_0" customModuleProvider="target">
+                                <rect key="frame" x="204.66666666666663" y="631" width="120" height="55"/>
                                 <color key="backgroundColor" red="0.81176470588235294" green="0.2627450980392157" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="W9e-QE-IdB"/>
@@ -2460,7 +2465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqe-Yb-pDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="-1186"/>
+            <point key="canvasLocation" x="481" y="-1118"/>
         </scene>
     </scenes>
     <resources>
