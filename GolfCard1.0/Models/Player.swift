@@ -26,6 +26,15 @@ struct Player: Codable {
     case actionCard = "actionCard"
   }
   
+  init() {
+    self.playerId = ""
+    hand = [Card]()
+    handValue = 0
+    newCard = Card()
+    startGame = false
+    actionCard = Card()
+  }
+  
   init(playerId: String) {
     self.playerId = playerId
     hand = [Card]()
