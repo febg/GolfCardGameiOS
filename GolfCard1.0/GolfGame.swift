@@ -410,8 +410,6 @@ class GolfGame {
     turnTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
   }
   public func stopGame() {
-    if turnTimer.isValid {
-      turnTimer.invalidate()
-    }
+    if turnTimer.isValid { turnTimer.invalidate () }
   }
 }

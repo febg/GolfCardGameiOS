@@ -27,12 +27,12 @@ extension UIView {
   }
   
   func pulse(count: Int) {
-    UIView.animate(withDuration: 1.0, animations: {
+    UIView.animate(withDuration: 0.7, animations: {
       self.alpha = 1.0
     }, completion: {
       (Completed: Bool) -> Void in
-      UIView.animate(withDuration: 1.0, animations: {
-        self.alpha = 0.0
+      UIView.animate(withDuration: 0.7, animations: {
+        self.alpha = 0.3
       }, completion: {
         (Completion: Bool) -> Void in
         if (count == 0) {
