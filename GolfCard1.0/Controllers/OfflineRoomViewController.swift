@@ -273,6 +273,7 @@ extension OfflineRoomViewController {
     deckButton.setBackgroundImage(cardImage, for: .normal)
     deckButton.setTitle(text, for: .normal)
     textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    deckButton.setTitleColor(textColor, for: .normal)
 
   }
   
@@ -284,6 +285,7 @@ extension OfflineRoomViewController {
     deckButton.setBackgroundImage(cardImage, for: .normal)
     deckButton.setTitle(text, for: .normal)
     textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    deckButton.setTitleColor(textColor, for: .normal)
 
   }
   
