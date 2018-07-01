@@ -9,8 +9,24 @@
 import UIKit
 
 extension FirstTutorialViewController: TutorialGameDelegate {
-  func didFlipCard(card: Int) {
-    <#code#>
+  func showPileLabel(message: String) {
+    displayPileLabel(text: message)
+  }
+  
+  func showDeckLabel(message: String) {
+    displayDeckLabel(text: message)
+  }
+  
+  func showPileDeck(animated: Bool) {
+    showPileButton(animated: animated)
+  }
+  
+  func showDeck(animated: Bool) {
+    showDeckButton(animated: animated)
+  }
+  
+  func didFlipCard(playerId: String, card: Int) {
+    showPlayerCard(playerId: playerId, index: card, animated: true)
   }
   
   func showLowerLeft(message: String) {
@@ -75,6 +91,7 @@ class FirstTutorialViewController: UIViewController {
   private let cardsPerPlayer = 6
   private var timer: Timer! = nil
   private var time = 0.0
+  private var lastTouchedCard = -1
   
   @IBOutlet private var playerPositions: [UIView]!
   @IBOutlet private var playerCards: [UIButton]!
@@ -98,7 +115,29 @@ class FirstTutorialViewController: UIViewController {
   @IBOutlet private var lowerLeftLabel: UILabel!
   
   @IBAction private func cardAction(_ sender: UIButton){
-    print("you touched card \(sender.tag)")
+    
+    switch (sender.tag, tutorialGame.gameState, lastTouchedCard) {
+    case (2, .playerMove_0, -1):
+      selectCard(at: sender.tag)
+      lastTouchedCard = sender.tag
+    case (2, .playerMove_0, sender.tag):
+      tutorialGame.handleCardAction(card: sender.tag)
+      lastTouchedCard = -1
+    default:
+      break
+    }
+    
+//    if sender.tag == lastTouchedCard {
+//      //TODO: Flip Card?
+//      deselectCard(at: sender.tag)
+//      lastTouchedCard = -1
+//      showPlayerCard(playerId: "P0", index: sender.tag, animated: true)
+//      //TODO: lastTouchedCard = -1
+//      return
+//    }
+//    if lastTouchedCard != -1 { deselectCard(at: lastTouchedCard) }
+//    selectCard(at: sender.tag)
+//    lastTouchedCard = sender.tag
   }
   
   @IBAction func pileAction(_ sender: Any) {
@@ -235,7 +274,7 @@ extension FirstTutorialViewController {
   
   private func showVisibleCard(playerId: String, index: Int) {
     guard
-    let playerCards = playerId == "P0" ? playerCards : oponentCards
+    let playerCards = playerId == "P0" ? self.playerCards : oponentCards
       else{
         return
     }
@@ -253,7 +292,103 @@ extension FirstTutorialViewController {
         cardButton.isEnabled = true
       }, completion: nil)
     }
-    
+  }
+  
+  private func showPlayerCard(playerId: String, index: Int, animated: Bool) {
+    guard
+    let playerCards = playerId == "P0" ? self.playerCards : oponentCards
+      else{
+        return
+    }
+    let player = tutorialGame.getPlayer(playerId: playerId)
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    if (animated) {
+      UIView.transition(with: cardButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+        cardButton.setBackgroundImage(cardImage, for: .disabled)
+        cardButton.setTitle(text, for: .disabled)
+        let textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+        cardButton.setTitleColor(textColor, for: .disabled)
+        cardButton.isEnabled = false
+      }, completion: nil)
+    }
+  }
+  
+  private func selectCard(at index: Int) {
+    guard
+    let playerCards = self.playerCards
+      else {
+        return
+    }
+    let player = tutorialGame.getPlayer(playerId: "P0")
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: "Selected"+imageName)
+    let cardButton = playerCards[index]
+    var textColor: UIColor
+    cardButton.setBackgroundImage(cardImage, for: .normal)
+    cardButton.setTitle(text, for: .normal)
+    if playerCard.faceUp {
+      textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    }
+    else {
+      textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+    }
+    cardButton.setTitleColor(textColor, for: .normal)
+  }
+  
+  private func deselectCard(at index: Int) {
+    guard
+      let playerCards = self.playerCards
+      else{
+        return
+    }
+    let player = tutorialGame.getPlayer(playerId: "P0")
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    var textColor: UIColor
+    cardButton.setBackgroundImage(cardImage, for: .normal)
+    cardButton.setTitle(text, for: .normal)
+    if playerCard.faceUp {
+      textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    }
+    else {
+      textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+    }
+    cardButton.setTitleColor(textColor, for: .normal)
+  }
+  
+  private func updatePlayerCard(playerId: String, index: Int) {
+    guard
+    let playerCards = playerId == "P0" ? self.playerCards : oponentCards
+      else{
+        return
+    }
+    let player = tutorialGame.getPlayer(playerId: playerId)
+    let playerCard = player.hand[index % 6]
+    let (imageName, text) = playerCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    let cardButton = playerCards[index]
+    var textColor = UIColor()
+    if playerCard.faceUp {
+      cardButton.isEnabled = false
+      textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+      cardButton.setBackgroundImage(cardImage, for: .disabled)
+      cardButton.setTitle(text, for: .disabled)
+      cardButton.setTitleColor(textColor, for: .disabled)
+      return
+    }
+    if playerCard.visibleToOwner && playerId != "0" {
+      return
+    }
+    textColor = UIColor(displayP3Red: 245/255, green: 240/255, blue: 237/255, alpha: 1)
+    cardButton.setBackgroundImage(cardImage, for: .normal)
+    cardButton.setTitle(text, for: .normal)
+    cardButton.setTitleColor(textColor, for: .normal)
   }
   
 }
@@ -262,20 +397,91 @@ extension FirstTutorialViewController {
 //MARK: Deck logic
 extension FirstTutorialViewController {
   private func hideDeck() {
-    deckButton.isHidden = true
+    deckButton.alpha = 0.0
   }
   private func hideDeckLabel() {
     deckLabel.isHidden = true
+  }
+  
+  private func showDeckButton(animated: Bool) {
+    if animated {
+      deckButton.fadeIn()
+    }
+    deckButton.alpha = 1.0
+  }
+  
+  private func displayDeckLabel(text: String) {
+    deckLabel.text = text
+    deckLabel.isHidden = false
+  }
+  
+  private func clearDeck() {
+    guard let backCard = UIImage(named: "Back")
+      else{
+        return
+    }
+    self.deckButton.setBackgroundImage(backCard, for: .normal)
+    self.deckButton.setTitle("", for: .normal)
+  }
+  
+  private func selectDeck() {
+    let deckCard = tutorialGame.getCurrentDeckTopCard()
+    let (imageName, text) = deckCard.getImageKeys()
+    let cardImage = UIImage(named: "Selected"+imageName)
+    var textColor: UIColor
+    deckButton.setBackgroundImage(cardImage, for: .normal)
+    deckButton.setTitle(text, for: .normal)
+    textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    deckButton.setTitleColor(textColor, for: .normal)
+    
+  }
+  
+  private func deselectDeck() {
+    let deckCard = tutorialGame.getCurrentDeckTopCard()
+    let (imageName, text) = deckCard.getImageKeys()
+    let cardImage = UIImage(named: imageName)
+    var textColor: UIColor
+    deckButton.setBackgroundImage(cardImage, for: .normal)
+    deckButton.setTitle(text, for: .normal)
+    textColor = UIColor(displayP3Red: 207/255, green: 67/255, blue: 87/255, alpha: 1)
+    deckButton.setTitleColor(textColor, for: .normal)
+    
+  }
+  
+  private func flipDeckButton() {
+    let deckCard = tutorialGame.getCurrentDeckTopCard()
+    let (imageName, cardText) = deckCard.getImageKeys()
+    guard let cardImage = UIImage(named: imageName)
+      else{
+        return
+    }
+    if (deckCard.faceUp) {
+      UIView.transition(with: deckButton, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+        self.deckButton.setBackgroundImage(cardImage, for: .normal)
+        self.deckButton.setTitle(cardText, for: .normal)
+      }, completion: nil)
+    }
   }
 }
 
 //MARK: Pile logic
 extension FirstTutorialViewController {
   private func hidePile() {
-    pileCard.isHidden = true
+    pileCard.alpha = 0.0
   }
+  
   private func hidePileLabel() {
     pileLabel.isHidden = true
+  }
+  
+  private func showPileButton(animated: Bool) {
+    if animated { pileCard.fadeIn() }
+    pileCard.alpha = 1.0
+  }
+  
+  private func displayPileLabel(text: String) {
+    pileLabel.text = text
+    pileLabel.isHidden = false
   }
 }
 

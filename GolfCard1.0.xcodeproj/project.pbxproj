@@ -34,11 +34,9 @@
 		825E6F2720E1602D00DC70C6 /* TutorialGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E6F2620E1602D00DC70C6 /* TutorialGame.swift */; };
 		8260F40020C8C359000CC8DD /* PlayerScoresMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */; };
 		82AB58FF209FCFBA006548C9 /* PlayerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB58FE209FCFBA006548C9 /* PlayerAction.swift */; };
-		82B2279920D8DC2E000BA174 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B2279820D8DC2E000BA174 /* TutorialPageViewController.swift */; };
 		82BD5F41207ED64900107593 /* UIVIewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BD5F40207ED64900107593 /* UIVIewExtensions.swift */; };
 		82C730D820A23B370020787F /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C730D720A23B370020787F /* ServerResponse.swift */; };
 		82D878F920C7BEF00087912F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D878F820C7BEF00087912F /* CustomButton.swift */; };
-		82FE011220D99A3A0047400F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FE011120D99A3A0047400F /* TutorialViewController.swift */; };
 		9FBEEA8A90CF178819027C15 /* Pods_GolfCard1_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D27DDF56C6C7B0C2286EB3 /* Pods_GolfCard1_0Tests.framework */; };
 		D4158F428583A9E3A1E31171 /* Pods_GolfCard1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5DAA2CC58EBBB4AF945586 /* Pods_GolfCard1_0.framework */; };
 /* End PBXBuildFile section */
@@ -97,11 +95,9 @@
 		825E6F2620E1602D00DC70C6 /* TutorialGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialGame.swift; sourceTree = "<group>"; };
 		8260F3FF20C8C359000CC8DD /* PlayerScoresMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoresMenu.swift; sourceTree = "<group>"; };
 		82AB58FE209FCFBA006548C9 /* PlayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAction.swift; sourceTree = "<group>"; };
-		82B2279820D8DC2E000BA174 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		82BD5F40207ED64900107593 /* UIVIewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewExtensions.swift; sourceTree = "<group>"; };
 		82C730D720A23B370020787F /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		82D878F820C7BEF00087912F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		82FE011120D99A3A0047400F /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		83659F05B83392C3CF321B93 /* Pods-GolfCard1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolfCard1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GolfCard1.0/Pods-GolfCard1.0.debug.xcconfig"; sourceTree = "<group>"; };
 		878114B812E4F9C1B2FB6D0D /* Pods-GolfCard1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GolfCard1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-GolfCard1.0/Pods-GolfCard1.0.release.xcconfig"; sourceTree = "<group>"; };
 		AE5DAA2CC58EBBB4AF945586 /* Pods_GolfCard1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GolfCard1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,8 +161,6 @@
 				820DAE0520916FA800F92FE3 /* MenuViewController.swift */,
 				823F7BC5209E760A004AE490 /* OnlineMenuViewController.swift */,
 				823FFF4A20ABA97D00DCC2F4 /* OnlineRoomViewController.swift */,
-				82B2279820D8DC2E000BA174 /* TutorialPageViewController.swift */,
-				82FE011120D99A3A0047400F /* TutorialViewController.swift */,
 				822168B220DF3FBE00D13CF0 /* FirstTutorialViewController.swift */,
 			);
 			path = Controllers;
@@ -524,8 +518,6 @@
 				823FFF4920ABA71100DCC2F4 /* ConnectionViewController.swift in Sources */,
 				8260F40020C8C359000CC8DD /* PlayerScoresMenu.swift in Sources */,
 				824C1C82207A8E2800C14FDB /* ViewController.swift in Sources */,
-				82FE011220D99A3A0047400F /* TutorialViewController.swift in Sources */,
-				82B2279920D8DC2E000BA174 /* TutorialPageViewController.swift in Sources */,
 				820BB123207C5FCE0080BCCB /* Room.swift in Sources */,
 				822168B320DF3FBE00D13CF0 /* FirstTutorialViewController.swift in Sources */,
 				82C730D820A23B370020787F /* ServerResponse.swift in Sources */,
