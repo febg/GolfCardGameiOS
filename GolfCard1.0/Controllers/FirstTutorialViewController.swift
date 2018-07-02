@@ -9,12 +9,25 @@
 import UIKit
 
 extension FirstTutorialViewController: TutorialGameDelegate {
-  func showPileLabel(message: String) {
-    displayPileLabel(text: message)
+
+  func showScoreTitle(message: String) {
+    showScoreLabel(text: message)
   }
   
-  func showDeckLabel(message: String) {
-    displayDeckLabel(text: message)
+  func hideDeckTitle() {
+    hideDeckLabel()
+  }
+  
+  func hidePileTitle() {
+    hidePileLabel()
+  }
+  
+  func showPileTitle(message: String) {
+    showPileLabel(text: message)
+  }
+  
+  func showDeckTitle(message: String) {
+    showDeckLabel(text: message)
   }
   
   func showPileDeck(animated: Bool) {
@@ -259,7 +272,7 @@ extension FirstTutorialViewController {
       cards![5].fadeIn(duration: 0.5, delay: 0.0)
     case 2.1:
       showPlayerLabel(playerId: playerId)
-      showPlayerScore(playerId: playerId)
+      showPlayerScore(playerId: playerId, text: "0")
       stopTimer()
     default:
       break
@@ -410,7 +423,7 @@ extension FirstTutorialViewController {
     deckButton.alpha = 1.0
   }
   
-  private func displayDeckLabel(text: String) {
+  private func showDeckLabel(text: String) {
     deckLabel.text = text
     deckLabel.isHidden = false
   }
@@ -479,7 +492,7 @@ extension FirstTutorialViewController {
     pileCard.alpha = 1.0
   }
   
-  private func displayPileLabel(text: String) {
+  private func showPileLabel(text: String) {
     pileLabel.text = text
     pileLabel.isHidden = false
   }
@@ -543,6 +556,7 @@ extension FirstTutorialViewController {
 
 //MARK: Labels logic
 extension FirstTutorialViewController {
+  //TODO, refactor to hanlde label text, and refactor show labels as well
   private func hideLabel(position: LabelPosition) {
     switch(position) {
     case .upperLeft:
@@ -599,8 +613,9 @@ extension FirstTutorialViewController {
     label?.isHidden = true
   }
   
-  private func showPlayerScore(playerId: String) {
+  private func showPlayerScore(playerId: String, text: String) {
     let label = playerId == "P0" ? playerScore : oponentScore
+    label?.text = text
     label?.isHidden = false
   }
   
@@ -612,6 +627,11 @@ extension FirstTutorialViewController {
   private func hideLowerLeftLabel() {
     lowerLeftLabel.text = ""
     lowerLeftLabel.isHidden = true
+  }
+  
+  private func showScoreLabel(text: String) {
+    scoreLabel.text = text
+    scoreLabel.isHidden = false
   }
   
   private func showUpperRightLabel(text: String) {

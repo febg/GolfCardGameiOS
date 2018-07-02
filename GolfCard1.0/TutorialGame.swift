@@ -13,18 +13,21 @@ import Foundation
 protocol TutorialGameDelegate: class {
   func didFlipCard(playerId: String, card: Int)
   func showDeck(animated: Bool)
-  func showDeckLabel(message: String)
+  func showDeckTitle(message: String)
   func showLowerLeft(message: String)
   func showPileDeck(animated: Bool)
-  func showPileLabel(message:String)
+  func showPileTitle(message:String)
   func showPlayer(playerId: String, animated: Bool)
+  func showScoreTitle(message: String)
   func showSubtitle(message: String)
   func showTapToContinue(message: String, count: Int)
   func showTitle(message: String)
   func showUpperRight(message: String)
   func showWelcomeMessage(message: String)
   func hideAll()
+  func hideDeckTitle()
   func hideLowerLeft()
+  func hidePileTitle()
   func hidePlayer(playerId: String)
   func hideSubtitle()
   func hideTitle()
@@ -32,7 +35,7 @@ protocol TutorialGameDelegate: class {
 }
 
 class TutorialGame {
-
+  
   public weak var delegate: TutorialGameDelegate?
   private let playerCardRanks: [Card.Rank] = [.ten, .five, .two, .six, .four, .king]
   private let playerCardSuits: [Card.Suit] = [.clubs, .spades, .hearts, .dimonds, .hearts, .dimonds]
@@ -67,29 +70,31 @@ class TutorialGame {
     startTimer()
   }
   
-	enum GameState {
+  enum GameState {
     case started
     case welcome_0
     case welcome_1
     case welcome_2
     case welcome_3
     case welcome_4
-		case playerMove_0
-		case playerMove_1
-		case playerMove_2
-		case playerMove_3
-		case playerMove_4
-		case playerMove_5
-		case playerMove_6
-		case tutorialMove_0
-		case tutorialMove_1
-		case tutorialMove_2
-		case tutorialMove_3
-		case tutorialMove_4
-		case tutorialMove_5
-		case tutorialMove_6
-	}
-
+    case welcome_5
+    case welcome_6
+    case playerMove_0
+    case playerMove_1
+    case playerMove_2
+    case playerMove_3
+    case playerMove_4
+    case playerMove_5
+    case playerMove_6
+    case tutorialMove_0
+    case tutorialMove_1
+    case tutorialMove_2
+    case tutorialMove_3
+    case tutorialMove_4
+    case tutorialMove_5
+    case tutorialMove_6
+  }
+  
 }
 
 //MARK: States logic
@@ -132,16 +137,25 @@ extension TutorialGame {
       showTapToContinue()
       stopTimer()
     case (0.5, .welcome_3):
+      delegate?.showTitle(message: "these are the game's deck and pile")
       delegate?.showDeck(animated: true)
     case (1.0, .welcome_3):
-      delegate?.showTitle(message: "this are the game deck and pile")
-      delegate?.showDeckLabel(message: "deck ->")
+      delegate?.showDeckTitle(message: "deck ->")
     case (1.5, .welcome_3):
       delegate?.showPileDeck(animated: true)
       delegate?.hideLowerLeft()
       delegate?.hideUpperRight()
     case (2.5, .welcome_3):
-      delegate?.showPileLabel(message: "<- pile")
+      delegate?.showPileTitle(message: "<- pile")
+    case (3.5, .welcome_3):
+      showTapToContinue()
+      gameState = .welcome_4
+    case (0.5, .welcome_5):
+      delegate?.showTitle(message: "you want the least amount of points")
+      delegate?.hidePileTitle()
+      delegate?.hideDeckTitle()
+    case (1.5, .welcome_5):
+      delegate?.showScoreTitle(message: "<- your points")
     case (0.5, .playerMove_0):
       delegate?.hideUpperRight()
       delegate?.hideLowerLeft()
@@ -150,10 +164,10 @@ extension TutorialGame {
       delegate?.showLowerLeft(message: "double tap this card ->")
       stopTimer()
     default:
-     break
+      break
     }
   }
-
+  
   private func stopTimer() {
     if timer.isValid { timer.invalidate() }
   }
@@ -187,6 +201,9 @@ extension TutorialGame {
       startTimer()
       break
     case .welcome_4:
+      gameState = .welcome_5
+      startTimer()
+    case .welcome_6:
       gameState = .playerMove_0
       startTimer()
     default:
