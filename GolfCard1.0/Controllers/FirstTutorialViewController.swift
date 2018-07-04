@@ -9,7 +9,18 @@
 import UIKit
 
 extension FirstTutorialViewController: TutorialGameDelegate {
-
+  func showInfoView() {
+    self.performSegue(withIdentifier: "InfoView", sender: self)
+  }
+  
+  func showInfoTitle(message: String) {
+    showInfoLabel(text: message)
+  }
+  
+  func hideScoreTitle() {
+    hideScoreLabel()
+  }
+  
   func showScoreTitle(message: String) {
     showScoreLabel(text: message)
   }
@@ -160,6 +171,7 @@ class FirstTutorialViewController: UIViewController {
   }
   
   @IBAction func infoAction(_ sender: Any) {
+    tutorialGame.handleTapInfo()
   }
   
   enum LabelPosition {
@@ -639,9 +651,19 @@ extension FirstTutorialViewController {
     upperRightLabel.isHidden = false
   }
   
+  private func showInfoLabel(text: String) {
+    infoLabel.text = text
+    infoLabel.isHidden = false
+  }
+  
   private func hideUpperRightLabel() {
     upperRightLabel.text = ""
     upperRightLabel.isHidden = true
+  }
+
+  private func hideScoreLabel() {
+    scoreLabel.text = ""
+    scoreLabel.isHidden = true
   }
   
   private func showTitleLabel(text: String, animated: Bool) {
