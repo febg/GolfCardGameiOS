@@ -14,6 +14,8 @@ protocol TutorialGameDelegate: class {
   func didFlipCard(playerId: String, card: Int)
   func showDeck(animated: Bool)
   func showDeckTitle(message: String)
+  func showInfoTitle(message: String)
+  func showInfoView()
   func showLowerLeft(message: String)
   func showPileDeck(animated: Bool)
   func showPileTitle(message:String)
@@ -29,6 +31,7 @@ protocol TutorialGameDelegate: class {
   func hideLowerLeft()
   func hidePileTitle()
   func hidePlayer(playerId: String)
+  func hideScoreTitle()
   func hideSubtitle()
   func hideTitle()
   func hideUpperRight()
@@ -79,6 +82,9 @@ class TutorialGame {
     case welcome_4
     case welcome_5
     case welcome_6
+    case welcome_7
+    case welcome_8
+    case welcome_9
     case playerMove_0
     case playerMove_1
     case playerMove_2
@@ -133,7 +139,7 @@ extension TutorialGame {
       delegate?.showUpperRight(message: "<-  not visible")
     case (3.0, .welcome_1):
       gameState = .welcome_2
-    case (3.5, .welcome_2):
+    case (4.5, .welcome_2):
       showTapToContinue()
       stopTimer()
     case (0.5, .welcome_3):
@@ -150,12 +156,23 @@ extension TutorialGame {
     case (3.5, .welcome_3):
       showTapToContinue()
       gameState = .welcome_4
+      stopTimer()
     case (0.5, .welcome_5):
       delegate?.showTitle(message: "you want the least amount of points")
       delegate?.hidePileTitle()
       delegate?.hideDeckTitle()
     case (1.5, .welcome_5):
       delegate?.showScoreTitle(message: "<- your points")
+    case (2.5, .welcome_5):
+      showTapToContinue()
+      gameState = .welcome_6
+      stopTimer()
+    case (0.5, .welcome_7):
+      delegate?.showTitle(message: "tap the \"i\" to see card points")
+      delegate?.hideScoreTitle()
+    case (1.5, .welcome_7):
+      delegate?.showInfoTitle(message: "tap here ->")
+      stopTimer()
     case (0.5, .playerMove_0):
       delegate?.hideUpperRight()
       delegate?.hideLowerLeft()
@@ -204,12 +221,24 @@ extension TutorialGame {
       gameState = .welcome_5
       startTimer()
     case .welcome_6:
+      gameState = .welcome_7
+      startTimer()
+    case .welcome_8:
       gameState = .playerMove_0
       startTimer()
     default:
       break
     }
     delegate?.hideSubtitle()
+  }
+  
+  public func handleTapInfo() {
+    switch(gameState) {
+    case .welcome_7:
+      delegate?.showInfoView()
+    default:
+      break
+    }
   }
   
   public func handleCardAction(card: Int) {

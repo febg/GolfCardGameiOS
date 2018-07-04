@@ -60,7 +60,7 @@ class MenuViewController: UIViewController {
   
   func displayScore() {
     let points = game.getPlayersPoints()
-    PlayerLabel_1.text = "Player 1"
+    PlayerLabel_1.text = "You"
     PlayerLabel_2.text = "Player 2"
     PlayerLabel_3.text = "Player 3"
     PlayerLabel_4.text = "Player 4"
