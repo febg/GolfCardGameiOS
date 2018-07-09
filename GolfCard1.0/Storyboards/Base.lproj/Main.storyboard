@@ -1466,7 +1466,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="rotation">
-                                        <integer key="value" value="-55"/>
+                                        <integer key="value" value="-40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
@@ -2423,8 +2423,8 @@
         <image name="menu2" width="37" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pTL-bQ-zs9"/>
-        <segue reference="xnq-RP-SQC"/>
+        <segue reference="WId-6O-CPu"/>
+        <segue reference="5AW-Ki-DlO"/>
         <segue reference="0Dk-x4-8V5"/>
     </inferredMetricsTieBreakers>
 </document>
