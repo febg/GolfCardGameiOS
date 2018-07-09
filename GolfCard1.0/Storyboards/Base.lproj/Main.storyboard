@@ -1466,7 +1466,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="rotation">
-                                        <integer key="value" value="-40"/>
+                                        <integer key="value" value="-42"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
